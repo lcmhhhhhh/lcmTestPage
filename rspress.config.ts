@@ -148,6 +148,16 @@ const config: UserConfig = {
           ],
         },
         {
+          text: '最佳实践',
+          items: [
+            {
+              text: '12306订票工具通过火山引擎vefaas部署',
+              link: '/examples/vecli-12306',
+            },
+        
+          ],
+        },
+        {
           text: '其他资源',
           items: [
             {
@@ -268,6 +278,16 @@ const config: UserConfig = {
               text: 'MCP Server',
               link: '/en/tools/mcp-server',
             },
+          ],
+        },
+        {
+          text: 'Best practise',
+          items: [
+            {
+              text: '12306订票工具通过火山引擎vefaas部署',
+              link: 'en/examples/vecli-12306',
+            },
+        
           ],
         },
         {
