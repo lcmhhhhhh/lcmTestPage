@@ -10,14 +10,11 @@ This guide provides solutions to common issues and debugging tips, including top
 ## Authentication or login errors
 
 - **Error: `Failed to login. Message: Request contains an invalid argument`**
-  - Users with Google Workspace accounts or Google Cloud accounts
+  - Users with volcengine Workspace accounts or Volcano Engine accounts
     associated with their Gmail accounts may not be able to activate the free
-    tier of the Google Code Assist plan.
-  - For Google Cloud accounts, you can work around this by setting
-    `GOOGLE_CLOUD_PROJECT` to your project ID.
-  - Alternatively, you can obtain the Gemini API key from
-    [Google AI Studio](http://aistudio.google.com/app/apikey), which also includes a
-    separate free tier.
+    tier of the volcengine Code Assist plan.
+  - For Volcano Engine accounts, you can work around this by setting
+    `VOLCENGINE_PROJECT` to your project ID.
 
 - **Error: `UNABLE_TO_GET_ISSUER_CERT_LOCALLY` or `unable to get local issuer certificate`**
   - **Cause:** You may be on a corporate network with a firewall that intercepts and inspects SSL/TLS traffic. This often requires a custom root CA certificate to be trusted by Node.js.
@@ -26,18 +23,18 @@ This guide provides solutions to common issues and debugging tips, including top
 
 ## Frequently asked questions (FAQs)
 
-- **Q: How do I update Gemini CLI to the latest version?**
-  - A: If you installed it globally via `npm`, update it using the command `npm install -g @google/gemini-cli@latest`. If you compiled it from source, pull the latest changes from the repository, and then rebuild using the command `npm run build`.
+- **Q: How do I update VeCLI to the latest version?**
+  - A: If you installed it globally via `npm`, update it using the command `npm install -g @vecli/vecli@latest`. If you compiled it from source, pull the latest changes from the repository, and then rebuild using the command `npm run build`.
 
-- **Q: Where are the Gemini CLI configuration or settings files stored?**
-  - A: The Gemini CLI configuration is stored in two `settings.json` files:
-    1. In your home directory: `~/.gemini/settings.json`.
-    2. In your project's root directory: `./.gemini/settings.json`.
+- **Q: Where are the VeCLI configuration or settings files stored?**
+  - A: The VeCLI configuration is stored in two `settings.json` files:
+    1. In your home directory: `~/.ve/settings.json`.
+    2. In your project's root directory: `./.ve/settings.json`.
 
-    Refer to [Gemini CLI Configuration](./cli/configuration.md) for more details.
+    Refer to [VeCLI Configuration](./cli/configuration.md) for more details.
 
 - **Q: Why don't I see cached token counts in my stats output?**
-  - A: Cached token information is only displayed when cached tokens are being used. This feature is available for API key users (Gemini API key or Google Cloud Vertex AI) but not for OAuth users (such as Google Personal/Enterprise accounts like Google Gmail or Google Workspace, respectively). This is because the Gemini Code Assist API does not support cached content creation. You can still view your total token usage using the `/stats` command in Gemini CLI.
+  - A: Cached token information is only displayed when cached tokens are being used. This feature is available for API key users (vecli API key or Volcano Engine Vertex AI) but not for OAuth users (such as volcengine Personal/Enterprise accounts like volcengine Gmail or volcengine Workspace, respectively). This is because the Ve Code Assist API does not support cached content creation. You can still view your total token usage using the `/stats` command in VeCLI.
 
 ## Common error messages and solutions
 
@@ -46,12 +43,12 @@ This guide provides solutions to common issues and debugging tips, including top
   - **Solution:**
     Either stop the other process that is using the port or configure the MCP server to use a different port.
 
-- **Error: Command not found (when attempting to run Gemini CLI with `gemini`).**
-  - **Cause:** Gemini CLI is not correctly installed or it is not in your system's `PATH`.
+- **Error: Command not found (when attempting to run VeCLI with `vecli`).**
+  - **Cause:** VeCLI is not correctly installed or it is not in your system's `PATH`.
   - **Solution:**
-    The update depends on how you installed Gemini CLI:
-    - If you installed `gemini` globally, check that your `npm` global binary directory is in your `PATH`. You can update Gemini CLI using the command `npm install -g @google/gemini-cli@latest`.
-    - If you are running `gemini` from source, ensure you are using the correct command to invoke it (e.g., `node packages/cli/dist/index.js ...`). To update Gemini CLI, pull the latest changes from the repository, and then rebuild using the command `npm run build`.
+    The update depends on how you installed VeCLI:
+    - If you installed `vecli` globally, check that your `npm` global binary directory is in your `PATH`. You can update VeCLI using the command `npm install -g @vecli/vecli@latest`.
+    - If you are running `vecli` from source, ensure you are using the correct command to invoke it (e.g., `node packages/cli/dist/index.js ...`). To update VeCLI, pull the latest changes from the repository, and then rebuild using the command `npm run build`.
 
 - **Error: `MODULE_NOT_FOUND` or import errors.**
   - **Cause:** Dependencies are not installed correctly, or the project hasn't been built.
@@ -61,22 +58,22 @@ This guide provides solutions to common issues and debugging tips, including top
     3.  Verify that the build completed successfully with `npm run start`.
 
 - **Error: "Operation not permitted", "Permission denied", or similar.**
-  - **Cause:** When sandboxing is enabled, Gemini CLI may attempt operations that are restricted by your sandbox configuration, such as writing outside the project directory or system temp directory.
+  - **Cause:** When sandboxing is enabled, VeCLI may attempt operations that are restricted by your sandbox configuration, such as writing outside the project directory or system temp directory.
   - **Solution:** Refer to the [Configuration: Sandboxing](./cli/configuration.md#sandboxing) documentation for more information, including how to customize your sandbox configuration.
 
-- **Gemini CLI is not running in interactive mode in "CI" environments**
-  - **Issue:** The Gemini CLI does not enter interactive mode (no prompt appears) if an environment variable starting with `CI_` (e.g., `CI_TOKEN`) is set. This is because the `is-in-ci` package, used by the underlying UI framework, detects these variables and assumes a non-interactive CI environment.
-  - **Cause:** The `is-in-ci` package checks for the presence of `CI`, `CONTINUOUS_INTEGRATION`, or any environment variable with a `CI_` prefix. When any of these are found, it signals that the environment is non-interactive, which prevents the Gemini CLI from starting in its interactive mode.
-  - **Solution:** If the `CI_` prefixed variable is not needed for the CLI to function, you can temporarily unset it for the command. e.g., `env -u CI_TOKEN gemini`
+- **VeCLI is not running in interactive mode in "CI" environments**
+  - **Issue:** The VeCLI does not enter interactive mode (no prompt appears) if an environment variable starting with `CI_` (e.g., `CI_TOKEN`) is set. This is because the `is-in-ci` package, used by the underlying UI framework, detects these variables and assumes a non-interactive CI environment.
+  - **Cause:** The `is-in-ci` package checks for the presence of `CI`, `CONTINUOUS_INTEGRATION`, or any environment variable with a `CI_` prefix. When any of these are found, it signals that the environment is non-interactive, which prevents the VeCLI from starting in its interactive mode.
+  - **Solution:** If the `CI_` prefixed variable is not needed for the CLI to function, you can temporarily unset it for the command. e.g., `env -u CI_TOKEN vecli`
 
 - **DEBUG mode not working from project .env file**
-  - **Issue:** Setting `DEBUG=true` in a project's `.env` file doesn't enable debug mode for gemini-cli.
-  - **Cause:** The `DEBUG` and `DEBUG_MODE` variables are automatically excluded from project `.env` files to prevent interference with gemini-cli behavior.
-  - **Solution:** Use a `.gemini/.env` file instead, or configure the `advanced.excludedEnvVars` setting in your `settings.json` to exclude fewer variables.
+  - **Issue:** Setting `DEBUG=true` in a project's `.env` file doesn't enable debug mode for vecli-cli.
+  - **Cause:** The `DEBUG` and `DEBUG_MODE` variables are automatically excluded from project `.env` files to prevent interference with vecli-cli behavior.
+  - **Solution:** Use a `.ve/.env` file instead, or configure the `advanced.excludedEnvVars` setting in your `settings.json` to exclude fewer variables.
 
 ## Exit Codes
 
-The Gemini CLI uses specific exit codes to indicate the reason for termination. This is especially useful for scripting and automation.
+The VeCLI uses specific exit codes to indicate the reason for termination. This is especially useful for scripting and automation.
 
 | Exit Code | Error Type                 | Description                                                                                         |
 | --------- | -------------------------- | --------------------------------------------------------------------------------------------------- |
@@ -107,4 +104,4 @@ The Gemini CLI uses specific exit codes to indicate the reason for termination. 
 
 ## Existing GitHub Issues similar to yours or creating new Issues
 
-If you encounter an issue that was not covered here in this _Troubleshooting guide_, consider searching the Gemini CLI [Issue tracker on GitHub](https://github.com/google-gemini/gemini-cli/issues). If you can't find an issue similar to yours, consider creating a new GitHub Issue with a detailed description. Pull requests are also welcome!
+If you encounter an issue that was not covered here in this _Troubleshooting guide_, consider searching the VeCLI [Issue tracker on GitHub](https://github.com/volcengine-vecli/vecli/issues). If you can't find an issue similar to yours, consider creating a new GitHub Issue with a detailed description. Pull requests are also welcome!
