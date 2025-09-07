@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Rspress v1.45.3">
+    <title data-rh="true">VeCLI 配置 - Gemini CLI Documentation</title><meta data-rh="true" name="description" content="A comprehensive guide to installing, using, and developing Gemini CLI"/>
+  <script>{;const saved = localStorage.getItem('rspress-theme-appearance');const preferDark = window.matchMedia('(prefers-color-scheme: dark)').matches;const isDark = !saved || saved === 'auto' ? preferDark : saved === 'dark';document.documentElement.classList.toggle('dark', isDark);document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';}</script><script defer src="/static/js/styles.85a0ab23.js"></script><script defer src="/static/js/lib-react.f6e61177.js"></script><script defer src="/static/js/lib-router.d48d8961.js"></script><script defer src="/static/js/7162.e8282f8d.js"></script><script defer src="/static/js/index.d9df3c1e.js"></script><link href="/static/css/styles.e45a8283.css" rel="stylesheet"></head>
+
+  <body >
+    <div id="root"><div class="navContainer_d18b1 rspress-nav px-6  sticky_ddfa7"><div class="container_e4235 flex justify-between items-center h-full"><div class="navBarTitle_c5f07"><a href="/index" class="link_a7cea flex items-center w-full h-full text-base font-semibold transition-opacity duration-300 hover:opacity-60"><div class="mr-1 min-w-8"><img src="/logo.jpeg" alt="logo" id="logo" class="rspress-logo"/></div></a></div><div class="flex flex-1 justify-end items-center"><div class="rightNav_a2fea"><div class="flex sm:flex-1 items-center sm:pl-4 sm:pr-2"><div class="rspress-nav-search-button navSearchButton_df1fb"><button><svg width="18" height="18" viewBox="0 0 32 32"><path fill="var(--rp-c-gray)" d="m29 27.586-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9"></path></svg><p class="searchWord_af2c1">Search Docs</p><div style="opacity:0"><span></span><span>K</span></div></button></div><div class="mobileNavSearchButton_d85a9"><svg width="24" height="24" viewBox="0 0 32 32"><path fill="var(--rp-c-gray)" d="m29 27.586-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9"></path></svg></div></div><div class="rspress-nav-menu menu h-14"><a href="/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Guide</div></a><a href="/cli/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">CLI</div></a><a href="/core/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Core</div></a><a href="/tools/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Tools</div></a></div><div class="flex-center flex-row"><div class="mx-2"><div class="md:mr-2 rspress-nav-appearance"><div class="p-1 border border-solid border-gray-300 text-gray-400  cursor-pointer rounded-md hover:border-gray-600 hover:text-gray-600 dark:hover:border-gray-200 dark:hover:text-gray-200 transition-all duration-300 w-7 h-7"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="dark:hidden" width="18" height="18" fill="currentColor"><path d="M12 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6m0-10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4M12 4c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1s1 .4 1 1v2c0 .6-.4 1-1 1M12 24c-.6 0-1-.4-1-1v-2c0-.6.4-1 1-1s1 .4 1 1v2c0 .6-.4 1-1 1M5.6 6.6c-.3 0-.5-.1-.7-.3L3.5 4.9c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l1.4 1.4c.4.4.4 1 0 1.4-.1.2-.4.3-.7.3M19.8 20.8c-.3 0-.5-.1-.7-.3l-1.4-1.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l1.4 1.4c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3M3 13H1c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1s-.4 1-1 1M23 13h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1s-.4 1-1 1M4.2 20.8c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.4-1.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-1.4 1.4c-.2.2-.4.3-.7.3M18.4 6.6c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.4-1.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-1.4 1.4c-.2.2-.5.3-.7.3"></path></svg><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="hidden dark:block" width="18" height="18" fill="currentColor"><path d="M12.1 22h-.9c-5.5-.5-9.5-5.4-9-10.9.4-4.8 4.2-8.6 9-9 .4 0 .8.2 1 .5s.2.8-.1 1.1c-2 2.7-1.4 6.4 1.3 8.4 2.1 1.6 5 1.6 7.1 0 .3-.2.7-.3 1.1-.1.3.2.5.6.5 1-.2 2.7-1.5 5.1-3.6 6.8-1.9 1.4-4.1 2.2-6.4 2.2M9.3 4.4c-2.9 1-5 3.6-5.2 6.8-.4 4.4 2.8 8.3 7.2 8.7 2.1.2 4.2-.4 5.8-1.8 1.1-.9 1.9-2.1 2.4-3.4-2.5.9-5.3.5-7.5-1.1-2.8-2.2-3.9-5.9-2.7-9.2"></path></svg></div></div></div><div class="social-links menu-item_e90a6 flex-center relative"><div class="flex-center h-full gap-x-4 transition-colors duration-300 md:mr-2"><a href="https://github.com/luochunmei/lcmTestPage.github.io" target="_blank" rel="noopener noreferrer" class="social-links"><div class="social-links-icon_a4ad0"><div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a></div></div></div></div><div class="mobileNavMenu_e7045"><div class="navScreen_ec30c  rspress-nav-screen" id="navScreen"><div class="container_c935d"><div class="navMenu_b887b"><div class="navMenuItem_e7978 w-full"><a href="/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Guide</div></a></div><div class="navMenuItem_e7978 w-full"><a href="/cli/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">CLI</div></a></div><div class="navMenuItem_e7978 w-full"><a href="/core/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Core</div></a></div><div class="navMenuItem_e7978 w-full"><a href="/tools/index" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Tools</div></a></div></div><div class="flex-center flex-col gap-2"><div class="mt-2 navAppearance_bf893 flex justify-center"></div><div class="social-links menu-item_e90a6 flex-center relative"><div class="flex-center h-full gap-x-4 transition-colors duration-300 md:mr-2"><a href="https://github.com/luochunmei/lcmTestPage.github.io" target="_blank" rel="noopener noreferrer" class="social-links"><div class="social-links-icon_a4ad0"><div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a></div></div></div></div></div><button aria-label="mobile hamburger" class=" rspress-mobile-hamburger navHamburger_ac64c text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor"><circle cx="8" cy="16" r="2" fill="currentColor"></circle><circle cx="16" cy="16" r="2" fill="currentColor"></circle><circle cx="24" cy="16" r="2" fill="currentColor"></circle></svg></button></div></div></div></div><section><div class="docLayout_af141 pt-0"><aside class="sidebar_dd719 rspress-sidebar "><div class="navTitleMask_fb17c"><div class="navBarTitle_c5f07"><a href="/index" class="link_a7cea flex items-center w-full h-full text-base font-semibold transition-opacity duration-300 hover:opacity-60"><div class="mr-1 min-w-8"><img src="/logo.jpeg" alt="logo" id="logo" class="rspress-logo"/></div></a></div></div><div class="rspress-scrollbar sidebarContent_da296"><nav class="pb-2"><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Getting Started</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/index" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Introduction</span></div></a></div><div class="rspress-sidebar-item"><a href="/architecture" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Architecture</span></div></a></div><div class="rspress-sidebar-item"><a href="/deployment" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Deployment</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">CLI Usage</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/cli/index" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>CLI Introduction</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/commands" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Commands</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/configuration" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Configuration</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/authentication" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Authentication</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/themes" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Themes</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/tutorials" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Tutorials</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Core Details</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/core/index" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Core Introduction</span></div></a></div><div class="rspress-sidebar-item"><a href="/core/tools-api" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Tools API</span></div></a></div><div class="rspress-sidebar-item"><a href="/core/memport" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Memport</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Tools</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/tools/index" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Tools Overview</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/file-system" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>File System</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/multi-file" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Multi-File</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/shell" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Shell</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/web-fetch" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Web Fetch</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/web-search" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Web Search</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/memory" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Memory</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/mcp-server" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>MCP Server</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Additional Resources</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/checkpointing" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Checkpointing</span></div></a></div><div class="rspress-sidebar-item"><a href="/extension" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Extension</span></div></a></div><div class="rspress-sidebar-item"><a href="/ide-integration" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>IDE Integration</span></div></a></div><div class="rspress-sidebar-item"><a href="/telemetry" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Telemetry</span></div></a></div><div class="rspress-sidebar-item"><a href="/npm" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>NPM</span></div></a></div><div class="rspress-sidebar-item"><a href="/troubleshooting" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Troubleshooting</span></div></a></div><div class="rspress-sidebar-item"><a href="/releases" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Releases</span></div></a></div></div></div></section></nav></div></aside><div class="flex-1 relative min-w-0"><div class="rspress-sidebar-menu-container "><div class="rspress-sidebar-menu"><button type="button" class="flex-center mr-auto"><div class="text-md mr-2"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg></div><span class="text-sm">Menu</span></button><button type="button" class="flex-center ml-auto"><span class="text-sm">ON THIS PAGE</span><div class="text-md mr-2" style="transform:rotate(0deg);transition:transform 0.2s ease-out;margin-top:2px"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></button><div class="rspress-local-toc-container "><ul><li><a href="#配置层" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">配置层</span></a></li><li><a href="#设置文件" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">设置文件</span></a></li><li><a href="#项目中的-ve-目录" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">项目中的 <code>.ve</code> 目录</span></a></li><li><a href="#settingsjson-中的可用设置" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block"><code>settings.json</code> 中的可用设置：</span></a></li><li><a href="#排查文件搜索性能问题" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">排查文件搜索性能问题</span></a></li><li><a href="#示例-settingsjson" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">示例 <code>settings.json</code>：</span></a></li><li><a href="#shell-历史" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Shell 历史</span></a></li><li><a href="#环境变量和-env-文件" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">环境变量和 <code>.env</code> 文件</span></a></li><li><a href="#命令行参数" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">命令行参数</span></a></li><li><a href="#上下文文件分层指令上下文" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">上下文文件（分层指令上下文）</span></a></li><li><a href="#示例上下文文件内容例如geminimd" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">示例上下文文件内容（例如，<code>GEMINI.md</code>）</span></a></li><li><a href="#沙盒" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">沙盒</span></a></li><li><a href="#使用统计" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">使用统计</span></a></li></ul></div></div></div><div class="content_ff766 rspress-doc-container flex"><div class="flex-1 overflow-x-auto"><div class="rspress-doc"><!--$--><h1 id="vecli-配置" class="rspress-doc-title text-3xl mb-10 leading-10 tracking-tight title_fb7eb">VeCLI 配置<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#vecli-配置">#</a></h1>
+<p class="my-4 leading-7"><strong class="font-semibold">关于已弃用的配置格式的说明</strong></p>
+<p class="my-4 leading-7">本文档描述了 <code>settings.json</code> 文件的旧版 v1 格式。此格式现已弃用。</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">新格式将在 <strong class="font-semibold">[09/10/25]</strong> 开始的稳定版本中得到支持。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">从旧格式到新格式的自动迁移将在 <strong class="font-semibold">[09/17/25]</strong> 开始。</li>
+</ul>
+<p class="my-4 leading-7">有关新推荐格式的详细信息，请参阅 <a href="/zh/cli/configuration" class="link_a7cea  link_a9ef4 inline-link_f855c">当前配置文档</a>。</p>
+<p class="my-4 leading-7">VeCLI 提供了几种配置其行为的方法，包括环境变量、命令行参数和设置文件。本文档概述了不同的配置方法和可用设置。</p>
+<h2 id="配置层" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">配置层<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#配置层">#</a></h2>
+<p class="my-4 leading-7">配置按以下优先级顺序应用（较低的数字会被较高的数字覆盖）：</p>
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> 应用程序内的硬编码默认值。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">系统默认文件：</strong> 系统范围的默认设置，可以被其他设置文件覆盖。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">用户设置文件：</strong> 当前用户的全局设置。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">项目设置文件：</strong> 项目特定的设置。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">系统设置文件：</strong> 系统范围的设置，覆盖所有其他设置文件。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">环境变量：</strong> 系统范围或会话特定的变量，可能从 <code>.env</code> 文件加载。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">命令行参数：</strong> 启动 CLI 时传递的值。</li>
+</ol>
+<h2 id="设置文件" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">设置文件<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#设置文件">#</a></h2>
+<p class="my-4 leading-7">VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">系统默认文件：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">位置：</strong> <code>/etc/gemini-cli/system-defaults.json</code> (Linux), <code>C:\ProgramData\gemini-cli\system-defaults.json</code> (Windows) 或 <code>/Library/Application Support/GeminiCli/system-defaults.json</code> (macOS)。路径可以使用 <code>GEMINI_CLI_SYSTEM_DEFAULTS_PATH</code> 环境变量覆盖。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">范围：</strong> 提供系统范围默认设置的基础层。这些设置具有最低优先级，旨在被用户、项目或系统覆盖设置覆盖。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">用户设置文件：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">位置：</strong> <code>~/.ve/settings.json</code> (其中 <code>~</code> 是您的主目录)。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">范围：</strong> 适用于当前用户的所有 VeCLI 会话。用户设置覆盖系统默认值。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">项目设置文件：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">位置：</strong> 项目根目录中的 <code>.ve/settings.json</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">范围：</strong> 仅在从该特定项目运行 VeCLI 时应用。项目设置覆盖用户设置和系统默认值。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">系统设置文件：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">位置：</strong> <code>/etc/gemini-cli/settings.json</code> (Linux), <code>C:\ProgramData\gemini-cli\settings.json</code> (Windows) 或 <code>/Library/Application Support/GeminiCli/settings.json</code> (macOS)。路径可以使用 <code>GEMINI_CLI_SYSTEM_SETTINGS_PATH</code> 环境变量覆盖。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">范围：</strong> 适用于系统上的所有 VeCLI 会话，适用于所有用户。系统设置作为覆盖，优先于所有其他设置文件。对于企业中的系统管理员来说，可能有用，可以控制用户的 VeCLI 设置。</li>
+</ul>
+</li>
+</ul>
+<p class="my-4 leading-7"><strong class="font-semibold">关于设置中的环境变量的说明：</strong> 您的 <code>settings.json</code> 文件中的字符串值可以使用 <code>$VAR_NAME</code> 或 <code>${VAR_NAME}</code> 语法引用环境变量。加载设置时，这些变量将自动解析。例如，如果您有一个环境变量 <code>MY_API_TOKEN</code>，您可以在 <code>settings.json</code> 中这样使用它：<code>&quot;apiKey&quot;: &quot;$MY_API_TOKEN&quot;</code>。</p>
+<blockquote class="border-l-2 border-solid border-divider pl-4 my-6 transition-colors duration-500 blockquote_f1063">
+<p class="my-4 leading-7"><strong class="font-semibold">企业用户须知：</strong> 有关在企业环境中部署和管理 VeCLI 的指导，请参阅 <a href="/zh/cli/enterprise" class="link_a7cea  link_a9ef4 inline-link_f855c">企业配置</a> 文档。</p>
+</blockquote>
+<h3 id="项目中的-ve-目录" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">项目中的 <code>.ve</code> 目录<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#项目中的-ve-目录">#</a></h3>
+<p class="my-4 leading-7">除了项目设置文件外，项目的 <code>.ve</code> 目录还可以包含与 VeCLI 操作相关的其他项目特定文件，例如：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><a href="#sandboxing" class="link_a7cea  link_a9ef4 inline-link_f855c">自定义沙盒配置文件</a> (例如，<code>.ve/sandbox-macos-custom.sb</code>, <code>.ve/sandbox.Dockerfile</code>)。</li>
+</ul>
+<h3 id="settingsjson-中的可用设置" class="mt-10 mb-2 leading-7 text-xl title_fb7eb"><code>settings.json</code> 中的可用设置：<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#settingsjson-中的可用设置">#</a></h3>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>contextFileName</code></strong> (字符串或字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 指定上下文文件的文件名（例如，<code>VE.md</code>、<code>AGENTS.md</code>）。可以是单个文件名或接受的文件名列表。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>VE.md</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;contextFileName&quot;: &quot;AGENTS.md&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>bugCommand</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 覆盖 <code>/bug</code> 命令的默认 URL。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>&quot;urlTemplate&quot;: &quot;https://github.com/google-gemini/gemini-cli/issues/new?template=bug_report.yml&amp;title={title}&amp;info={info}&quot;</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>urlTemplate</code></strong> (字符串)：可以包含 <code>{title}</code> 和 <code>{info}</code> 占位符的 URL。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;bugCommand&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;urlTemplate&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;https://bug.example.com/new?title={title}&amp;info={info}&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>fileFiltering</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 控制 @ 命令和文件发现工具的 git 感知文件过滤行为。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>&quot;respectGitIgnore&quot;: true, &quot;enableRecursiveFileSearch&quot;: true</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>respectGitIgnore</code></strong> (布尔值)：在发现文件时是否尊重 .gitignore 模式。当设置为 <code>true</code> 时，git 忽略的文件（如 <code>node_modules/</code>、<code>dist/</code>、<code>.env</code>）会自动从 @ 命令和文件列表操作中排除。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>enableRecursiveFileSearch</code></strong> (布尔值)：在提示中完成 @ 前缀时，是否启用在当前树下递归搜索文件名。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>disableFuzzySearch</code></strong> (布尔值)：当 <code>true</code> 时，在搜索文件时禁用模糊搜索功能，这可以提高文件数量庞大的项目的性能。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;fileFiltering&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;respectGitIgnore&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;enableRecursiveFileSearch&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;disableFuzzySearch&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="排查文件搜索性能问题" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">排查文件搜索性能问题<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#排查文件搜索性能问题">#</a></h3>
+<p class="my-4 leading-7">如果您遇到文件搜索性能问题（例如，使用 <code>@</code> 补全），尤其是在文件数量非常庞大的项目中，您可以尝试以下几种方法，按推荐顺序排列：</p>
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">使用 <code>.veignore</code>：</strong> 在您的项目根目录中创建一个 <code>.veignore</code> 文件，以排除包含大量您不需要引用的文件的目录（例如，构建产物、日志、<code>node_modules</code>）。减少爬取的文件总数是提高性能的最有效方法。</p>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">禁用模糊搜索：</strong> 如果忽略文件还不够，您可以通过在 <code>settings.json</code> 文件中将 <code>disableFuzzySearch</code> 设置为 <code>true</code> 来禁用模糊搜索。这将使用一个更简单的、非模糊的匹配算法，速度可能会更快。</p>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">禁用递归文件搜索：</strong> 作为最后的手段，您可以通过将 <code>enableRecursiveFileSearch</code> 设置为 <code>false</code> 来完全禁用递归文件搜索。这将是最快的选项，因为它避免了对项目的递归爬取。但是，这意味着您在使用 <code>@</code> 补全时需要键入文件的完整路径。</p>
+</li>
+</ol>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>coreTools</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 允许您指定应提供给模型的核心工具名称列表。这可以用于限制内置工具集。有关核心工具列表，请参阅 <a href="/zh/core/tools-api#built-in-tools" class="link_a7cea  link_a9ef4 inline-link_f855c">内置工具</a>。您还可以为支持它的工具指定命令特定的限制，例如 <code>ShellTool</code>。例如，<code>&quot;coreTools&quot;: [&quot;ShellTool(ls -l)&quot;]</code> 将只允许执行 <code>ls -l</code> 命令。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> 所有可供 Gemini 模型使用的核心工具。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;coreTools&quot;: [&quot;ReadFileTool&quot;, &quot;GlobTool&quot;, &quot;ShellTool(ls)&quot;]</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>allowedTools</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>undefined</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 将绕过确认对话框的工具名称列表。这对于您信任并经常使用的工具有用。匹配语义与 <code>coreTools</code> 相同。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;allowedTools&quot;: [&quot;ShellTool(git status)&quot;]</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>excludeTools</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 允许您指定应从模型中排除的核心工具名称列表。在 <code>excludeTools</code> 和 <code>coreTools</code> 中都列出的工具将被排除。您还可以为支持它的工具指定命令特定的限制，例如 <code>ShellTool</code>。例如，<code>&quot;excludeTools&quot;: [&quot;ShellTool(rm -rf)&quot;]</code> 将阻止 <code>rm -rf</code> 命令。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值</strong>：不排除任何工具。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;excludeTools&quot;: [&quot;run_shell_command&quot;, &quot;findFiles&quot;]</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">安全说明：</strong>
+<code>run_shell_command</code> 的 <code>excludeTools</code> 中的命令特定限制基于简单的字符串匹配，很容易被绕过。此功能<strong class="font-semibold">不是安全机制</strong>，不应依赖它来安全地执行不受信任的代码。建议使用 <code>coreTools</code> 明确选择可以执行的命令。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>allowMCPServers</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 允许您指定应提供给模型的 MCP 服务器名称列表。这可以用于限制要连接的 MCP 服务器集。请注意，如果设置了 <code>--allowed-mcp-server-names</code>，这将被忽略。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> 所有 MCP 服务器都可供 Gemini 模型使用。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;allowMCPServers&quot;: [&quot;myPythonServer&quot;]</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">安全说明：</strong> 这在 MCP 服务器名称上使用简单的字符串匹配，可以被修改。如果您是系统管理员并希望防止用户绕过此限制，请考虑在系统设置级别配置 <code>mcpServers</code>，这样用户将无法配置自己的任何 MCP 服务器。这不应被用作万无一失的安全机制。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>excludeMCPServers</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 允许您指定应从模型中排除的 MCP 服务器名称列表。在 <code>excludeMCPServers</code> 和 <code>allowMCPServers</code> 中都列出的服务器将被排除。请注意，如果设置了 <code>--allowed-mcp-server-names</code>，这将被忽略。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值</strong>：不排除任何 MCP 服务器。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;excludeMCPServers&quot;: [&quot;myNodeServer&quot;]</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">安全说明：</strong> 这在 MCP 服务器名称上使用简单的字符串匹配，可以被修改。如果您是系统管理员并希望防止用户绕过此限制，请考虑在系统设置级别配置 <code>mcpServers</code>，这样用户将无法配置自己的任何 MCP 服务器。这不应被用作万无一失的安全机制。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>autoAccept</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 控制 CLI 是否自动接受和执行被认为是安全的工具调用（例如，只读操作），而无需明确的用户确认。如果设置为 <code>true</code>，CLI 将绕过被认为是安全的工具的确认提示。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>false</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;autoAccept&quot;: true</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>theme</code></strong> (字符串)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 设置 VeCLI 的视觉 <a href="/zh/cli/themes" class="link_a7cea  link_a9ef4 inline-link_f855c">主题</a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>&quot;Default&quot;</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;theme&quot;: &quot;GitHub&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>vimMode</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 启用或禁用用于输入编辑的 vim 模式。启用后，输入区域支持具有 NORMAL 和 INSERT 模式的 vim 风格导航和编辑命令。vim 模式状态显示在页脚中，并在会话之间保持。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>false</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;vimMode&quot;: true</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>sandbox</code></strong> (布尔值或字符串)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 控制是否以及如何使用沙盒进行工具执行。如果设置为 <code>true</code>，VeCLI 使用预构建的 <code>gemini-cli-sandbox</code> Docker 镜像。有关更多信息，请参阅 <a href="#sandboxing" class="link_a7cea  link_a9ef4 inline-link_f855c">沙盒</a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>false</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;sandbox&quot;: &quot;docker&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>toolDiscoveryCommand</code></strong> (字符串)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 定义一个用于从项目中发现工具的自定义 shell 命令。shell 命令必须在 <code>stdout</code> 上返回一个 <a href="https://ai.google.dev/gemini-api/docs/function-calling#function-declarations" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c">函数声明</a> 的 JSON 数组。工具包装器是可选的。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> 空</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;toolDiscoveryCommand&quot;: &quot;bin/get_tools&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>toolCallCommand</code></strong> (字符串)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 定义一个用于调用使用 <code>toolDiscoveryCommand</code> 发现的特定工具的自定义 shell 命令。shell 命令必须满足以下条件：<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">它必须将函数 <code>name</code>（与 <a href="https://ai.google.dev/gemini-api/docs/function-calling#function-declarations" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c">函数声明</a> 中的完全相同）作为第一个命令行参数。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">它必须在 <code>stdin</code> 上以 JSON 格式读取函数参数，类似于 <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#functioncall" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c"><code>functionCall.args</code></a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">它必须在 <code>stdout</code> 上以 JSON 格式返回函数输出，类似于 <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#functionresponse" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c"><code>functionResponse.response.content</code></a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> 空</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;toolCallCommand&quot;: &quot;bin/call_tool&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>mcpServers</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 配置与一个或多个模型上下文协议 (MCP) 服务器的连接，用于发现和使用自定义工具。VeCLI 尝试连接到每个配置的 MCP 服务器以发现可用工具。如果多个 MCP 服务器暴露了同名工具，则工具名称将使用您在配置中定义的服务器别名作为前缀（例如，<code>serverAlias__actualToolName</code>）以避免冲突。请注意，系统可能会为了兼容性而从 MCP 工具定义中剥离某些模式属性。必须至少提供 <code>command</code>、<code>url</code> 或 <code>httpUrl</code> 之一。如果指定了多个，则优先级顺序为 <code>httpUrl</code>，然后是 <code>url</code>，然后是 <code>command</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> 空</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>&lt;SERVER_NAME&gt;</code></strong> (对象)：命名服务器的服务器参数。<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>command</code> (字符串, 可选)：通过标准 I/O 启动 MCP 服务器的命令。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>args</code> (字符串数组, 可选)：传递给命令的参数。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>env</code> (对象, 可选)：为服务器进程设置的环境变量。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>cwd</code> (字符串, 可选)：启动服务器的工作目录。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>url</code> (字符串, 可选)：使用服务器发送事件 (SSE) 进行通信的 MCP 服务器的 URL。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>httpUrl</code> (字符串, 可选)：使用可流式 HTTP 进行通信的 MCP 服务器的 URL。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>headers</code> (对象, 可选)：发送到 <code>url</code> 或 <code>httpUrl</code> 的请求的 HTTP 标头映射。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>timeout</code> (数字, 可选)：对此 MCP 服务器的请求超时时间（毫秒）。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>trust</code> (布尔值, 可选)：信任此服务器并绕过所有工具调用确认。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>description</code> (字符串, 可选)：服务器的简要描述，可能用于显示目的。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>includeTools</code> (字符串数组, 可选)：要从此 MCP 服务器包含的工具名称列表。指定时，只有此处列出的工具将从此服务器可用（允许列表行为）。如果未指定，则默认启用服务器中的所有工具。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>excludeTools</code> (字符串数组, 可选)：要从此 MCP 服务器排除的工具名称列表。此处列出的工具将不可用，即使服务器暴露了它们。<strong class="font-semibold">注意：</strong> <code>excludeTools</code> 优先于 <code>includeTools</code> - 如果一个工具在两个列表中，它将被排除。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;mcpServers&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;myPythonServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;python&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;args&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;mcp_server.py&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;--port&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;8080&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;cwd&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;./mcp_tools/python&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;timeout&quot;</span><span class="token operator">:</span><span> </span><span class="token number">5000</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;includeTools&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;safe_tool&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;file_reader&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;myNodeServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;node&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;args&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;mcp_server.js&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;cwd&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;./mcp_tools/node&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;excludeTools&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;dangerous_tool&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;file_deleter&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;myDockerServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;docker&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;args&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;run&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;-i&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;--rm&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;-e&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;API_KEY&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;ghcr.io/foo/bar&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;env&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;API_KEY&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;$MY_API_TOKEN&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;mySseServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;url&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;http://localhost:8081/events&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;headers&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;Authorization&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;Bearer $MY_SSE_TOKEN&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;description&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;An example SSE-based MCP server.&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;myStreamableHttpServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;httpUrl&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;http://localhost:8082/stream&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;headers&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;X-API-Key&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;$MY_HTTP_API_KEY&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;description&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;An example Streamable HTTP-based MCP server.&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>checkpointing</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 配置检查点功能，该功能允许您保存和恢复对话和文件状态。有关更多详细信息，请参阅 <a href="/zh/checkpointing" class="link_a7cea  link_a9ef4 inline-link_f855c">检查点文档</a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>{&quot;enabled&quot;: false}</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>enabled</code></strong> (布尔值)：当 <code>true</code> 时，<code>/restore</code> 命令可用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>preferredEditor</code></strong> (字符串)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 指定用于查看差异的首选编辑器。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>vscode</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>&quot;preferredEditor&quot;: &quot;vscode&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>telemetry</code></strong> (对象)</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 配置 VeCLI 的日志记录和指标收集。有关更多信息，请参阅 <a href="/zh/telemetry" class="link_a7cea  link_a9ef4 inline-link_f855c">遥测</a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>{&quot;enabled&quot;: false, &quot;target&quot;: &quot;local&quot;, &quot;otlpEndpoint&quot;: &quot;http://localhost:4317&quot;, &quot;logPrompts&quot;: true}</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>enabled</code></strong> (布尔值)：是否启用遥测。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>target</code></strong> (字符串)：收集的遥测数据的目的地。支持的值为 <code>local</code> 和 <code>gcp</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>otlpEndpoint</code></strong> (字符串)：OTLP 导出器的端点。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>logPrompts</code></strong> (布尔值)：是否在日志中包含用户提示的内容。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;telemetry&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;enabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;target&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;local&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;otlpEndpoint&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;http://localhost:16686&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;logPrompts&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>usageStatisticsEnabled</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 启用或禁用使用统计信息的收集。有关更多信息，请参阅 <a href="#usage-statistics" class="link_a7cea  link_a9ef4 inline-link_f855c">使用统计</a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>true</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;usageStatisticsEnabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>hideTips</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">描述：</strong> 启用或禁用 CLI 界面中的有用提示。</p>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">默认值：</strong> <code>false</code></p>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">示例：</strong></p>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;hideTips&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>hideBanner</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">描述：</strong> 启用或禁用 CLI 界面中的启动横幅（ASCII 艺术徽标）。</p>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">默认值：</strong> <code>false</code></p>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold">示例：</strong></p>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;hideBanner&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>maxSessionTurns</code></strong> (数字)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 设置会话的最大轮数。如果会话超过此限制，CLI 将停止处理并开始新的聊天。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>-1</code> (无限制)</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;maxSessionTurns&quot;</span><span class="token operator">:</span><span> </span><span class="token number">10</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>summarizeToolOutput</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 启用或禁用工具输出的摘要。您可以使用 <code>tokenBudget</code> 设置指定摘要的令牌预算。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">注意：目前仅支持 <code>run_shell_command</code> 工具。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>{}</code> (默认禁用)</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;summarizeToolOutput&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;run_shell_command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;tokenBudget&quot;</span><span class="token operator">:</span><span> </span><span class="token number">2000</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>excludedProjectEnvVars</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 指定应从项目 <code>.env</code> 文件加载中排除的环境变量。这可以防止项目特定的环境变量（如 <code>DEBUG=true</code>）干扰 gemini-cli 行为。<code>.ve/.env</code> 文件中的变量永远不会被排除。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>[&quot;DEBUG&quot;, &quot;DEBUG_MODE&quot;]</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;excludedProjectEnvVars&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;DEBUG&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;DEBUG_MODE&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;NODE_ENV&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>includeDirectories</code></strong> (字符串数组)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 指定要包含在工作区上下文中的其他绝对或相对路径数组。默认情况下，缺少的目录将被跳过并发出警告。路径可以使用 <code>~</code> 来引用用户的主目录。此设置可以与 <code>--include-directories</code> 命令行标志结合使用。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>[]</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;includeDirectories&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-string)">&quot;/path/to/another/project&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-string)">&quot;../shared-library&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-string)">&quot;~/common-utils&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">]</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>loadMemoryFromIncludeDirectories</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 控制 <code>/memory refresh</code> 命令的行为。如果设置为 <code>true</code>，<code>VE.md</code> 文件应从所有添加的目录加载。如果设置为 <code>false</code>，<code>VE.md</code> 应仅从当前目录加载。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>false</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;loadMemoryFromIncludeDirectories&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>chatCompression</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 控制聊天历史压缩的设置，包括自动压缩和通过 /compress 命令手动调用压缩。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>contextPercentageThreshold</code></strong> (数字)：介于 0 和 1 之间的值，指定压缩的令牌阈值，作为模型总令牌限制的百分比。例如，值为 <code>0.6</code> 将在聊天历史超过令牌限制的 60% 时触发压缩。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;chatCompression&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;contextPercentageThreshold&quot;</span><span class="token operator">:</span><span> </span><span class="token number">0.6</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>showLineNumbers</code></strong> (布尔值)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 控制是否在 CLI 输出的代码块中显示行号。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>true</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;showLineNumbers&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>accessibility</code></strong> (对象)：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 配置 CLI 的辅助功能。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">属性：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>screenReader</code></strong> (布尔值)：启用屏幕阅读器模式，调整 TUI 以更好地兼容屏幕阅读器。这也可以通过 <code>--screen-reader</code> 命令行标志启用，该标志将优先于设置。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>disableLoadingPhrases</code></strong> (布尔值)：禁用操作期间加载短语的显示。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">默认值：</strong> <code>{&quot;screenReader&quot;: false, &quot;disableLoadingPhrases&quot;: false}</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-parameter)">&quot;accessibility&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;screenReader&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;disableLoadingPhrases&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例-settingsjson" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">示例 <code>settings.json</code>：<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#示例-settingsjson">#</a></h3>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;theme&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;GitHub&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;sandbox&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;docker&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;toolDiscoveryCommand&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;bin/get_tools&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;toolCallCommand&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;bin/call_tool&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;mcpServers&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;mainServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;bin/mcp_server.py&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;anotherServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;node&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;args&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;mcp_server.js&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;--verbose&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;telemetry&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;enabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;target&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;local&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;otlpEndpoint&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;http://localhost:4317&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;logPrompts&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;usageStatisticsEnabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;hideTips&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;hideBanner&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;maxSessionTurns&quot;</span><span class="token operator">:</span><span> </span><span class="token number">10</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;summarizeToolOutput&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;run_shell_command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;tokenBudget&quot;</span><span class="token operator">:</span><span> </span><span class="token number">100</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;excludedProjectEnvVars&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;DEBUG&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;DEBUG_MODE&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;NODE_ENV&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;includeDirectories&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;path/to/dir1&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;~/path/to/dir2&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;../path/to/dir3&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;loadMemoryFromIncludeDirectories&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<h2 id="shell-历史" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Shell 历史<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#shell-历史">#</a></h2>
+<p class="my-4 leading-7">CLI 会保留您运行的 shell 命令的历史记录。为了避免不同项目之间的冲突，此历史记录存储在用户主文件夹中的项目特定目录中。</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">位置：</strong> <code>~/.ve/tmp/&lt;project_hash&gt;/shell_history</code>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>&lt;project_hash&gt;</code> 是从您的项目根路径生成的唯一标识符。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">历史记录存储在名为 <code>shell_history</code> 的文件中。</li>
+</ul>
+</li>
+</ul>
+<h2 id="环境变量和-env-文件" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">环境变量和 <code>.env</code> 文件<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#环境变量和-env-文件">#</a></h2>
+<p class="my-4 leading-7">环境变量是配置应用程序的常见方式，特别是对于 API 密钥等敏感信息或在不同环境之间可能更改的设置。有关身份验证设置，请参阅 <a href="/zh/cli/authentication" class="link_a7cea  link_a9ef4 inline-link_f855c">身份验证文档</a>，其中涵盖了所有可用的身份验证方法。</p>
+<p class="my-4 leading-7">CLI 会自动从 <code>.env</code> 文件加载环境变量。加载顺序为：</p>
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">当前工作目录中的 <code>.env</code> 文件。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">如果未找到，它会向上搜索父目录，直到找到 <code>.env</code> 文件或到达项目根目录（由 <code>.git</code> 文件夹标识）或主目录。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">如果仍未找到，它会查找 <code>~/.env</code>（在用户的主目录中）。</li>
+</ol>
+<p class="my-4 leading-7"><strong class="font-semibold">环境变量排除：</strong> 某些环境变量（如 <code>DEBUG</code> 和 <code>DEBUG_MODE</code>）会自动从项目 <code>.env</code> 文件中排除，以防止干扰 gemini-cli 行为。<code>.ve/.env</code> 文件中的变量永远不会被排除。您可以使用 <code>settings.json</code> 文件中的 <code>excludedProjectEnvVars</code> 设置自定义此行为。</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GEMINI_API_KEY</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">您的 Gemini API 密钥。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">几种可用的 <a href="/zh/cli/authentication" class="link_a7cea  link_a9ef4 inline-link_f855c">身份验证方法</a> 之一。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">在您的 shell 配置文件（例如 <code>~/.bashrc</code>、<code>~/.zshrc</code>）或 <code>.env</code> 文件中设置。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GEMINI_MODEL</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">指定要使用的默认 Gemini 模型。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">覆盖硬编码的默认值</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>export GEMINI_MODEL=&quot;gemini-2.5-flash&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_API_KEY</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">您的 Google Cloud API 密钥。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">在快速模式下使用 Vertex AI 所需。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">确保您拥有必要的权限。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>export GOOGLE_API_KEY=&quot;YOUR_GOOGLE_API_KEY&quot;</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_CLOUD_PROJECT</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">您的 Google Cloud 项目 ID。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">使用代码助手或 Vertex AI 所需。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">如果使用 Vertex AI，请确保您在此项目中拥有必要的权限。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Cloud Shell 注意：</strong> 在 Cloud Shell 环境中运行时，此变量默认为分配给 Cloud Shell 用户的特殊项目。如果您在 Cloud Shell 的全局环境中设置了 <code>GOOGLE_CLOUD_PROJECT</code>，它将被此默认值覆盖。要在 Cloud Shell 中使用不同的项目，您必须在 <code>.env</code> 文件中定义 <code>GOOGLE_CLOUD_PROJECT</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>export GOOGLE_CLOUD_PROJECT=&quot;YOUR_PROJECT_ID&quot;</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_APPLICATION_CREDENTIALS</code></strong> (字符串):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">描述：</strong> 您的 Google 应用程序凭据 JSON 文件的路径。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">示例：</strong> <code>export GOOGLE_APPLICATION_CREDENTIALS=&quot;/path/to/your/credentials.json&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>OTLP_GOOGLE_CLOUD_PROJECT</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">您的 Google Cloud 项目 ID，用于 Google Cloud 中的遥测</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>export OTLP_GOOGLE_CLOUD_PROJECT=&quot;YOUR_PROJECT_ID&quot;</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_CLOUD_LOCATION</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">您的 Google Cloud 项目位置（例如，us-central1）。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">在非快速模式下使用 Vertex AI 所需。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>export GOOGLE_CLOUD_LOCATION=&quot;YOUR_PROJECT_LOCATION&quot;</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GEMINI_SANDBOX</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>settings.json</code> 中 <code>sandbox</code> 设置的替代方法。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">接受 <code>true</code>、<code>false</code>、<code>docker</code>、<code>podman</code> 或自定义命令字符串。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>SEATBELT_PROFILE</code></strong> (macOS 特定):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">在 macOS 上切换 Seatbelt (<code>sandbox-exec</code>) 配置文件。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>permissive-open</code>: (默认) 限制写入项目文件夹（和一些其他文件夹，参见 <code>packages/cli/src/utils/sandbox-macos-permissive-open.sb</code>）但允许其他操作。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>strict</code>: 使用严格的配置文件，默认拒绝操作。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>&lt;profile_name&gt;</code>: 使用自定义配置文件。要定义自定义配置文件，请在项目的 <code>.ve/</code> 目录中创建一个名为 <code>sandbox-macos-&lt;profile_name&gt;.sb</code> 的文件（例如，<code>my-project/.ve/sandbox-macos-custom.sb</code>）。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>DEBUG</code> 或 <code>DEBUG_MODE</code></strong> (通常由底层库或 CLI 本身使用):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置为 <code>true</code> 或 <code>1</code> 以启用详细的调试日志记录，这对故障排除很有帮助。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">注意：</strong> 默认情况下，这些变量会自动从项目 <code>.env</code> 文件中排除，以防止干扰 gemini-cli 行为。如果需要专门为 gemini-cli 设置这些，请使用 <code>.ve/.env</code> 文件。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>NO_COLOR</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置为任何值以禁用 CLI 中的所有颜色输出。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>CLI_TITLE</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置为字符串以自定义 CLI 的标题。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>CODE_ASSIST_ENDPOINT</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">指定代码助手服务器的端点。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">这对开发和测试很有用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="命令行参数" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">命令行参数<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#命令行参数">#</a></h2>
+<p class="my-4 leading-7">运行 CLI 时直接传递的参数可以覆盖该特定会话的其他配置。</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--model &lt;model_name&gt;</code></strong> (<strong class="font-semibold"><code>-m &lt;model_name&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">指定此会话要使用的 Gemini 模型。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>npm start -- --model gemini-1.5-pro-latest</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--prompt &lt;your_prompt&gt;</code></strong> (<strong class="font-semibold"><code>-p &lt;your_prompt&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">用于直接将提示传递给命令。这会在非交互模式下调用 VeCLI。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--prompt-interactive &lt;your_prompt&gt;</code></strong> (<strong class="font-semibold"><code>-i &lt;your_prompt&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">以提供的提示作为初始输入启动交互式会话。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">提示在交互式会话中处理，而不是在会话之前处理。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">在从 stdin 管道输入时不能使用。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>gemini -i &quot;explain this code&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--sandbox</code></strong> (<strong class="font-semibold"><code>-s</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">为此会话启用沙盒模式。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--sandbox-image</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置沙盒镜像 URI。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--debug</code></strong> (<strong class="font-semibold"><code>-d</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">为此会话启用调试模式，提供更详细的输出。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--all-files</code></strong> (<strong class="font-semibold"><code>-a</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">如果设置，则递归地将当前目录中的所有文件作为提示的上下文包含在内。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--help</code></strong> (或 <strong class="font-semibold"><code>-h</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">显示有关命令行参数的帮助信息。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--show-memory-usage</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">显示当前内存使用情况。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--yolo</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">启用 YOLO 模式，自动批准所有工具调用。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--approval-mode &lt;mode&gt;</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置工具调用的批准模式。可用模式：<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>default</code>: 在每次工具调用时提示批准（默认行为）</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>auto_edit</code>: 自动批准编辑工具（replace, write_file），同时提示其他工具</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>yolo</code>: 自动批准所有工具调用（等同于 <code>--yolo</code>）</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">不能与 <code>--yolo</code> 一起使用。对于新的统一方法，请使用 <code>--approval-mode=yolo</code> 而不是 <code>--yolo</code>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>gemini --approval-mode auto_edit</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--allowed-tools &lt;tool1,tool2,...&gt;</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">一个逗号分隔的工具名称列表，将绕过确认对话框。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>gemini --allowed-tools &quot;ShellTool(git status)&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">启用 <a href="/zh/telemetry" class="link_a7cea  link_a9ef4 inline-link_f855c">遥测</a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-target</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置遥测目标。有关更多信息，请参阅 <a href="/zh/telemetry" class="link_a7cea  link_a9ef4 inline-link_f855c">遥测</a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-otlp-endpoint</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置遥测的 OTLP 端点。有关更多信息，请参阅 <a href="/zh/telemetry" class="link_a7cea  link_a9ef4 inline-link_f855c">遥测</a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-otlp-protocol</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置遥测的 OTLP 协议 (<code>grpc</code> 或 <code>http</code>)。默认为 <code>grpc</code>。有关更多信息，请参阅 <a href="/zh/telemetry" class="link_a7cea  link_a9ef4 inline-link_f855c">遥测</a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-log-prompts</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">启用遥测的日志提示。有关更多信息，请参阅 <a href="/zh/telemetry" class="link_a7cea  link_a9ef4 inline-link_f855c">遥测</a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--checkpointing</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">启用 <a href="/zh/checkpointing" class="link_a7cea  link_a9ef4 inline-link_f855c">检查点</a>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--extensions &lt;extension_name ...&gt;</code></strong> (<strong class="font-semibold"><code>-e &lt;extension_name ...&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">指定会话要使用的扩展列表。如果未提供，则使用所有可用扩展。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">使用特殊术语 <code>gemini -e none</code> 禁用所有扩展。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>gemini -e my-extension -e my-other-extension</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--list-extensions</code></strong> (<strong class="font-semibold"><code>-l</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">列出所有可用扩展并退出。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--proxy</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">设置 CLI 的代理。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>--proxy http://localhost:7890</code>。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--include-directories &lt;dir1,dir2,...&gt;</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">在工作区中包含其他目录以支持多目录。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">可以多次指定或作为逗号分隔的值。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">最多可以添加 5 个目录。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">示例: <code>--include-directories /path/to/project1,/path/to/project2</code> 或 <code>--include-directories /path/to/project1 --include-directories /path/to/project2</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--screen-reader</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">启用屏幕阅读器模式以实现辅助功能。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--version</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">显示 CLI 的版本。</li>
+</ul>
+</li>
+</ul>
+<h2 id="上下文文件分层指令上下文" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">上下文文件（分层指令上下文）<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#上下文文件分层指令上下文">#</a></h2>
+<p class="my-4 leading-7">虽然严格来说不是 CLI <em>行为</em> 的配置，但上下文文件（默认为 <code>GEMINI.md</code>，但可通过 <code>contextFileName</code> 设置配置）对于配置提供给 Gemini 模型的 <em>指令上下文</em>（也称为“内存”）至关重要。这个强大的功能允许您为 AI 提供项目特定的指令、编码风格指南或任何相关的背景信息，使其响应更加符合您的需求。CLI 包含 UI 元素，例如页脚中显示已加载上下文文件数量的指示器，以让您了解活动上下文。</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">目的：</strong> 这些 Markdown 文件包含您希望 Gemini 模型在与您交互时了解的指令、指南或上下文。该系统旨在分层管理此指令上下文。</li>
+</ul>
+<h3 id="示例上下文文件内容例如geminimd" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">示例上下文文件内容（例如，<code>GEMINI.md</code>）<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#示例上下文文件内容例如geminimd">#</a></h3>
+<p class="my-4 leading-7">以下是在 TypeScript 项目根目录中的上下文文件可能包含的概念示例：</p>
+<div class="language-markdown"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-markdown" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">#</span><span class="token" style="color:#EBCB8B;font-weight:bold"> 项目: 我的超棒 TypeScript 库</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> 通用指令:</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 生成新的 TypeScript 代码时，请遵循现有的编码风格。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 确保所有新函数和类都有 JSDoc 注释。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 在适当的情况下优先使用函数式编程范式。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 所有代码应与 TypeScript 5.0 和 Node.js 20+ 兼容。
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> 编码风格:</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 使用 2 个空格进行缩进。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 接口名称应以 </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`I`</span><span> 为前缀（例如，</span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`IUserService`</span><span>）。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 私有类成员应以下划线 (</span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`_`</span><span>) 为前缀。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 始终使用严格相等 (</span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`===`</span><span> 和 </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`!==`</span><span>)。
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> 特定组件: `src/api/client.ts`</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 此文件处理所有出站 API 请求。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 添加新的 API 调用函数时，请确保它们包含强大的错误处理和日志记录。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 对所有 GET 请求使用现有的 </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`fetchWithRetry`</span><span> 实用程序。
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> 关于依赖项:</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 除非绝对必要，否则避免引入新的外部依赖项。
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> 如果需要新的依赖项，请说明原因。</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<p class="my-4 leading-7">此示例演示了如何提供通用项目上下文、特定编码约定，甚至关于特定文件或组件的注释。您的上下文文件越相关和精确，AI 就能越好地协助您。强烈建议使用项目特定的上下文文件来建立约定和上下文。</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">分层加载和优先级：</strong> CLI 通过从多个位置加载上下文文件（例如，<code>GEMINI.md</code>）来实现复杂的分层内存系统。此列表中较低位置的文件（更具体）的内容通常会覆盖或补充较高位置（更通用）的文件内容。可以使用 <code>/memory show</code> 命令检查确切的连接顺序和最终上下文。典型的加载顺序是：<!-- -->
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">全局上下文文件：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">位置：<code>~/.ve/&lt;contextFileName&gt;</code>（例如，用户主目录中的 <code>~/.ve/GEMINI.md</code>）。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">范围：为所有项目提供默认指令。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">项目根目录和祖先上下文文件：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">位置：CLI 在当前工作目录中搜索配置的上下文文件，然后在每个父目录中搜索，直到项目根目录（由 <code>.git</code> 文件夹标识）或您的主目录。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">范围：提供与整个项目或其重要部分相关的上下文。</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">子目录上下文文件（上下文/本地）：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">位置：CLI 还会在当前工作目录 <em>下方</em> 的子目录中扫描配置的上下文文件（遵守常见的忽略模式，如 <code>node_modules</code>、<code>.git</code> 等）。此搜索的广度默认限制为 200 个目录，但可以通过 <code>settings.json</code> 文件中的 <code>memoryDiscoveryMaxDirs</code> 字段进行配置。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">范围：允许为项目的特定组件、模块或子部分提供高度具体的指令。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">连接和 UI 指示：</strong> 所有找到的上下文文件的内容都会连接起来（用分隔符指示其来源和路径），并作为系统提示的一部分提供给 Gemini 模型。CLI 页脚显示已加载的上下文文件计数，为您提供关于活动指令上下文的快速视觉提示。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">导入内容：</strong> 您可以使用 <code>@path/to/file.md</code> 语法通过导入其他 Markdown 文件来模块化您的上下文文件。有关详细信息，请参阅 <a href="/zh/core/memport" class="link_a7cea  link_a9ef4 inline-link_f855c">内存导入处理器文档</a>。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">内存管理命令：</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">使用 <code>/memory refresh</code> 强制重新扫描和重新加载所有配置位置的所有上下文文件。这会更新 AI 的指令上下文。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">使用 <code>/memory show</code> 显示当前加载的组合指令上下文，允许您验证 AI 使用的层次结构和内容。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">有关 <code>/memory</code> 命令及其子命令（<code>show</code> 和 <code>refresh</code>）的完整详细信息，请参阅 <a href="/zh/cli/commands#memory" class="link_a7cea  link_a9ef4 inline-link_f855c">命令文档</a>。</li>
+</ul>
+</li>
+</ul>
+<p class="my-4 leading-7">通过理解和利用这些配置层和上下文文件的分层性质，您可以有效地管理 AI 的内存，并根据您的特定需求和项目定制 VeCLI 的响应。</p>
+<h2 id="沙盒" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">沙盒<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#沙盒">#</a></h2>
+<p class="my-4 leading-7">VeCLI 可以在沙盒环境中执行潜在的不安全操作（如 shell 命令和文件修改），以保护您的系统。</p>
+<p class="my-4 leading-7">沙盒默认是禁用的，但您可以通过以下几种方式启用它：</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">使用 <code>--sandbox</code> 或 <code>-s</code> 标志。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">设置 <code>GEMINI_SANDBOX</code> 环境变量。</li>
+<li class="[&amp;:not(:first-child)]:mt-2">默认情况下，使用 <code>--yolo</code> 或 <code>--approval-mode=yolo</code> 时会启用沙盒。</li>
+</ul>
+<p class="my-4 leading-7">默认情况下，它使用预构建的 <code>gemini-cli-sandbox</code> Docker 镜像。</p>
+<p class="my-4 leading-7">对于项目的特定沙盒需求，您可以在项目根目录的 <code>.ve/sandbox.Dockerfile</code> 中创建一个自定义 Dockerfile。此 Dockerfile 可以基于基础沙盒镜像：</p>
+<div class="language-dockerfile"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-dockerfile" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span>FROM gemini-cli-sandbox
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"># 在此处添加您的自定义依赖项或配置
+</span><span style="display:block;padding:0 1.25rem"># 例如：
+</span><span style="display:block;padding:0 1.25rem"># RUN apt-get update &amp;&amp; apt-get install -y some-package
+</span><span style="display:block;padding:0 1.25rem"># COPY ./my-config /app/my-config</span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<p class="my-4 leading-7">当 <code>.ve/sandbox.Dockerfile</code> 存在时，您可以在运行 VeCLI 时使用 <code>BUILD_SANDBOX</code> 环境变量来自动构建自定义沙盒镜像：</p>
+<div class="language-bash"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-bash" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token assign-left" style="color:var(--code-token-variable)">BUILD_SANDBOX</span><span class="token operator">=</span><span class="token number">1</span><span> gemini -s</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<h2 id="使用统计" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">使用统计<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#使用统计">#</a></h2>
+<p class="my-4 leading-7">为了帮助我们改进 VeCLI，我们会收集匿名化的使用统计信息。这些数据帮助我们了解 CLI 的使用方式，识别常见问题，并优先考虑新功能。</p>
+<p class="my-4 leading-7"><strong class="font-semibold">我们收集的内容：</strong></p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">工具调用：</strong> 我们记录被调用的工具名称、它们是成功还是失败，以及执行所需的时间。我们不收集传递给工具的参数或工具返回的任何数据。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">API 请求：</strong> 我们记录每个请求使用的 Gemini 模型、请求的持续时间和是否成功。我们不收集提示或响应的内容。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">会话信息：</strong> 我们收集有关 CLI 配置的信息，例如启用的工具和批准模式。</li>
+</ul>
+<p class="my-4 leading-7"><strong class="font-semibold">我们不收集的内容：</strong></p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">个人身份信息 (PII)：</strong> 我们不收集任何个人信息，例如您的姓名、电子邮件地址或 API 密钥。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">提示和响应内容：</strong> 我们不记录您的提示或 Gemini 模型的响应内容。</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">文件内容：</strong> 我们不记录 CLI 读取或写入的任何文件的内容。</li>
+</ul>
+<p class="my-4 leading-7"><strong class="font-semibold">如何选择退出：</strong></p>
+<p class="my-4 leading-7">您可以随时通过在 <code>settings.json</code> 文件中将 <code>usageStatisticsEnabled</code> 属性设置为 <code>false</code> 来选择退出使用统计信息收集：</p>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;usageStatisticsEnabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div><!--/$--></div><div class="rspress-doc-footer"><footer class="mt-8"><div class="xs:flex pb-5 px-2 justify-end items-center"></div><div class="flex flex-col"></div><div class="flex flex-col sm:flex-row sm:justify-around gap-4 pt-6"><div class="prev_c92d1 flex flex-col"></div><div class="next_c11be flex flex-col"><a href="/index" class="link_a7cea pager-link_e0d2d next_ad355"><span class="desc_dcc01">Next Page</span><span class="title_a3acb">Introduction</span></a></div></div></footer></div></div><div class="aside-container_bc5fa"><div class="flex flex-col"><div id="aside-container" class="relative text-sm font-medium"><div class="leading-7 block text-sm font-semibold pl-3">ON THIS PAGE</div><nav class="mt-1"><ul class="relative"><li><a href="#配置层" title="配置层" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">配置层</span></a></li><li><a href="#设置文件" title="设置文件" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">设置文件</span></a></li><li><a href="#项目中的-ve-目录" title="项目中的 .ve 目录" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">项目中的 <code>.ve</code> 目录</span></a></li><li><a href="#settingsjson-中的可用设置" title="settings.json 中的可用设置：" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block"><code>settings.json</code> 中的可用设置：</span></a></li><li><a href="#排查文件搜索性能问题" title="排查文件搜索性能问题" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">排查文件搜索性能问题</span></a></li><li><a href="#示例-settingsjson" title="示例 settings.json：" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">示例 <code>settings.json</code>：</span></a></li><li><a href="#shell-历史" title="Shell 历史" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Shell 历史</span></a></li><li><a href="#环境变量和-env-文件" title="环境变量和 .env 文件" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">环境变量和 <code>.env</code> 文件</span></a></li><li><a href="#命令行参数" title="命令行参数" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">命令行参数</span></a></li><li><a href="#上下文文件分层指令上下文" title="上下文文件（分层指令上下文）" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">上下文文件（分层指令上下文）</span></a></li><li><a href="#示例上下文文件内容例如geminimd" title="示例上下文文件内容（例如，GEMINI.md）" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">示例上下文文件内容（例如，<code>GEMINI.md</code>）</span></a></li><li><a href="#沙盒" title="沙盒" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">沙盒</span></a></li><li><a href="#使用统计" title="使用统计" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">使用统计</span></a></li></ul></nav></div></div></div></div></div></div></section></div>
+    <div id="search-container"></div>
+  </body>
+</html>
