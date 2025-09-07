@@ -33,7 +33,7 @@ This documentation is organized into the following sections:
 - **[Contributing & Development Guide](../CONTRIBUTING.md):** Information for contributors and developers, including setup, building, testing, and coding conventions.
 - **[NPM](./npm.md):** Details on how the project's packages are structured
 - **[Troubleshooting Guide](./troubleshooting.md):** Find solutions to common problems and FAQs.
-- **[Terms of Service and Privacy Notice](./tos-privacy.md):** Information on the terms of service and privacy notices applicable to your use of VeCLI.
+- **[Best practise](./examples/vecli-12306.md):** Best practices for solving 12306 issues using VeCLI.
 - **[Releases](./releases.md):** Information on the project's releases and deployment cadence.
 
 We hope this documentation helps you make the most of the VeCLI!
