@@ -4,6 +4,7 @@ import type { UserConfig } from '@rspress/core';
 const config: UserConfig = {
   root: 'docs',
   outDir: 'website',
+  base: '/lcmTestPage/',
   title: 'Gemini CLI Documentation',
   description: 'A comprehensive guide to installing, using, and developing Gemini CLI',
   logo: '/logo.jpeg',
