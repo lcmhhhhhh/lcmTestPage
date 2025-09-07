@@ -9,12 +9,6 @@ This guide provides solutions to common issues and debugging tips, including top
 
 ## Authentication or login errors
 
-- **Error: `Failed to login. Message: Request contains an invalid argument`**
-  - Users with volcengine Workspace accounts or Volcano Engine accounts
-    associated with their Gmail accounts may not be able to activate the free
-    tier of the volcengine Code Assist plan.
-  - For Volcano Engine accounts, you can work around this by setting
-    `VOLCENGINE_PROJECT` to your project ID.
 
 - **Error: `UNABLE_TO_GET_ISSUER_CERT_LOCALLY` or `unable to get local issuer certificate`**
   - **Cause:** You may be on a corporate network with a firewall that intercepts and inspects SSL/TLS traffic. This often requires a custom root CA certificate to be trusted by Node.js.
@@ -33,8 +27,6 @@ This guide provides solutions to common issues and debugging tips, including top
 
     Refer to [VeCLI Configuration](./cli/configuration.md) for more details.
 
-- **Q: Why don't I see cached token counts in my stats output?**
-  - A: Cached token information is only displayed when cached tokens are being used. This feature is available for API key users (vecli API key or Volcano Engine Vertex AI) but not for OAuth users (such as volcengine Personal/Enterprise accounts like volcengine Gmail or volcengine Workspace, respectively). This is because the Ve Code Assist API does not support cached content creation. You can still view your total token usage using the `/stats` command in VeCLI.
 
 ## Common error messages and solutions
 
@@ -67,8 +59,8 @@ This guide provides solutions to common issues and debugging tips, including top
   - **Solution:** If the `CI_` prefixed variable is not needed for the CLI to function, you can temporarily unset it for the command. e.g., `env -u CI_TOKEN vecli`
 
 - **DEBUG mode not working from project .env file**
-  - **Issue:** Setting `DEBUG=true` in a project's `.env` file doesn't enable debug mode for vecli-cli.
-  - **Cause:** The `DEBUG` and `DEBUG_MODE` variables are automatically excluded from project `.env` files to prevent interference with vecli-cli behavior.
+  - **Issue:** Setting `DEBUG=true` in a project's `.env` file doesn't enable debug mode for vecli.
+  - **Cause:** The `DEBUG` and `DEBUG_MODE` variables are automatically excluded from project `.env` files to prevent interference with vecli behavior.
   - **Solution:** Use a `.ve/.env` file instead, or configure the `advanced.excludedEnvVars` setting in your `settings.json` to exclude fewer variables.
 
 ## Exit Codes

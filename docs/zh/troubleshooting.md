@@ -9,10 +9,6 @@
 
 ## 身份验证或登录错误
 
-- **错误: `Failed to login. Message: Request contains an invalid argument`**
-  - 使用火山引擎工作区帐户或与 Gmail 帐户关联的火山引擎帐户的用户可能无法激活火山引擎代码助手计划的免费层级。
-  - 对于火山引擎帐户，您可以通过将 `VOLCENGINE_PROJECT` 设置为您的项目 ID 来解决此问题。
-
 - **错误: `UNABLE_TO_GET_ISSUER_CERT_LOCALLY` 或 `unable to get local issuer certificate`**
   - **原因:** 您可能在 corporate 网络中，该网络的防火墙会拦截和检查 SSL/TLS 流量。这通常需要 Node.js 信任自定义根 CA 证书。
   - **解决方案:** 将 `NODE_EXTRA_CA_CERTS` 环境变量设置为您的 corporate 根 CA 证书文件的绝对路径。

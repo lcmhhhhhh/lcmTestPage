@@ -19,7 +19,7 @@ VeCLI 需要您使用 Google 的 AI 服务进行身份验证。在首次启动�
     ```bash
     export VOLC_ACCESS_KEY="your_access_key_here"
     export VOLC_SECRET_KEY="your_secret_key_here"
-    export VOLC_REGION="cn-beijing"  # 可选，设置默认区域
+  
     ```
 
     **方式二：配置文件**
