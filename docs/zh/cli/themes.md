@@ -18,7 +18,7 @@ VeCLI 预装了一些预定义主题，您可以在 VeCLI 中使用 `/theme` 命
   - `Ayu Light`
   - `Default Light`
   - `GitHub Light`
-  - `Google Code`
+  - `Volcengine Code`
   - `Xcode`
 
 ### 更改主题
@@ -194,9 +194,9 @@ VeCLI 允许您通过在 `settings.json` 文件中指定来自定义自己的颜
 
 <img src="../assets/theme-github-light.png" alt="GitHub 浅色主题" width="600">
 
-### Google Code
+### Volcengine Code
 
-<img src="../assets/theme-google-light.png" alt="Google Code 主题" width="600">
+<img src="../assets/theme-volcengine-light.png" alt="Volcengine Code 主题" width="600">
 
 ### Xcode
 

@@ -62,7 +62,7 @@ run_shell_command(command="npm run dev &", description="Start development server
 
 ## 环境变量
 
-当 `run_shell_command` 执行命令时，它会在子进程的环境中设置 `GEMINI_CLI=1` 环境变量。这允许脚本或工具检测它们是否在 VeCLI 内运行。
+当 `run_shell_command` 执行命令时，它会在子进程的环境中设置 `VECLI_CLI=1` 环境变量。这允许脚本或工具检测它们是否在 VeCLI 内运行。
 
 ## 命令限制
 

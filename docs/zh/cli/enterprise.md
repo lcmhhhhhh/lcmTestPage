@@ -29,7 +29,7 @@
       "theme": "default-corporate-theme"
     },
     "context": {
-      "includeDirectories": ["/etc/gemini-cli/common-context"]
+      "includeDirectories": ["/etc/vecli/common-context"]
     }
   }
   ```
@@ -50,7 +50,7 @@
       }
     },
     "context": {
-      "includeDirectories": ["~/gemini-context"]
+      "includeDirectories": ["~/vecli-context"]
     }
   }
   ```
@@ -85,7 +85,7 @@
       }
     },
     "context": {
-      "includeDirectories": ["/etc/gemini-cli/global-context"]
+      "includeDirectories": ["/etc/vecli/global-context"]
     }
   }
   ```
@@ -111,10 +111,10 @@
     },
     "context": {
       "includeDirectories": [
-        "/etc/gemini-cli/common-context",
-        "~/gemini-context",
+        "/etc/vecli/common-context",
+        "~/vecli-context",
         "./project-context",
-        "/etc/gemini-cli/global-context"
+        "/etc/vecli/global-context"
       ]
     }
   }
@@ -127,17 +127,17 @@
 - **`includeDirectories`**：数组按系统默认值、用户、工作区和系统覆盖的顺序连接。
 
 - **位置**：
-  - **Linux**：`/etc/gemini-cli/settings.json`
-  - **Windows**：`C:\ProgramData\gemini-cli\settings.json`
-  - **macOS**：`/Library/Application Support/GeminiCli/settings.json`
-  - 可以使用 `GEMINI_CLI_SYSTEM_SETTINGS_PATH` 环境变量覆盖路径。
+  - **Linux**：`/etc/vecli/settings.json`
+  - **Windows**：`C:\ProgramData\vecli\settings.json`
+  - **macOS**：`/Library/Application Support/VecliCli/settings.json`
+  - 可以使用 `VECLI_CLI_SYSTEM_SETTINGS_PATH` 环境变量覆盖路径。
 - **控制**：此文件应由系统管理员管理，并使用适当的文件权限进行保护，以防止用户未经授权修改。
 
 通过使用系统设置文件，您可以强制执行以下描述的安全和配置模式。
 
 ## 限制工具访问
 
-您可以通过控制 Gemini 模型可以使用哪些工具来显著增强安全性。这是通过 `tools.core` 和 `tools.exclude` 设置实现的。有关可用工具的列表，请参阅 [工具文档](../tools/index.md)。
+您可以通过控制 Vecli 模型可以使用哪些工具来显著增强安全性。这是通过 `tools.core` 和 `tools.exclude` 设置实现的。有关可用工具的列表，请参阅 [工具文档](../tools/index.md)。
 
 ### 使用 `coreTools` 进行允许列表
 
@@ -321,7 +321,7 @@ MCP 工具生态系统安全性取决于定义规范服务器并将它们的名�
 
 您可以通过在系统级 `settings.json` 文件中设置 `enforcedAuthType` 来为所有用户强制执行特定的身份验证方法。这可以防止用户选择不同的身份验证方法。有关更多详细信息，请参阅 [身份验证文档](./authentication.md)。
 
-**示例：** 强制所有用户使用 Google 登录。
+**示例：** 强制所有用户使用 Volcengine 登录。
 
 ```json
 {
@@ -352,7 +352,7 @@ MCP 工具生态系统安全性取决于定义规范服务器并将它们的名�
   },
   "mcpServers": {
     "corp-tools": {
-      "command": "/opt/gemini-tools/start.sh",
+      "command": "/opt/vecli-tools/start.sh",
       "timeout": 5000
     }
   },

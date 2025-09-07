@@ -1,18 +1,18 @@
 # 示例代理脚本
 
-以下是可与 `GEMINI_SANDBOX_PROXY_COMMAND` 环境变量一起使用的代理脚本示例。此脚本仅允许到 `example.com:443` 的 `HTTPS` 连接，并拒绝所有其他请求。
+以下是可与 `VECLI_SANDBOX_PROXY_COMMAND` 环境变量一起使用的代理脚本示例。此脚本仅允许到 `example.com:443` 的 `HTTPS` 连接，并拒绝所有其他请求。
 
 ```javascript
 #!/usr/bin/env node
 
 /**
  * @license
- * Copyright 2025 Google LLC
+ * Copyright 2025 Volcengine LLC
  * SPDX-License-Identifier: Apache-2.0
  */
 
 // 监听 :::8877 的示例代理服务器，仅允许到 example.com 的 HTTPS 连接。
-// 设置 `GEMINI_SANDBOX_PROXY_COMMAND=scripts/example-proxy.js` 以在沙盒旁边运行代理
+// 设置 `VECLI_SANDBOX_PROXY_COMMAND=scripts/example-proxy.js` 以在沙盒旁边运行代理
 // 通过在沙盒内（在 shell 模式下或通过 shell 工具）使用 `curl https://example.com` 进行测试
 
 import http from 'node:http';
@@ -21,7 +21,7 @@ import { URL } from 'node:url';
 import console from 'node:console';
 
 const PROXY_PORT = 8877;
-const ALLOWED_DOMAINS = ['example.com', 'googleapis.com'];
+const ALLOWED_DOMAINS = ['example.com', 'volcengineapis.com'];
 const ALLOWED_PORT = '443';
 
 const server = http.createServer((req, res) => {

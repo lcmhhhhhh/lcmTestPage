@@ -4,7 +4,7 @@ This document provides a guide to configuring and using Model Context Protocol (
 
 ## What is an MCP server?
 
-An MCP server is an application that exposes tools and resources to the VeCLI through the Model Context Protocol, allowing it to interact with external systems and data sources. MCP servers act as a bridge between the Gemini model and your local environment or other services like APIs.
+An MCP server is an application that exposes tools and resources to the VeCLI through the Model Context Protocol, allowing it to interact with external systems and data sources. MCP servers act as a bridge between the Vecli model and your local environment or other services like APIs.
 
 An MCP server enables the VeCLI to:
 
@@ -25,7 +25,7 @@ The discovery process is orchestrated by `discoverMcpTools()`, which:
 1. **Iterates through configured servers** from your `settings.json` `mcpServers` configuration
 2. **Establishes connections** using appropriate transport mechanisms (Stdio, SSE, or Streamable HTTP)
 3. **Fetches tool definitions** from each server using the MCP protocol
-4. **Sanitizes and validates** tool schemas for compatibility with the Gemini API
+4. **Sanitizes and validates** tool schemas for compatibility with the Vecli API
 5. **Registers tools** in the global tool registry with conflict resolution
 
 ### Execution Layer (`mcp-tool.ts`)
@@ -209,16 +209,16 @@ You can specify the authentication provider type using the `authProviderType` pr
 
 - **`authProviderType`** (string): Specifies the authentication provider. Can be one of the following:
   - **`dynamic_discovery`** (default): The CLI will automatically discover the OAuth configuration from the server.
-  - **`google_credentials`**: The CLI will use the Google Application Default Credentials (ADC) to authenticate with the server. When using this provider, you must specify the required scopes.
+  - **`volcengine_credentials`**: The CLI will use the Volcengine Application Default Credentials (ADC) to authenticate with the server. When using this provider, you must specify the required scopes.
 
 ```json
 {
   "mcpServers": {
-    "googleCloudServer": {
+    "volcengineServer": {
       "httpUrl": "https://my-gcp-service.run.app/mcp",
-      "authProviderType": "google_credentials",
+      "authProviderType": "volcengine_credentials",
       "oauth": {
-        "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+        "scopes": ["https://www.volcengineapis.com/auth/userinfo.email"]
       }
     }
   }
@@ -356,7 +356,7 @@ Upon successful connection:
 1. **Tool listing:** The client calls the MCP server's tool listing endpoint
 2. **Schema validation:** Each tool's function declaration is validated
 3. **Tool filtering:** Tools are filtered based on `includeTools` and `excludeTools` configuration
-4. **Name sanitization:** Tool names are cleaned to meet Gemini API requirements:
+4. **Name sanitization:** Tool names are cleaned to meet Vecli API requirements:
    - Invalid characters (non-alphanumeric, underscore, dot, hyphen) are replaced with underscores
    - Names longer than 63 characters are truncated with middle replacement (`___`)
 
@@ -370,7 +370,7 @@ When multiple servers expose tools with the same name:
 
 ### 4. Schema Processing
 
-Tool parameter schemas undergo sanitization for Gemini API compatibility:
+Tool parameter schemas undergo sanitization for Vecli API compatibility:
 
 - **`$schema` properties** are removed
 - **`additionalProperties`** are stripped
@@ -387,7 +387,7 @@ After discovery:
 
 ## Tool Execution Flow
 
-When the Gemini model decides to use an MCP tool, the following execution flow occurs:
+When the Vecli model decides to use an MCP tool, the following execution flow occurs:
 
 ### 1. Tool Invocation
 
@@ -491,7 +491,7 @@ Discovery State: COMPLETED
 
 ### Tool Usage
 
-Once discovered, MCP tools are available to the Gemini model like built-in tools. The model will automatically:
+Once discovered, MCP tools are available to the Vecli model like built-in tools. The model will automatically:
 
 1. **Select appropriate tools** based on your requests
 2. **Present confirmation dialogs** (unless the server is trusted)
@@ -589,7 +589,7 @@ The MCP integration tracks several states:
 
 ### Schema Compatibility
 
-- **Property stripping:** The system automatically removes certain schema properties (`$schema`, `additionalProperties`) for Gemini API compatibility
+- **Property stripping:** The system automatically removes certain schema properties (`$schema`, `additionalProperties`) for Vecli API compatibility
 - **Name sanitization:** Tool names are automatically sanitized to meet API requirements
 - **Conflict resolution:** Tool name conflicts between servers are resolved through automatic prefixing
 
@@ -643,7 +643,7 @@ When the VeCLI receives this response, it will:
 2.  Present the image data as a separate `inlineData` part.
 3.  Provide a clean, user-friendly summary in the CLI, indicating that both text and an image were received.
 
-This enables you to build sophisticated tools that can provide rich, multi-modal context to the Gemini model.
+This enables you to build sophisticated tools that can provide rich, multi-modal context to the Vecli model.
 
 ## MCP Prompts as Slash Commands
 
@@ -716,18 +716,18 @@ or, using positional arguments:
 
 When you run this command, the VeCLI executes the `prompts/get` method on the MCP server with the provided arguments. The server is responsible for substituting the arguments into the prompt template and returning the final prompt text. The CLI then sends this prompt to the model for execution. This provides a convenient way to automate and share common workflows.
 
-## Managing MCP Servers with `gemini mcp`
+## Managing MCP Servers with `vecli mcp`
 
 While you can always configure MCP servers by manually editing your `settings.json` file, the VeCLI provides a convenient set of commands to manage your server configurations programmatically. These commands streamline the process of adding, listing, and removing MCP servers without needing to directly edit JSON files.
 
-### Adding a Server (`gemini mcp add`)
+### Adding a Server (`vecli mcp add`)
 
 The `add` command configures a new MCP server in your `settings.json`. Based on the scope (`-s, --scope`), it will be added to either the user config `~/.ve/settings.json` or the project config `.ve/settings.json` file.
 
 **Command:**
 
 ```bash
-gemini mcp add [options] <name> <commandOrUrl> [args...]
+vecli mcp add [options] <name> <commandOrUrl> [args...]
 ```
 
 - `<name>`: A unique name for the server.
@@ -752,13 +752,13 @@ This is the default transport for running local servers.
 
 ```bash
 # Basic syntax
-gemini mcp add <name> <command> [args...]
+vecli mcp add <name> <command> [args...]
 
 # Example: Adding a local server
-gemini mcp add my-stdio-server -e API_KEY=123 /path/to/server arg1 arg2 arg3
+vecli mcp add my-stdio-server -e API_KEY=123 /path/to/server arg1 arg2 arg3
 
 # Example: Adding a local python server
-gemini mcp add python-server python server.py --port 8080
+vecli mcp add python-server python server.py --port 8080
 ```
 
 #### Adding an HTTP server
@@ -767,13 +767,13 @@ This transport is for servers that use the streamable HTTP transport.
 
 ```bash
 # Basic syntax
-gemini mcp add --transport http <name> <url>
+vecli mcp add --transport http <name> <url>
 
 # Example: Adding an HTTP server
-gemini mcp add --transport http http-server https://api.example.com/mcp/
+vecli mcp add --transport http http-server https://api.example.com/mcp/
 
 # Example: Adding an HTTP server with an authentication header
-gemini mcp add --transport http secure-http https://api.example.com/mcp/ --header "Authorization: Bearer abc123"
+vecli mcp add --transport http secure-http https://api.example.com/mcp/ --header "Authorization: Bearer abc123"
 ```
 
 #### Adding an SSE server
@@ -782,23 +782,23 @@ This transport is for servers that use Server-Sent Events (SSE).
 
 ```bash
 # Basic syntax
-gemini mcp add --transport sse <name> <url>
+vecli mcp add --transport sse <name> <url>
 
 # Example: Adding an SSE server
-gemini mcp add --transport sse sse-server https://api.example.com/sse/
+vecli mcp add --transport sse sse-server https://api.example.com/sse/
 
 # Example: Adding an SSE server with an authentication header
-gemini mcp add --transport sse secure-sse https://api.example.com/sse/ --header "Authorization: Bearer abc123"
+vecli mcp add --transport sse secure-sse https://api.example.com/sse/ --header "Authorization: Bearer abc123"
 ```
 
-### Listing Servers (`gemini mcp list`)
+### Listing Servers (`vecli mcp list`)
 
 To view all MCP servers currently configured, use the `list` command. It displays each server's name, configuration details, and connection status.
 
 **Command:**
 
 ```bash
-gemini mcp list
+vecli mcp list
 ```
 
 **Example Output:**
@@ -809,20 +809,20 @@ gemini mcp list
 ✗ sse-server: https://api.example.com/sse (sse) - Disconnected
 ```
 
-### Removing a Server (`gemini mcp remove`)
+### Removing a Server (`vecli mcp remove`)
 
 To delete a server from your configuration, use the `remove` command with the server's name.
 
 **Command:**
 
 ```bash
-gemini mcp remove <name>
+vecli mcp remove <name>
 ```
 
 **Example:**
 
 ```bash
-gemini mcp remove my-server
+vecli mcp remove my-server
 ```
 
 This will find and delete the "my-server" entry from the `mcpServers` object in the appropriate `settings.json` file based on the scope (`-s, --scope`).

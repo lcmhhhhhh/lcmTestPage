@@ -26,8 +26,6 @@
 
     有关更多详细信息，请参阅 [VeCLI 配置](./cli/configuration.md)。
 
-- **问: 为什么在我的统计输出中看不到缓存的令牌计数？**
-  - 答: 只有在使用缓存令牌时才会显示缓存的令牌信息。此功能适用于 API 密钥用户（vecli API 密钥或火山引擎 Vertex AI），但不适用于 OAuth 用户（例如火山引擎个人/企业帐户，如火山引擎 Gmail 或火山引擎工作区）。这是因为火山引擎代码助手 API 不支持缓存内容创建。您仍然可以使用 VeCLI 中的 `/stats` 命令查看总令牌使用量。
 
 ## 常见错误消息和解决方案
 
@@ -60,8 +58,8 @@
   - **解决方案:** 如果不需要 CLI 功能的 `CI_` 前缀变量，您可以为命令暂时取消设置它。例如，`env -u CI_TOKEN vecli`
 
 - **从项目 .env 文件中 DEBUG 模式不工作**
-  - **问题:** 在项目的 `.env` 文件中设置 `DEBUG=true` 不会为 vecli-cli 启用调试模式。
-  - **原因:** `DEBUG` 和 `DEBUG_MODE` 变量会自动从项目 `.env` 文件中排除，以防止干扰 vecli-cli 行为。
+  - **问题:** 在项目的 `.env` 文件中设置 `DEBUG=true` 不会为 vecli 启用调试模式。
+  - **原因:** `DEBUG` 和 `DEBUG_MODE` 变量会自动从项目 `.env` 文件中排除，以防止干扰 vecli 行为。
   - **解决方案:** 请改用 `.ve/.env` 文件，或在 `settings.json` 中配置 `advanced.excludedEnvVars` 设置以排除更少的变量。
 
 ## 退出代码

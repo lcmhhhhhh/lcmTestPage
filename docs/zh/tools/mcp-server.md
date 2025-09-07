@@ -4,7 +4,7 @@
 
 ## 什么是 MCP 服务器？
 
-MCP 服务器是一个通过模型上下文协议向 VeCLI 公开工具和资源的应用程序，使其能够与外部系统和数据源交互。MCP 服务器充当 Gemini 模型与您的本地环境或其他服务（如 API）之间的桥梁。
+MCP 服务器是一个通过模型上下文协议向 VeCLI 公开工具和资源的应用程序，使其能够与外部系统和数据源交互。MCP 服务器充当 Vecli 模型与您的本地环境或其他服务（如 API）之间的桥梁。
 
 MCP 服务器使 VeCLI 能够：
 
@@ -25,7 +25,7 @@ VeCLI 通过内置在核心包 (`packages/core/src/tools/`) 中的复杂发现�
 1. **遍历配置的服务器** 从您的 `settings.json` `mcpServers` 配置中
 2. **建立连接** 使用适当的传输机制（Stdio、SSE 或可流式 HTTP）
 3. **获取工具定义** 使用 MCP 协议从每个服务器获取
-4. **清理和验证** 工具模式以确保与 Gemini API 兼容
+4. **清理和验证** 工具模式以确保与 Vecli API 兼容
 5. **注册工具** 在全局工具注册表中，并解决冲突
 
 ### 执行层 (`mcp-tool.ts`)
@@ -209,16 +209,16 @@ OAuth 令牌会自动：
 
 - **`authProviderType`** (字符串): 指定身份验证提供者。可以是以下之一：
   - **`dynamic_discovery`** (默认): CLI 将自动从服务器发现 OAuth 配置。
-  - **`google_credentials`**: CLI 将使用 Google 应用默认凭据 (ADC) 对服务器进行身份验证。使用此提供者时，您必须指定所需的范围。
+  - **`volcengine_credentials`**: CLI 将使用 Volcengine 应用默认凭据 (ADC) 对服务器进行身份验证。使用此提供者时，您必须指定所需的范围。
 
 ```json
 {
   "mcpServers": {
-    "googleCloudServer": {
+    "volcengineServer": {
       "httpUrl": "https://my-gcp-service.run.app/mcp",
-      "authProviderType": "google_credentials",
+      "authProviderType": "volcengine_credentials",
       "oauth": {
-        "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+        "scopes": ["https://www.volcengineapis.com/auth/userinfo.email"]
       }
     }
   }
@@ -356,7 +356,7 @@ OAuth 令牌会自动：
 1. **工具列表：** 客户端调用 MCP 服务器的工具列表端点
 2. **模式验证：** 验证每个工具的函数声明
 3. **工具过滤：** 根据 `includeTools` 和 `excludeTools` 配置过滤工具
-4. **名称清理：** 工具名称被清理以满足 Gemini API 要求：
+4. **名称清理：** 工具名称被清理以满足 Vecli API 要求：
    - 无效字符（非字母数字、下划线、点、连字符）被替换为下划线
    - 超过 63 个字符的名称会被截断，并用中间替换 (`___`)
 
@@ -370,7 +370,7 @@ OAuth 令牌会自动：
 
 ### 4. 模式处理
 
-工具参数模式经过清理以确保与 Gemini API 兼容：
+工具参数模式经过清理以确保与 Vecli API 兼容：
 
 - **`$schema` 属性** 被移除
 - **`additionalProperties`** 被剥离
@@ -387,7 +387,7 @@ OAuth 令牌会自动：
 
 ## 工具执行流程
 
-当 Gemini 模型决定使用 MCP 工具时，会发生以下执行流程：
+当 Vecli 模型决定使用 MCP 工具时，会发生以下执行流程：
 
 ### 1. 工具调用
 
@@ -491,7 +491,7 @@ MCP 服务器状态:
 
 ### 工具使用
 
-发现后，MCP 工具对 Gemini 模型来说就像内置工具一样可用。模型将自动：
+发现后，MCP 工具对 Vecli 模型来说就像内置工具一样可用。模型将自动：
 
 1. **选择合适的工具** 基于您的请求
 2. **显示确认对话框** （除非服务器受信任）
@@ -589,7 +589,7 @@ MCP 集成跟踪几种状态：
 
 ### 模式兼容性
 
-- **属性剥离：** 系统会自动移除某些模式属性（`$schema`、`additionalProperties`）以确保与 Gemini API 兼容
+- **属性剥离：** 系统会自动移除某些模式属性（`$schema`、`additionalProperties`）以确保与 Vecli API 兼容
 - **名称清理：** 工具名称会自动清理以满足 API 要求
 - **冲突解决：** 服务器之间的工具名称冲突通过自动加前缀解决
 
@@ -643,7 +643,7 @@ MCP 工具不仅限于返回简单文本。您可以返回富多部分内容，�
 2.  将图像数据作为单独的 `inlineData` 部分呈现。
 3.  在 CLI 中提供一个干净、用户友好的摘要，表明已收到文本和图像。
 
-这使您能够构建复杂的工具，向 Gemini 模型提供丰富的多模态上下文。
+这使您能够构建复杂的工具，向 Vecli 模型提供丰富的多模态上下文。
 
 ## 作为斜杠命令的 MCP 提示
 
@@ -716,18 +716,18 @@ await server.connect(transport);
 
 运行此命令时，VeCLI 在 MCP 服务器上执行 `prompts/get` 方法并提供参数。服务器负责将参数代入提示模板并返回最终提示文本。CLI 然后将此提示发送给模型执行。这提供了一种方便的方式来自动化和共享常见工作流。
 
-## 使用 `gemini mcp` 管理 MCP 服务器
+## 使用 `vecli mcp` 管理 MCP 服务器
 
 虽然您总是可以通过手动编辑 `settings.json` 文件来配置 MCP 服务器，但 VeCLI 提供了一组方便的命令来以编程方式管理您的服务器配置。这些命令简化了添加、列出和删除 MCP 服务器的过程，而无需直接编辑 JSON 文件。
 
-### 添加服务器 (`gemini mcp add`)
+### 添加服务器 (`vecli mcp add`)
 
 `add` 命令在您的 `settings.json` 中配置一个新的 MCP 服务器。根据范围 (`-s, --scope`)，它将被添加到用户配置 `~/.ve/settings.json` 或项目配置 `.ve/settings.json` 文件中。
 
 **命令：**
 
 ```bash
-gemini mcp add [options] <name> <commandOrUrl> [args...]
+vecli mcp add [options] <name> <commandOrUrl> [args...]
 ```
 
 - `<name>`: 服务器的唯一名称。
@@ -752,13 +752,13 @@ gemini mcp add [options] <name> <commandOrUrl> [args...]
 
 ```bash
 # 基本语法
-gemini mcp add <name> <command> [args...]
+vecli mcp add <name> <command> [args...]
 
 # 示例: 添加一个本地服务器
-gemini mcp add my-stdio-server -e API_KEY=123 /path/to/server arg1 arg2 arg3
+vecli mcp add my-stdio-server -e API_KEY=123 /path/to/server arg1 arg2 arg3
 
 # 示例: 添加一个本地 python 服务器
-gemini mcp add python-server python server.py --port 8080
+vecli mcp add python-server python server.py --port 8080
 ```
 
 #### 添加一个 HTTP 服务器
@@ -767,13 +767,13 @@ gemini mcp add python-server python server.py --port 8080
 
 ```bash
 # 基本语法
-gemini mcp add --transport http <name> <url>
+vecli mcp add --transport http <name> <url>
 
 # 示例: 添加一个 HTTP 服务器
-gemini mcp add --transport http http-server https://api.example.com/mcp/
+vecli mcp add --transport http http-server https://api.example.com/mcp/
 
 # 示例: 添加一个带有身份验证标头的 HTTP 服务器
-gemini mcp add --transport http secure-http https://api.example.com/mcp/ --header "Authorization: Bearer abc123"
+vecli mcp add --transport http secure-http https://api.example.com/mcp/ --header "Authorization: Bearer abc123"
 ```
 
 #### 添加一个 SSE 服务器
@@ -782,23 +782,23 @@ gemini mcp add --transport http secure-http https://api.example.com/mcp/ --heade
 
 ```bash
 # 基本语法
-gemini mcp add --transport sse <name> <url>
+vecli mcp add --transport sse <name> <url>
 
 # 示例: 添加一个 SSE 服务器
-gemini mcp add --transport sse sse-server https://api.example.com/sse/
+vecli mcp add --transport sse sse-server https://api.example.com/sse/
 
 # 示例: 添加一个带有身份验证标头的 SSE 服务器
-gemini mcp add --transport sse secure-sse https://api.example.com/sse/ --header "Authorization: Bearer abc123"
+vecli mcp add --transport sse secure-sse https://api.example.com/sse/ --header "Authorization: Bearer abc123"
 ```
 
-### 列出服务器 (`gemini mcp list`)
+### 列出服务器 (`vecli mcp list`)
 
 要查看当前配置的所有 MCP 服务器，请使用 `list` 命令。它显示每个服务器的名称、配置详细信息和连接状态。
 
 **命令：**
 
 ```bash
-gemini mcp list
+vecli mcp list
 ```
 
 **示例输出：**
@@ -809,20 +809,20 @@ gemini mcp list
 ✗ sse-server: https://api.example.com/sse (sse) - 已断开
 ```
 
-### 删除服务器 (`gemini mcp remove`)
+### 删除服务器 (`vecli mcp remove`)
 
 要从配置中删除服务器，请使用 `remove` 命令和服务器名称。
 
 **命令：**
 
 ```bash
-gemini mcp remove <name>
+vecli mcp remove <name>
 ```
 
 **示例：**
 
 ```bash
-gemini mcp remove my-server
+vecli mcp remove my-server
 ```
 
 这将根据范围 (`-s, --scope`) 在相应的 `settings.json` 文件中的 `mcpServers` 对象中查找并删除 "my-server" 条目。

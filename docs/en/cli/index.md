@@ -1,10 +1,10 @@
 # VeCLI
 
-Within VeCLI, `packages/cli` is the frontend for users to send and receive prompts with the Gemini AI model and its associated tools. For a general overview of VeCLI, see the [main documentation page](../index.md).
+Within VeCLI, `packages/cli` is the frontend for users to send and receive prompts with the Vecli AI model and its associated tools. For a general overview of VeCLI, see the [main documentation page](../index.md).
 
 ## Navigating this section
 
-- **[Authentication](./authentication.md):** A guide to setting up authentication with Google's AI services.
+- **[Authentication](./authentication.md):** A guide to setting up authentication with Volcengine's AI services.
 - **[Commands](./commands.md):** A reference for VeCLI commands (e.g., `/help`, `/tools`, `/theme`).
 - **[Configuration](./configuration.md):** A guide to tailoring VeCLI behavior using configuration files.
 - **[Enterprise](./enterprise.md):** A guide to enterprise configuration.
@@ -19,11 +19,11 @@ VeCLI can be run in a non-interactive mode, which is useful for scripting and au
 The following example pipes a command to VeCLI from your terminal:
 
 ```bash
-echo "What is fine tuning?" | gemini
+echo "What is fine tuning?" | vecli
 ```
 
 VeCLI executes the command and prints the output to your terminal. Note that you can achieve the same behavior by using the `--prompt` or `-p` flag. For example:
 
 ```bash
-gemini -p "What is fine tuning?"
+vecli -p "What is fine tuning?"
 ```

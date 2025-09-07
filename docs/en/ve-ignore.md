@@ -1,6 +1,6 @@
 # Ignoring Files
 
-This document provides an overview of the Gemini Ignore (`.veignore`) feature of the VeCLI.
+This document provides an overview of the Vecli Ignore (`.veignore`) feature of the VeCLI.
 
 The VeCLI includes the ability to automatically ignore files, similar to `.gitignore` (used by Git) and `.aiexclude` (used by Ve Code Assist). Adding paths to your `.veignore` file will exclude them from tools that support this feature, although they will still be visible to other services (such as Git).
 

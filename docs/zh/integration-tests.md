@@ -89,7 +89,7 @@ VERBOSE=true npm run test:integration:sandbox:none
 
 ```
 --- TEST: <log dir>:<test-name> ---
-... 来自 gemini 命令的输出 ...
+... 来自 vecli 命令的输出 ...
 --- END TEST: <log dir>:<test-name> ---
 ```
 

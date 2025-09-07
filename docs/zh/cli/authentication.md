@@ -1,6 +1,6 @@
 # 身份验证设置
 
-VeCLI 需要您使用 Google 的 AI 服务进行身份验证。在首次启动时，您需要配置以下**一种**身份验证方法：
+VeCLI 需要您使用 Volcengine 的 AI 服务进行身份验证。在首次启动时，您需要配置以下**一种**身份验证方法：
 
 1.  **使用火山引擎 AK/SK 登录：**
     - 使用此选项通过火山引擎的 Access Key (AK) 和 Secret Key (SK) 进行身份认证。
@@ -52,7 +52,7 @@ VeCLI 需要您使用 Google 的 AI 服务进行身份验证。在首次启动�
     vecli test-connection
     ```
 
-2.  **<a id="gemini-api-key"></a>火山引擎 API 密钥：**
+2.  **<a id="vecli-api-key"></a>火山引擎 API 密钥：**
     - 从 火山引擎 获取您的 API 密钥：[https://www.volcengine.com/](https://www.volcengine.com/)
     - 设置 `VECLI_API_KEY` 环境变量。在以下方法中，将 `YOUR_VECLI_API_KEY` 替换为您从 火山引擎方舟平台 获得的 API 密钥：
       - 您可以使用以下命令在当前 shell 会话中临时设置环境变量：

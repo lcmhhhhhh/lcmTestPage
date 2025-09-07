@@ -14,14 +14,14 @@
 
 ## 如何在 VeCLI 中使用 `web_fetch`
 
-要在 VeCLI 中使用 `web_fetch`，请提供一个包含 URL 的自然语言提示。该工具在获取任何 URL 之前会要求确认。确认后，该工具将通过 Gemini API 的 `urlContext` 处理 URL。
+要在 VeCLI 中使用 `web_fetch`，请提供一个包含 URL 的自然语言提示。该工具在获取任何 URL 之前会要求确认。确认后，该工具将通过 Vecli API 的 `urlContext` 处理 URL。
 
-如果 Gemini API 无法访问 URL，该工具将回退到直接从本地机器获取内容。该工具将格式化响应，包括来源归属和引用（如果可能）。然后该工具将向用户提供响应。
+如果 Vecli API 无法访问 URL，该工具将回退到直接从本地机器获取内容。该工具将格式化响应，包括来源归属和引用（如果可能）。然后该工具将向用户提供响应。
 
 用法:
 
 ```
-web_fetch(prompt="您的提示，包括一个 URL，例如 https://google.com。")
+web_fetch(prompt="您的提示，包括一个 URL，例如 https://volcengine.com。")
 ```
 
 ## `web_fetch` 示例
@@ -40,5 +40,5 @@ web_fetch(prompt="这两篇论文的结论有什么不同：https://arxiv.org/ab
 
 ## 重要提示
 
-- **URL 处理:** `web_fetch` 依赖于 Gemini API 访问和处理给定 URL 的能力。
+- **URL 处理:** `web_fetch` 依赖于 Vecli API 访问和处理给定 URL 的能力。
 - **输出质量:** 输出的质量将取决于提示中指令的清晰度。

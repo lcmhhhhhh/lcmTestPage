@@ -13,7 +13,7 @@ npm install -g @vecode-cli/vecode-cli
 To verify the installation
 
 ```bash
-gemini --version
+vecli --version
 ```
 
 ## Overview of sandboxing
@@ -47,11 +47,11 @@ Cross-platform sandboxing with complete process isolation.
 
 ```bash
 # Enable sandboxing with command flag
-gemini -s -p "analyze the code structure"
+vecli -s -p "analyze the code structure"
 
 # Use environment variable
-export GEMINI_SANDBOX=true
-gemini -p "run the test suite"
+export VECLI_SANDBOX=true
+vecli -p "run the test suite"
 
 # Configure in settings.json
 {
@@ -66,7 +66,7 @@ gemini -p "run the test suite"
 ### Enable sandboxing (in order of precedence)
 
 1. **Command flag**: `-s` or `--sandbox`
-2. **Environment variable**: `GEMINI_SANDBOX=true|docker|podman|sandbox-exec`
+2. **Environment variable**: `VECLI_SANDBOX=true|docker|podman|sandbox-exec`
 3. **Settings file**: `"sandbox": true` in the `tools` object of your `settings.json` file (e.g., `{"tools": {"sandbox": true}}`).
 
 ### macOS Seatbelt profiles
@@ -128,19 +128,19 @@ export SANDBOX_SET_UID_GID=false  # Disable UID/GID mapping
 ### Debug mode
 
 ```bash
-DEBUG=1 gemini -s -p "debug command"
+DEBUG=1 vecli -s -p "debug command"
 ```
 
-**Note:** If you have `DEBUG=true` in a project's `.env` file, it won't affect gemini-cli due to automatic exclusion. Use `.ve/.env` files for gemini-cli specific debug settings.
+**Note:** If you have `DEBUG=true` in a project's `.env` file, it won't affect vecli due to automatic exclusion. Use `.ve/.env` files for vecli specific debug settings.
 
 ### Inspect sandbox
 
 ```bash
 # Check environment
-gemini -s -p "run shell command: env | grep SANDBOX"
+vecli -s -p "run shell command: env | grep SANDBOX"
 
 # List mounts
-gemini -s -p "run shell command: mount | grep workspace"
+vecli -s -p "run shell command: mount | grep workspace"
 ```
 
 ## Security notes

@@ -29,7 +29,7 @@ Here is how settings from different levels are combined.
       "theme": "default-corporate-theme"
     },
     "context": {
-      "includeDirectories": ["/etc/gemini-cli/common-context"]
+      "includeDirectories": ["/etc/vecli/common-context"]
     }
   }
   ```
@@ -50,7 +50,7 @@ Here is how settings from different levels are combined.
       }
     },
     "context": {
-      "includeDirectories": ["~/gemini-context"]
+      "includeDirectories": ["~/vecli-context"]
     }
   }
   ```
@@ -85,7 +85,7 @@ Here is how settings from different levels are combined.
       }
     },
     "context": {
-      "includeDirectories": ["/etc/gemini-cli/global-context"]
+      "includeDirectories": ["/etc/vecli/global-context"]
     }
   }
   ```
@@ -111,10 +111,10 @@ This results in the following merged configuration:
     },
     "context": {
       "includeDirectories": [
-        "/etc/gemini-cli/common-context",
-        "~/gemini-context",
+        "/etc/vecli/common-context",
+        "~/vecli-context",
         "./project-context",
-        "/etc/gemini-cli/global-context"
+        "/etc/vecli/global-context"
       ]
     }
   }
@@ -127,17 +127,17 @@ This results in the following merged configuration:
 - **`includeDirectories`**: The arrays are concatenated in the order of System Defaults, User, Workspace, and then System Overrides.
 
 - **Location**:
-  - **Linux**: `/etc/gemini-cli/settings.json`
-  - **Windows**: `C:\ProgramData\gemini-cli\settings.json`
-  - **macOS**: `/Library/Application Support/GeminiCli/settings.json`
-  - The path can be overridden using the `GEMINI_CLI_SYSTEM_SETTINGS_PATH` environment variable.
+  - **Linux**: `/etc/vecli/settings.json`
+  - **Windows**: `C:\ProgramData\vecli\settings.json`
+  - **macOS**: `/Library/Application Support/VecliCli/settings.json`
+  - The path can be overridden using the `VECLI_CLI_SYSTEM_SETTINGS_PATH` environment variable.
 - **Control**: This file should be managed by system administrators and protected with appropriate file permissions to prevent unauthorized modification by users.
 
 By using the system settings file, you can enforce the security and configuration patterns described below.
 
 ## Restricting Tool Access
 
-You can significantly enhance security by controlling which tools the Gemini model can use. This is achieved through the `tools.core` and `tools.exclude` settings. For a list of available tools, see the [Tools documentation](../tools/index.md).
+You can significantly enhance security by controlling which tools the Vecli model can use. This is achieved through the `tools.core` and `tools.exclude` settings. For a list of available tools, see the [Tools documentation](../tools/index.md).
 
 ### Allowlisting with `coreTools`
 
@@ -321,7 +321,7 @@ For auditing and monitoring purposes, you can configure VeCLI to send telemetry 
 
 You can enforce a specific authentication method for all users by setting the `enforcedAuthType` in the system-level `settings.json` file. This prevents users from choosing a different authentication method. See the [Authentication docs](./authentication.md) for more details.
 
-**Example:** Enforce the use of Google login for all users.
+**Example:** Enforce the use of Volcengine login for all users.
 
 ```json
 {
@@ -352,7 +352,7 @@ Here is an example of a system `settings.json` file that combines several of the
   },
   "mcpServers": {
     "corp-tools": {
-      "command": "/opt/gemini-tools/start.sh",
+      "command": "/opt/vecli-tools/start.sh",
       "timeout": 5000
     }
   },

@@ -270,12 +270,12 @@ Metrics are numerical measurements of behavior over time. The following metrics 
   - **Attributes**:
     - `model`
 
-- `gemini_cli.token.usage` (Counter, Int): Counts the number of tokens used.
+- `vecli_cli.token.usage` (Counter, Int): Counts the number of tokens used.
   - **Attributes**:
     - `model`
     - `type` (string: "input", "output", "thought", "cache", or "tool")
 
-- `gemini_cli.file.operation.count` (Counter, Int): Counts file operations.
+- `vecli_cli.file.operation.count` (Counter, Int): Counts file operations.
   - **Attributes**:
     - `operation` (string: "create", "read", "update"): The type of file operation.
     - `lines` (Int, if applicable): Number of lines in the file.
@@ -287,7 +287,7 @@ Metrics are numerical measurements of behavior over time. The following metrics 
     - `user_removed_lines` (Int, if applicable): Number of lines removed/changed by user in AI proposed changes.
     - `programming_language` (string, if applicable): The programming language of the file.
 
-- `gemini_cli.chat_compression` (Counter, Int): Counts chat compression operations
+- `vecli_cli.chat_compression` (Counter, Int): Counts chat compression operations
   - **Attributes**:
     - `tokens_before`: (Int): Number of tokens in context prior to compression
     - `tokens_after`: (Int): Number of tokens in context after compression

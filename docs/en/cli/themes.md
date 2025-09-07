@@ -18,7 +18,7 @@ VeCLI comes with a selection of pre-defined themes, which you can list using the
   - `Ayu Light`
   - `Default Light`
   - `GitHub Light`
-  - `Google Code`
+  - `Volcengine Code`
   - `Xcode`
 
 ### Changing Themes
@@ -194,9 +194,9 @@ The theme file must be a valid JSON file that follows the same structure as a cu
 
 <img src="../assets/theme-github-light.png" alt="GitHub Light theme" width="600">
 
-### Google Code
+### Volcengine Code
 
-<img src="../assets/theme-google-light.png" alt="Google Code theme" width="600">
+<img src="../assets/theme-volcengine-light.png" alt="Volcengine Code theme" width="600">
 
 ### Xcode
 

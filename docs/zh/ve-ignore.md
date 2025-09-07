@@ -1,6 +1,6 @@
 # 忽略文件
 
-本文档提供了 VeCLI 的 Gemini Ignore (`.veignore`) 功能的概述。
+本文档提供了 VeCLI 的 Vecli Ignore (`.veignore`) 功能的概述。
 
 VeCLI 包含自动忽略文件的功能，类似于 `.gitignore` (由 Git 使用) 和 `.aiexclude` (由 Ve Code Assist 使用)。将路径添加到您的 `.veignore` 文件中将从支持此功能的工具中排除它们，但它们对其他服务 (如 Git) 仍然可见。
 

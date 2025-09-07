@@ -28,7 +28,7 @@ VeCLI 提供了几种配置其行为的方法，包括环境变量、命令行�
 VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置：
 
 - **系统默认文件：**
-  - **位置：** `/etc/gemini-cli/system-defaults.json` (Linux), `C:\ProgramData\gemini-cli\system-defaults.json` (Windows) 或 `/Library/Application Support/GeminiCli/system-defaults.json` (macOS)。路径可以使用 `GEMINI_CLI_SYSTEM_DEFAULTS_PATH` 环境变量覆盖。
+  - **位置：** `/etc/vecli/system-defaults.json` (Linux), `C:\ProgramData\vecli\system-defaults.json` (Windows) 或 `/Library/Application Support/VecliCli/system-defaults.json` (macOS)。路径可以使用 `VECLI_CLI_SYSTEM_DEFAULTS_PATH` 环境变量覆盖。
   - **范围：** 提供系统范围默认设置的基础层。这些设置具有最低优先级，旨在被用户、项目或系统覆盖设置覆盖。
 - **用户设置文件：**
   - **位置：** `~/.ve/settings.json` (其中 `~` 是您的主目录)。
@@ -37,7 +37,7 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
   - **位置：** 项目根目录中的 `.ve/settings.json`。
   - **范围：** 仅在从该特定项目运行 VeCLI 时应用。项目设置覆盖用户设置和系统默认值。
 - **系统设置文件：**
-  - **位置：** `/etc/gemini-cli/settings.json` (Linux), `C:\ProgramData\gemini-cli\settings.json` (Windows) 或 `/Library/Application Support/GeminiCli/settings.json` (macOS)。路径可以使用 `GEMINI_CLI_SYSTEM_SETTINGS_PATH` 环境变量覆盖。
+  - **位置：** `/etc/vecli/settings.json` (Linux), `C:\ProgramData\vecli\settings.json` (Windows) 或 `/Library/Application Support/VecliCli/settings.json` (macOS)。路径可以使用 `VECLI_CLI_SYSTEM_SETTINGS_PATH` 环境变量覆盖。
   - **范围：** 适用于系统上的所有 VeCLI 会话，适用于所有用户。系统设置作为覆盖，优先于所有其他设置文件。对于企业中的系统管理员来说，可能有用，可以控制用户的 VeCLI 设置。
 
 **关于设置中的环境变量的说明：** 您的 `settings.json` 文件中的字符串值可以使用 `$VAR_NAME` 或 `${VAR_NAME}` 语法引用环境变量。加载设置时，这些变量将自动解析。例如，如果您有一个环境变量 `MY_API_TOKEN`，您可以在 `settings.json` 中这样使用它：`"apiKey": "$MY_API_TOKEN"`。
@@ -59,7 +59,7 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
 
 - **`bugCommand`** (对象)：
   - **描述：** 覆盖 `/bug` 命令的默认 URL。
-  - **默认值：** `"urlTemplate": "https://github.com/google-gemini/gemini-cli/issues/new?template=bug_report.yml&title={title}&info={info}"`
+  - **默认值：** `"urlTemplate": "https://github.com/volcengine/vecli/issues/new?template=bug_report.yml&title={title}&info={info}"`
   - **属性：**
     - **`urlTemplate`** (字符串)：可以包含 `{title}` 和 `{info}` 占位符的 URL。
   - **示例：**
@@ -97,7 +97,7 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
 
 - **`coreTools`** (字符串数组)：
   - **描述：** 允许您指定应提供给模型的核心工具名称列表。这可以用于限制内置工具集。有关核心工具列表，请参阅 [内置工具](../core/tools-api.md#built-in-tools)。您还可以为支持它的工具指定命令特定的限制，例如 `ShellTool`。例如，`"coreTools": ["ShellTool(ls -l)"]` 将只允许执行 `ls -l` 命令。
-  - **默认值：** 所有可供 Gemini 模型使用的核心工具。
+  - **默认值：** 所有可供 Vecli 模型使用的核心工具。
   - **示例：** `"coreTools": ["ReadFileTool", "GlobTool", "ShellTool(ls)"]`。
 
 - **`allowedTools`** (字符串数组)：
@@ -114,7 +114,7 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
 
 - **`allowMCPServers`** (字符串数组)：
   - **描述：** 允许您指定应提供给模型的 MCP 服务器名称列表。这可以用于限制要连接的 MCP 服务器集。请注意，如果设置了 `--allowed-mcp-server-names`，这将被忽略。
-  - **默认值：** 所有 MCP 服务器都可供 Gemini 模型使用。
+  - **默认值：** 所有 MCP 服务器都可供 Vecli 模型使用。
   - **示例：** `"allowMCPServers": ["myPythonServer"]`。
   - **安全说明：** 这在 MCP 服务器名称上使用简单的字符串匹配，可以被修改。如果您是系统管理员并希望防止用户绕过此限制，请考虑在系统设置级别配置 `mcpServers`，这样用户将无法配置自己的任何 MCP 服务器。这不应被用作万无一失的安全机制。
 
@@ -140,20 +140,20 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
   - **示例：** `"vimMode": true`
 
 - **`sandbox`** (布尔值或字符串)：
-  - **描述：** 控制是否以及如何使用沙盒进行工具执行。如果设置为 `true`，VeCLI 使用预构建的 `gemini-cli-sandbox` Docker 镜像。有关更多信息，请参阅 [沙盒](#sandboxing)。
+  - **描述：** 控制是否以及如何使用沙盒进行工具执行。如果设置为 `true`，VeCLI 使用预构建的 `vecli-sandbox` Docker 镜像。有关更多信息，请参阅 [沙盒](#sandboxing)。
   - **默认值：** `false`
   - **示例：** `"sandbox": "docker"`
 
 - **`toolDiscoveryCommand`** (字符串)：
-  - **描述：** 定义一个用于从项目中发现工具的自定义 shell 命令。shell 命令必须在 `stdout` 上返回一个 [函数声明](https://ai.google.dev/gemini-api/docs/function-calling#function-declarations) 的 JSON 数组。工具包装器是可选的。
+  - **描述：** 定义一个用于从项目中发现工具的自定义 shell 命令。shell 命令必须在 `stdout` 上返回一个 [函数声明](https://ai.volcengine.dev/vecli-api/docs/function-calling#function-declarations) 的 JSON 数组。工具包装器是可选的。
   - **默认值：** 空
   - **示例：** `"toolDiscoveryCommand": "bin/get_tools"`
 
 - **`toolCallCommand`** (字符串)：
   - **描述：** 定义一个用于调用使用 `toolDiscoveryCommand` 发现的特定工具的自定义 shell 命令。shell 命令必须满足以下条件：
-    - 它必须将函数 `name`（与 [函数声明](https://ai.google.dev/gemini-api/docs/function-calling#function-declarations) 中的完全相同）作为第一个命令行参数。
-    - 它必须在 `stdin` 上以 JSON 格式读取函数参数，类似于 [`functionCall.args`](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#functioncall)。
-    - 它必须在 `stdout` 上以 JSON 格式返回函数输出，类似于 [`functionResponse.response.content`](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#functionresponse)。
+    - 它必须将函数 `name`（与 [函数声明](https://ai.volcengine.dev/vecli-api/docs/function-calling#function-declarations) 中的完全相同）作为第一个命令行参数。
+    - 它必须在 `stdin` 上以 JSON 格式读取函数参数，类似于 [`functionCall.args`](https://cloud.volcengine.com/vertex-ai/generative-ai/docs/model-reference/inference#functioncall)。
+    - 它必须在 `stdout` 上以 JSON 格式返回函数输出，类似于 [`functionResponse.response.content`](https://cloud.volcengine.com/vertex-ai/generative-ai/docs/model-reference/inference#functionresponse)。
   - **默认值：** 空
   - **示例：** `"toolCallCommand": "bin/call_tool"`
 
@@ -290,7 +290,7 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
     ```
 
 - **`excludedProjectEnvVars`** (字符串数组)：
-  - **描述：** 指定应从项目 `.env` 文件加载中排除的环境变量。这可以防止项目特定的环境变量（如 `DEBUG=true`）干扰 gemini-cli 行为。`.ve/.env` 文件中的变量永远不会被排除。
+  - **描述：** 指定应从项目 `.env` 文件加载中排除的环境变量。这可以防止项目特定的环境变量（如 `DEBUG=true`）干扰 vecli 行为。`.ve/.env` 文件中的变量永远不会被排除。
   - **默认值：** `["DEBUG", "DEBUG_MODE"]`
   - **示例：**
     ```json
@@ -406,38 +406,38 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
 2.  如果未找到，它会向上搜索父目录，直到找到 `.env` 文件或到达项目根目录（由 `.git` 文件夹标识）或主目录。
 3.  如果仍未找到，它会查找 `~/.env`（在用户的主目录中）。
 
-**环境变量排除：** 某些环境变量（如 `DEBUG` 和 `DEBUG_MODE`）会自动从项目 `.env` 文件中排除，以防止干扰 gemini-cli 行为。`.ve/.env` 文件中的变量永远不会被排除。您可以使用 `settings.json` 文件中的 `excludedProjectEnvVars` 设置自定义此行为。
+**环境变量排除：** 某些环境变量（如 `DEBUG` 和 `DEBUG_MODE`）会自动从项目 `.env` 文件中排除，以防止干扰 vecli 行为。`.ve/.env` 文件中的变量永远不会被排除。您可以使用 `settings.json` 文件中的 `excludedProjectEnvVars` 设置自定义此行为。
 
-- **`GEMINI_API_KEY`**:
-  - 您的 Gemini API 密钥。
+- **`VECLI_API_KEY`**:
+  - 您的 Vecli API 密钥。
   - 几种可用的 [身份验证方法](./authentication.md) 之一。
   - 在您的 shell 配置文件（例如 `~/.bashrc`、`~/.zshrc`）或 `.env` 文件中设置。
-- **`GEMINI_MODEL`**:
-  - 指定要使用的默认 Gemini 模型。
+- **`VECLI_MODEL`**:
+  - 指定要使用的默认 Vecli 模型。
   - 覆盖硬编码的默认值
-  - 示例: `export GEMINI_MODEL="gemini-2.5-flash"`
-- **`GOOGLE_API_KEY`**:
-  - 您的 Google Cloud API 密钥。
+  - 示例: `export VECLI_MODEL="vecli-2.5-flash"`
+- **`VOLCENGINE_API_KEY`**:
+  - 您的 Volcengine Cloud API 密钥。
   - 在快速模式下使用 Vertex AI 所需。
   - 确保您拥有必要的权限。
-  - 示例: `export GOOGLE_API_KEY="YOUR_GOOGLE_API_KEY"`。
-- **`GOOGLE_CLOUD_PROJECT`**:
-  - 您的 Google Cloud 项目 ID。
+  - 示例: `export VOLCENGINE_API_KEY="YOUR_VOLCENGINE_API_KEY"`。
+- **`VOLCENGINE__PROJECT`**:
+  - 您的 Volcengine Cloud 项目 ID。
   - 使用代码助手或 Vertex AI 所需。
   - 如果使用 Vertex AI，请确保您在此项目中拥有必要的权限。
-  - **Cloud Shell 注意：** 在 Cloud Shell 环境中运行时，此变量默认为分配给 Cloud Shell 用户的特殊项目。如果您在 Cloud Shell 的全局环境中设置了 `GOOGLE_CLOUD_PROJECT`，它将被此默认值覆盖。要在 Cloud Shell 中使用不同的项目，您必须在 `.env` 文件中定义 `GOOGLE_CLOUD_PROJECT`。
-  - 示例: `export GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_ID"`。
-- **`GOOGLE_APPLICATION_CREDENTIALS`** (字符串):
-  - **描述：** 您的 Google 应用程序凭据 JSON 文件的路径。
-  - **示例：** `export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/credentials.json"`
-- **`OTLP_GOOGLE_CLOUD_PROJECT`**:
-  - 您的 Google Cloud 项目 ID，用于 Google Cloud 中的遥测
-  - 示例: `export OTLP_GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_ID"`。
-- **`GOOGLE_CLOUD_LOCATION`**:
-  - 您的 Google Cloud 项目位置（例如，us-central1）。
+  - **Cloud Shell 注意：** 在 Cloud Shell 环境中运行时，此变量默认为分配给 Cloud Shell 用户的特殊项目。如果您在 Cloud Shell 的全局环境中设置了 `VOLCENGINE__PROJECT`，它将被此默认值覆盖。要在 Cloud Shell 中使用不同的项目，您必须在 `.env` 文件中定义 `VOLCENGINE__PROJECT`。
+  - 示例: `export VOLCENGINE__PROJECT="YOUR_PROJECT_ID"`。
+- **`VOLCENGINE_APPLICATION_CREDENTIALS`** (字符串):
+  - **描述：** 您的 Volcengine 应用程序凭据 JSON 文件的路径。
+  - **示例：** `export VOLCENGINE_APPLICATION_CREDENTIALS="/path/to/your/credentials.json"`
+- **`OTLP_VOLCENGINE__PROJECT`**:
+  - 您的 Volcengine Cloud 项目 ID，用于 Volcengine Cloud 中的遥测
+  - 示例: `export OTLP_VOLCENGINE__PROJECT="YOUR_PROJECT_ID"`。
+- **`VOLCENGINE__LOCATION`**:
+  - 您的 Volcengine Cloud 项目位置（例如，us-central1）。
   - 在非快速模式下使用 Vertex AI 所需。
-  - 示例: `export GOOGLE_CLOUD_LOCATION="YOUR_PROJECT_LOCATION"`。
-- **`GEMINI_SANDBOX`**:
+  - 示例: `export VOLCENGINE__LOCATION="YOUR_PROJECT_LOCATION"`。
+- **`VECLI_SANDBOX`**:
   - `settings.json` 中 `sandbox` 设置的替代方法。
   - 接受 `true`、`false`、`docker`、`podman` 或自定义命令字符串。
 - **`SEATBELT_PROFILE`** (macOS 特定):
@@ -447,7 +447,7 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
   - `<profile_name>`: 使用自定义配置文件。要定义自定义配置文件，请在项目的 `.ve/` 目录中创建一个名为 `sandbox-macos-<profile_name>.sb` 的文件（例如，`my-project/.ve/sandbox-macos-custom.sb`）。
 - **`DEBUG` 或 `DEBUG_MODE`** (通常由底层库或 CLI 本身使用):
   - 设置为 `true` 或 `1` 以启用详细的调试日志记录，这对故障排除很有帮助。
-  - **注意：** 默认情况下，这些变量会自动从项目 `.env` 文件中排除，以防止干扰 gemini-cli 行为。如果需要专门为 gemini-cli 设置这些，请使用 `.ve/.env` 文件。
+  - **注意：** 默认情况下，这些变量会自动从项目 `.env` 文件中排除，以防止干扰 vecli 行为。如果需要专门为 vecli 设置这些，请使用 `.ve/.env` 文件。
 - **`NO_COLOR`**:
   - 设置为任何值以禁用 CLI 中的所有颜色输出。
 - **`CLI_TITLE`**:
@@ -461,15 +461,15 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
 运行 CLI 时直接传递的参数可以覆盖该特定会话的其他配置。
 
 - **`--model <model_name>`** (**`-m <model_name>`**):
-  - 指定此会话要使用的 Gemini 模型。
-  - 示例: `npm start -- --model gemini-1.5-pro-latest`
+  - 指定此会话要使用的 Vecli 模型。
+  - 示例: `npm start -- --model vecli-1.5-pro-latest`
 - **`--prompt <your_prompt>`** (**`-p <your_prompt>`**):
   - 用于直接将提示传递给命令。这会在非交互模式下调用 VeCLI。
 - **`--prompt-interactive <your_prompt>`** (**`-i <your_prompt>`**):
   - 以提供的提示作为初始输入启动交互式会话。
   - 提示在交互式会话中处理，而不是在会话之前处理。
   - 在从 stdin 管道输入时不能使用。
-  - 示例: `gemini -i "explain this code"`
+  - 示例: `vecli -i "explain this code"`
 - **`--sandbox`** (**`-s`**):
   - 为此会话启用沙盒模式。
 - **`--sandbox-image`**:
@@ -490,10 +490,10 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
     - `auto_edit`: 自动批准编辑工具（replace, write_file），同时提示其他工具
     - `yolo`: 自动批准所有工具调用（等同于 `--yolo`）
   - 不能与 `--yolo` 一起使用。对于新的统一方法，请使用 `--approval-mode=yolo` 而不是 `--yolo`。
-  - 示例: `gemini --approval-mode auto_edit`
+  - 示例: `vecli --approval-mode auto_edit`
 - **`--allowed-tools <tool1,tool2,...>`**:
   - 一个逗号分隔的工具名称列表，将绕过确认对话框。
-  - 示例: `gemini --allowed-tools "ShellTool(git status)"`
+  - 示例: `vecli --allowed-tools "ShellTool(git status)"`
 - **`--telemetry`**:
   - 启用 [遥测](../telemetry.md)。
 - **`--telemetry-target`**:
@@ -508,8 +508,8 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
   - 启用 [检查点](../checkpointing.md)。
 - **`--extensions <extension_name ...>`** (**`-e <extension_name ...>`**):
   - 指定会话要使用的扩展列表。如果未提供，则使用所有可用扩展。
-  - 使用特殊术语 `gemini -e none` 禁用所有扩展。
-  - 示例: `gemini -e my-extension -e my-other-extension`
+  - 使用特殊术语 `vecli -e none` 禁用所有扩展。
+  - 示例: `vecli -e my-extension -e my-other-extension`
 - **`--list-extensions`** (**`-l`**):
   - 列出所有可用扩展并退出。
 - **`--proxy`**:
@@ -527,11 +527,11 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
 
 ## 上下文文件（分层指令上下文）
 
-虽然严格来说不是 CLI _行为_ 的配置，但上下文文件（默认为 `GEMINI.md`，但可通过 `contextFileName` 设置配置）对于配置提供给 Gemini 模型的 _指令上下文_（也称为“内存”）至关重要。这个强大的功能允许您为 AI 提供项目特定的指令、编码风格指南或任何相关的背景信息，使其响应更加符合您的需求。CLI 包含 UI 元素，例如页脚中显示已加载上下文文件数量的指示器，以让您了解活动上下文。
+虽然严格来说不是 CLI _行为_ 的配置，但上下文文件（默认为 `VECLI.md`，但可通过 `contextFileName` 设置配置）对于配置提供给 Vecli 模型的 _指令上下文_（也称为“内存”）至关重要。这个强大的功能允许您为 AI 提供项目特定的指令、编码风格指南或任何相关的背景信息，使其响应更加符合您的需求。CLI 包含 UI 元素，例如页脚中显示已加载上下文文件数量的指示器，以让您了解活动上下文。
 
-- **目的：** 这些 Markdown 文件包含您希望 Gemini 模型在与您交互时了解的指令、指南或上下文。该系统旨在分层管理此指令上下文。
+- **目的：** 这些 Markdown 文件包含您希望 Vecli 模型在与您交互时了解的指令、指南或上下文。该系统旨在分层管理此指令上下文。
 
-### 示例上下文文件内容（例如，`GEMINI.md`）
+### 示例上下文文件内容（例如，`VECLI.md`）
 
 以下是在 TypeScript 项目根目录中的上下文文件可能包含的概念示例：
 
@@ -566,9 +566,9 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
 
 此示例演示了如何提供通用项目上下文、特定编码约定，甚至关于特定文件或组件的注释。您的上下文文件越相关和精确，AI 就能越好地协助您。强烈建议使用项目特定的上下文文件来建立约定和上下文。
 
-- **分层加载和优先级：** CLI 通过从多个位置加载上下文文件（例如，`GEMINI.md`）来实现复杂的分层内存系统。此列表中较低位置的文件（更具体）的内容通常会覆盖或补充较高位置（更通用）的文件内容。可以使用 `/memory show` 命令检查确切的连接顺序和最终上下文。典型的加载顺序是：
+- **分层加载和优先级：** CLI 通过从多个位置加载上下文文件（例如，`VECLI.md`）来实现复杂的分层内存系统。此列表中较低位置的文件（更具体）的内容通常会覆盖或补充较高位置（更通用）的文件内容。可以使用 `/memory show` 命令检查确切的连接顺序和最终上下文。典型的加载顺序是：
   1.  **全局上下文文件：**
-      - 位置：`~/.ve/<contextFileName>`（例如，用户主目录中的 `~/.ve/GEMINI.md`）。
+      - 位置：`~/.ve/<contextFileName>`（例如，用户主目录中的 `~/.ve/VECLI.md`）。
       - 范围：为所有项目提供默认指令。
   2.  **项目根目录和祖先上下文文件：**
       - 位置：CLI 在当前工作目录中搜索配置的上下文文件，然后在每个父目录中搜索，直到项目根目录（由 `.git` 文件夹标识）或您的主目录。
@@ -576,7 +576,7 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
   3.  **子目录上下文文件（上下文/本地）：**
       - 位置：CLI 还会在当前工作目录 _下方_ 的子目录中扫描配置的上下文文件（遵守常见的忽略模式，如 `node_modules`、`.git` 等）。此搜索的广度默认限制为 200 个目录，但可以通过 `settings.json` 文件中的 `memoryDiscoveryMaxDirs` 字段进行配置。
       - 范围：允许为项目的特定组件、模块或子部分提供高度具体的指令。
-- **连接和 UI 指示：** 所有找到的上下文文件的内容都会连接起来（用分隔符指示其来源和路径），并作为系统提示的一部分提供给 Gemini 模型。CLI 页脚显示已加载的上下文文件计数，为您提供关于活动指令上下文的快速视觉提示。
+- **连接和 UI 指示：** 所有找到的上下文文件的内容都会连接起来（用分隔符指示其来源和路径），并作为系统提示的一部分提供给 Vecli 模型。CLI 页脚显示已加载的上下文文件计数，为您提供关于活动指令上下文的快速视觉提示。
 - **导入内容：** 您可以使用 `@path/to/file.md` 语法通过导入其他 Markdown 文件来模块化您的上下文文件。有关详细信息，请参阅 [内存导入处理器文档](../core/memport.md)。
 - **内存管理命令：**
   - 使用 `/memory refresh` 强制重新扫描和重新加载所有配置位置的所有上下文文件。这会更新 AI 的指令上下文。
@@ -592,15 +592,15 @@ VeCLI 可以在沙盒环境中执行潜在的不安全操作（如 shell 命令�
 沙盒默认是禁用的，但您可以通过以下几种方式启用它：
 
 - 使用 `--sandbox` 或 `-s` 标志。
-- 设置 `GEMINI_SANDBOX` 环境变量。
+- 设置 `VECLI_SANDBOX` 环境变量。
 - 默认情况下，使用 `--yolo` 或 `--approval-mode=yolo` 时会启用沙盒。
 
-默认情况下，它使用预构建的 `gemini-cli-sandbox` Docker 镜像。
+默认情况下，它使用预构建的 `vecli-sandbox` Docker 镜像。
 
 对于项目的特定沙盒需求，您可以在项目根目录的 `.ve/sandbox.Dockerfile` 中创建一个自定义 Dockerfile。此 Dockerfile 可以基于基础沙盒镜像：
 
 ```dockerfile
-FROM gemini-cli-sandbox
+FROM vecli-sandbox
 
 # 在此处添加您的自定义依赖项或配置
 # 例如：
@@ -611,7 +611,7 @@ FROM gemini-cli-sandbox
 当 `.ve/sandbox.Dockerfile` 存在时，您可以在运行 VeCLI 时使用 `BUILD_SANDBOX` 环境变量来自动构建自定义沙盒镜像：
 
 ```bash
-BUILD_SANDBOX=1 gemini -s
+BUILD_SANDBOX=1 vecli -s
 ```
 
 ## 使用统计
@@ -621,13 +621,13 @@ BUILD_SANDBOX=1 gemini -s
 **我们收集的内容：**
 
 - **工具调用：** 我们记录被调用的工具名称、它们是成功还是失败，以及执行所需的时间。我们不收集传递给工具的参数或工具返回的任何数据。
-- **API 请求：** 我们记录每个请求使用的 Gemini 模型、请求的持续时间和是否成功。我们不收集提示或响应的内容。
+- **API 请求：** 我们记录每个请求使用的 Vecli 模型、请求的持续时间和是否成功。我们不收集提示或响应的内容。
 - **会话信息：** 我们收集有关 CLI 配置的信息，例如启用的工具和批准模式。
 
 **我们不收集的内容：**
 
 - **个人身份信息 (PII)：** 我们不收集任何个人信息，例如您的姓名、电子邮件地址或 API 密钥。
-- **提示和响应内容：** 我们不记录您的提示或 Gemini 模型的响应内容。
+- **提示和响应内容：** 我们不记录您的提示或 Vecli 模型的响应内容。
 - **文件内容：** 我们不记录 CLI 读取或写入的任何文件的内容。
 
 **如何选择退出：**

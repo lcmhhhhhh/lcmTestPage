@@ -13,7 +13,7 @@ npm install -g @vecode-cli/vecode-cli
 验证安装
 
 ```bash
-gemini --version
+vecli --version
 ```
 
 ## 沙盒概述
@@ -47,11 +47,11 @@ gemini --version
 
 ```bash
 # 使用命令标志启用沙盒
-gemini -s -p "analyze the code structure"
+vecli -s -p "analyze the code structure"
 
 # 使用环境变量
-export GEMINI_SANDBOX=true
-gemini -p "run the test suite"
+export VECLI_SANDBOX=true
+vecli -p "run the test suite"
 
 # 在 settings.json 中配置
 {
@@ -66,7 +66,7 @@ gemini -p "run the test suite"
 ### 启用沙盒（按优先级顺序）
 
 1. **命令标志**：`-s` 或 `--sandbox`
-2. **环境变量**：`GEMINI_SANDBOX=true|docker|podman|sandbox-exec`
+2. **环境变量**：`VECLI_SANDBOX=true|docker|podman|sandbox-exec`
 3. **设置文件**：在 `settings.json` 文件的 `tools` 对象中设置 `"sandbox": true`（例如，`{"tools": {"sandbox": true}}`）。
 
 ### macOS Seatbelt 配置文件
@@ -128,19 +128,19 @@ export SANDBOX_SET_UID_GID=false  # 禁用 UID/GID 映射
 ### 调试模式
 
 ```bash
-DEBUG=1 gemini -s -p "debug command"
+DEBUG=1 vecli -s -p "debug command"
 ```
 
-**注意：** 如果您的项目 `.env` 文件中有 `DEBUG=true`，由于自动排除，它不会影响 gemini-cli。请使用 `.ve/.env` 文件进行 gemini-cli 特定的调试设置。
+**注意：** 如果您的项目 `.env` 文件中有 `DEBUG=true`，由于自动排除，它不会影响 vecli。请使用 `.ve/.env` 文件进行 vecli 特定的调试设置。
 
 ### 检查沙盒
 
 ```bash
 # 检查环境
-gemini -s -p "run shell command: env | grep SANDBOX"
+vecli -s -p "run shell command: env | grep SANDBOX"
 
 # 列出挂载
-gemini -s -p "run shell command: mount | grep workspace"
+vecli -s -p "run shell command: mount | grep workspace"
 ```
 
 ## 安全说明

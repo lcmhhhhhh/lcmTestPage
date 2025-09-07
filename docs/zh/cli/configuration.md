@@ -28,7 +28,7 @@ VeCLI 提供了几种配置其行为的方法，包括环境变量、命令行�
 VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置：
 
 - **系统默认文件：**
-  - **位置：** `/etc/vecli/system-defaults.json` (Linux), `C:\\ProgramData\\vecli\\system-defaults.json` (Windows) 或 `/Library/Application Support/GeminiCli/system-defaults.json` (macOS)。路径可以使用 `VE_CLI_SYSTEM_DEFAULTS_PATH` 环境变量覆盖。
+  - **位置：** `/etc/vecli/system-defaults.json` (Linux), `C:\\ProgramData\\vecli\\system-defaults.json` (Windows) 或 `/Library/Application Support/VecliCli/system-defaults.json` (macOS)。路径可以使用 `VE_CLI_SYSTEM_DEFAULTS_PATH` 环境变量覆盖。
   - **范围：** 提供系统范围默认设置的基础层。这些设置具有最低优先级，旨在被用户、项目或系统覆盖设置覆盖。
 - **用户设置文件：**
   - **位置：** `~/.ve/settings.json` (其中 `~` 是您的主目录)。
@@ -182,7 +182,7 @@ VeCLI 使用 JSON 设置文件进行持久配置。这些文件有四个位置�
   - **描述：** 搜索时尊重 .gitignore 文件。
   - **默认值：** `true`
 
-- **`context.fileFiltering.respectGeminiIgnore`** (布尔值):
+- **`context.fileFiltering.respectVecliIgnore`** (布尔值):
   - **描述：** 搜索时尊重 .veignore 文件。
   - **默认值：** `true`
 
@@ -385,36 +385,36 @@ CLI 会自动从 `.env` 文件加载环境变量。加载顺序为：
 
 **环境变量排除：** 某些环境变量（如 `DEBUG` 和 `DEBUG_MODE`）会自动从项目 `.env` 文件中排除，以防止干扰 vecli 行为。`.ve/.env` 文件中的变量永远不会被排除。您可以使用 `settings.json` 文件中的 `advanced.excludedEnvVars` 设置自定义此行为。
 
-- **`GEMINI_API_KEY`**:
+- **`VECLI_API_KEY`**:
   - 您的火山引擎 API 密钥。
   - 几种可用的 [身份验证方法](./authentication.md) 之一。
   - 在您的 shell 配置文件（例如 `~/.bashrc`、`~/.zshrc`）或 `.env` 文件中设置。
-- **`GEMINI_MODEL`**:
+- **`VECLI_MODEL`**:
   - 指定要使用的默认火山引擎模型。
   - 覆盖硬编码的默认值
   - 示例: `export VECLI_MODEL="deepseek-v3-1"`
-- **`GOOGLE_API_KEY`**:
+- **`VOLCENGINE_API_KEY`**:
   - 您的火山引擎 API 密钥。
   - 在快速模式下使用 Vertex AI 所需。
   - 确保您拥有必要的权限。
   - 示例: `export ARK_API_KEY="YOUR_Ark_API_KEY"`。
-- **`GOOGLE_CLOUD_PROJECT`**:
+- **`VOLCENGINE__PROJECT`**:
   - 您的火山引擎项目 ID。
   - 使用代码助手或 Vertex AI 所需。
   - 如果使用 Vertex AI，请确保您在此项目中拥有必要的权限。
   - **Cloud Shell 注意：** 在 Cloud Shell 环境中运行时，此变量默认为分配给 Cloud Shell 用户的特殊项目。如果您在 Cloud Shell 的全局环境中设置了 `VOLCANO_ENGINE_PROJECT`，它将被此默认值覆盖。要在 Cloud Shell 中使用不同的项目，您必须在 `.env` 文件中定义 `VOLCANO_ENGINE_PROJECT`。
   - 示例: `export VOLCANO_ENGINE_PROJECT="YOUR_PROJECT_ID"`。
-- **`GOOGLE_APPLICATION_CREDENTIALS`** (字符串):
+- **`VOLCENGINE_APPLICATION_CREDENTIALS`** (字符串):
   - **描述：** 您的火山引擎应用程序凭据 JSON 文件的路径。
   - **示例：** `export VOLCANO_ENGINE_APPLICATION_CREDENTIALS="/path/to/your/credentials.json"`
-- **`OTLP_VOLCANO_ENGINE_CLOUD_PROJECT`**:
+- **`OTLP_VOLCANO_ENGINE__PROJECT`**:
   - 您的火山引擎遥测项目 ID
   - 示例: `export OTLP_VOLCANO_ENGINE_PROJECT="YOUR_PROJECT_ID"`。
 - **`VOLCANO_ENGINE_LOCATION`**:
   - 您的火山引擎项目位置（例如，us-central1）。
   - 在非快速模式下使用 Vertex AI 所需。
   - 示例: `export VOLCANO_ENGINE_LOCATION="YOUR_PROJECT_LOCATION"`。
-- **`GEMINI_SANDBOX`**:
+- **`VECLI_SANDBOX`**:
   - `settings.json` 中 `sandbox` 设置的替代方法。
   - 接受 `true`、`false`、`docker`、`podman` 或自定义命令字符串。
 - **`SEATBELT_PROFILE`** (macOS 特定):

@@ -1,6 +1,6 @@
 # Authentication Setup
 
-The VeCLI requires you to authenticate with Google's AI services. On initial startup you'll need to configure **one** of the following authentication methods:
+The VeCLI requires you to authenticate with Volcengine's AI services. On initial startup you'll need to configure **one** of the following authentication methods:
 
 1.  **Login with Volcengine AK/SK:**
     - Use this option to authenticate through Volcengine's Access Key (AK) and Secret Key (SK).
@@ -19,7 +19,6 @@ The VeCLI requires you to authenticate with Google's AI services. On initial sta
     ```bash
     export VOLC_ACCESS_KEY="your_access_key_here"
     export VOLC_SECRET_KEY="your_secret_key_here"
-    export VOLC_REGION="cn-beijing"  # Optional, set default region
     ```
 
     **Method 2: Configuration File**

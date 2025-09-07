@@ -28,7 +28,7 @@ Configuration is applied in the following order of precedence (lower numbers are
 VeCLI uses JSON settings files for persistent configuration. There are four locations for these files:
 
 - **System defaults file:**
-  - **Location:** `/etc/vecli/system-defaults.json` (Linux), `C:\ProgramData\vecli\system-defaults.json` (Windows) or `/Library/Application Support/GeminiCli/system-defaults.json` (macOS). The path can be overridden using the `VE_CLI_SYSTEM_DEFAULTS_PATH` environment variable.
+  - **Location:** `/etc/vecli/system-defaults.json` (Linux), `C:\ProgramData\vecli\system-defaults.json` (Windows) or `/Library/Application Support/VecliCli/system-defaults.json` (macOS). The path can be overridden using the `VE_CLI_SYSTEM_DEFAULTS_PATH` environment variable.
   - **Scope:** Provides a base layer of system-wide default settings. These settings have the lowest precedence and are intended to be overridden by user, project, or system override settings.
 - **User settings file:**
   - **Location:** `~/.ve/settings.json` (where `~` is your home directory).
@@ -182,7 +182,7 @@ Settings are organized into categories. All settings should be placed within the
   - **Description:** Respect .gitignore files when searching.
   - **Default:** `true`
 
-- **`context.fileFiltering.respectGeminiIgnore`** (boolean):
+- **`context.fileFiltering.respectVecliIgnore`** (boolean):
   - **Description:** Respect .veignore files when searching.
   - **Default:** `true`
 
@@ -385,36 +385,36 @@ The CLI automatically loads environment variables from an `.env` file. The loadi
 
 **Environment Variable Exclusion:** Some environment variables (like `DEBUG` and `DEBUG_MODE`) are automatically excluded from being loaded from project `.env` files to prevent interference with vecli behavior. Variables from `.ve/.env` files are never excluded. You can customize this behavior using the `advanced.excludedEnvVars` setting in your `settings.json` file.
 
-- **`GEMINI_API_KEY`**:
+- **`VECLI_API_KEY`**:
   - Your API key for the Volcano Engine API.
   - One of several available [authentication methods](./authentication.md).
   - Set this in your shell profile (e.g., `~/.bashrc`, `~/.zshrc`) or an `.env` file.
-- **`GEMINI_MODEL`**:
+- **`VECLI_MODEL`**:
   - Specifies the default Volcano Engine model to use.
   - Overrides the hardcoded default
   - Example: `export VECLI_MODEL="deepseek-v3-1"`
-- **`GOOGLE_API_KEY`**:
+- **`VOLCENGINE_API_KEY`**:
   - Your Volcano Engine API key.
   - Required for using Vertex AI in express mode.
   - Ensure you have the necessary permissions.
   - Example: `export ARK_API_KEY="YOUR_Ark_API_KEY"`.
-- **`GOOGLE_CLOUD_PROJECT`**:
+- **`VOLCENGINE__PROJECT`**:
   - Your Volcano Engine Project ID.
   - Required for using Code Assist or Vertex AI.
   - If using Vertex AI, ensure you have the necessary permissions in this project.
   - **Cloud Shell Note:** When running in a Cloud Shell environment, this variable defaults to a special project allocated for Cloud Shell users. If you have `VOLCANO_ENGINE_PROJECT` set in your global environment in Cloud Shell, it will be overridden by this default. To use a different project in Cloud Shell, you must define `VOLCANO_ENGINE_PROJECT` in a `.env` file.
   - Example: `export VOLCANO_ENGINE_PROJECT="YOUR_PROJECT_ID"`.
-- **`GOOGLE_APPLICATION_CREDENTIALS`** (string):
+- **`VOLCENGINE_APPLICATION_CREDENTIALS`** (string):
   - **Description:** The path to your Volcano Engine Application Credentials JSON file.
   - **Example:** `export VOLCANO_ENGINE_APPLICATION_CREDENTIALS="/path/to/your/credentials.json"`
-- **`OTLP_VOLCANO_ENGINE_CLOUD_PROJECT`**:
+- **`OTLP_VOLCANO_ENGINE__PROJECT`**:
   - Your Volcano Engine Project ID for Telemetry in Volcano Engine
   - Example: `export OTLP_VOLCANO_ENGINE_PROJECT="YOUR_PROJECT_ID"`.
 - **`VOLCANO_ENGINE_LOCATION`**:
   - Your Volcano Engine Project Location (e.g., us-central1).
   - Required for using Vertex AI in non express mode.
   - Example: `export VOLCANO_ENGINE_LOCATION="YOUR_PROJECT_LOCATION"`.
-- **`GEMINI_SANDBOX`**:
+- **`VECLI_SANDBOX`**:
   - Alternative to the `sandbox` setting in `settings.json`.
   - Accepts `true`, `false`, `docker`, `podman`, or a custom command string.
 - **`SEATBELT_PROFILE`** (macOS specific):

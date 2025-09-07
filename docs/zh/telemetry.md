@@ -266,12 +266,12 @@ CLI 可以使用 OTLP/gRPC 或 OTLP/HTTP 协议发送数据。
   - **属性**:
     - `model`
 
-- `gemini_cli.token.usage` (计数器, 整数): 计算使用的令牌数量。
+- `vecli_cli.token.usage` (计数器, 整数): 计算使用的令牌数量。
   - **属性**:
     - `model`
     - `type` (字符串: "input", "output", "thought", "cache", 或 "tool")
 
-- `gemini_cli.file.operation.count` (计数器, 整数): 计算文件操作次数。
+- `vecli_cli.file.operation.count` (计数器, 整数): 计算文件操作次数。
   - **属性**:
     - `operation` (字符串: "create", "read", "update"): 文件操作的类型。
     - `lines` (整数, 如果适用): 文件中的行数。
@@ -283,7 +283,7 @@ CLI 可以使用 OTLP/gRPC 或 OTLP/HTTP 协议发送数据。
     - `user_removed_lines` (整数, 如果适用): 用户在 AI 提出的更改中删除/更改的行数。
     - `programming_language` (字符串, 如果适用): 文件的编程语言。
 
-- `gemini_cli.chat_compression` (计数器, 整数): 计算聊天压缩操作次数
+- `vecli_cli.chat_compression` (计数器, 整数): 计算聊天压缩操作次数
   - **属性**:
     - `tokens_before`: (整数): 压缩前上下文中的令牌数
     - `tokens_after`: (整数): 压缩后上下文中的令牌数

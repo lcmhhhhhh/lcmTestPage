@@ -16,10 +16,10 @@
 
 这是您创建问题时将互动的第一个机器人。它的工作是执行初步分析并应用正确的标签。
 
-- **工作流程文件**: `.github/workflows/gemini-automated-issue-triage.yml`
+- **工作流程文件**: `.github/workflows/vecli-automated-issue-triage.yml`
 - **运行时间**: 在问题创建或重新打开后立即运行。
 - **执行内容**:
-  - 它使用 Gemini 模型根据详细指南分析问题的标题和正文。
+  - 它使用 Vecli 模型根据详细指南分析问题的标题和正文。
   - **应用一个 `area/*` 标签**: 将问题分类到项目的功能领域（例如，`area/ux`、`area/models`、`area/platform`）。
   - **应用一个 `kind/*` 标签**: 识别问题类型（例如，`kind/bug`、`kind/enhancement`、`kind/question`）。
   - **应用一个 `priority/*` 标签**: 根据描述的影响分配从 P0（关键）到 P3（低）的优先级。
@@ -47,7 +47,7 @@
 
 此工作流程定期运行，以确保所有开放的 PR 都正确链接到问题并具有统一的标签。
 
-- **工作流程文件**: `.github/workflows/gemini-scheduled-pr-triage.yml`
+- **工作流程文件**: `.github/workflows/vecli-scheduled-pr-triage.yml`
 - **运行时间**: 每 15 分钟在所有开放的拉取请求上运行。
 - **执行内容**:
   - **检查链接的问题**: 机器人扫描您的 PR 描述以查找链接到问题的关键字（例如，`Fixes #123`、`Closes #456`）。
@@ -61,11 +61,11 @@
 
 这是一个后备工作流程，以确保没有问题被分类流程遗漏。
 
-- **工作流程文件**: `.github/workflows/gemini-scheduled-issue-triage.yml`
+- **工作流程文件**: `.github/workflows/vecli-scheduled-issue-triage.yml`
 - **运行时间**: 每小时在所有开放问题上运行。
 - **执行内容**:
   - 它积极寻找完全没有标签或仍有 `status/need-triage` 标签的问题。
-  - 然后它会触发与初始分类机器人相同的强大基于 Gemini 的分析，以应用正确的标签。
+  - 然后它会触发与初始分类机器人相同的强大基于 Vecli 的分析，以应用正确的标签。
 - **您应该做什么**:
   - 您通常不需要做任何事情。此工作流程是一个安全网，以确保每个问题最终都被分类，即使初始分类失败。
 

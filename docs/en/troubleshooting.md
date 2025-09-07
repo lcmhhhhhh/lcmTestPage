@@ -96,4 +96,4 @@ The VeCLI uses specific exit codes to indicate the reason for termination. This 
 
 ## Existing GitHub Issues similar to yours or creating new Issues
 
-If you encounter an issue that was not covered here in this _Troubleshooting guide_, consider searching the VeCLI [Issue tracker on GitHub](https://github.com/volcengine-vecli/vecli/issues). If you can't find an issue similar to yours, consider creating a new GitHub Issue with a detailed description. Pull requests are also welcome!
+If you encounter an issue that was not covered here in this _Troubleshooting guide_, consider searching the VeCLI [Issue tracker on GitHub](https://github.com/volcengine/vecli). If you can't find an issue similar to yours, consider creating a new GitHub Issue with a detailed description. Pull requests are also welcome!
