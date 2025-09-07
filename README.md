@@ -1,18 +1,18 @@
 # VeCLI
 
-[![VeCLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
+[![VeCLI CI](https://github.com/volcengine/vecli/actions/workflows/ci.yml/badge.svg)](https://github.com/volcengine/vecli/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/npm/v/@vecode-cli/vecode-cli)](https://www.npmjs.com/package/@vecode-cli/vecode-cli)
-[![License](https://img.shields.io/github/license/google-gemini/gemini-cli)](https://github.com/google-gemini/gemini-cli/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/volcengine/vecli)](https://github.com/volcengine/vecli/blob/main/LICENSE)
 
-![VeCLI Screenshot](./docs/assets/gemini-screenshot.png)
+![VeCLI Screenshot](./docs/assets/vecli-screenshot.png)
 
-VeCLI is an open-source AI agent that brings the power of Gemini directly into your terminal. It provides lightweight access to Gemini, giving you the most direct path from your prompt to our model.
+VeCLI is an open-source AI agent that brings the power of Vecli directly into your terminal. It provides lightweight access to Vecli, giving you the most direct path from your prompt to our model.
 
 ## 🚀 Why VeCLI?
 
-- **🎯 Free tier**: 60 requests/min and 1,000 requests/day with personal Google account
-- **🧠 Powerful Gemini 2.5 Pro**: Access to 1M token context window
-- **🔧 Built-in tools**: Google Search grounding, file operations, shell commands, web fetching
+- **🎯 Free tier**: 60 requests/min and 1,000 requests/day with personal volcengine account
+- **🧠 Powerful Vecli 2.5 Pro**: Access to 1M token context window
+- **🔧 Built-in tools**: volcengine Search grounding, file operations, shell commands, web fetching
 - **🔌 Extensible**: MCP (Model Context Protocol) support for custom integrations
 - **💻 Terminal-first**: Designed for developers who live in the command line
 - **🛡️ Open source**: Apache 2.0 licensed
@@ -25,7 +25,7 @@ VeCLI is an open-source AI agent that brings the power of Gemini directly into y
 
 ```bash
 # Using npx (no installation required)
-npx https://github.com/google-gemini/gemini-cli
+npx https://github.com/volcengine/vecli
 ```
 
 #### Install globally with npm
@@ -37,7 +37,7 @@ npm install -g @vecode-cli/vecode-cli
 #### Install globally with Homebrew (macOS/Linux)
 
 ```bash
-brew install gemini-cli
+brew install vecli
 ```
 
 #### System Requirements
@@ -84,67 +84,67 @@ npm install -g @vecode-cli/vecode-cli@nightly
 ### Automation & Integration
 
 - Automate operational tasks like querying pull requests or handling complex rebases
-- Use MCP servers to connect new capabilities, including [media generation with Imagen, Veo or Lyria](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
+- Use MCP servers to connect new capabilities, including [media generation with Imagen, Veo or Lyria](https://github.com/volcenginePlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
 - Run non-interactively in scripts for workflow automation
 
 ### Advanced Capabilities
 
-- Ground your queries with built-in [Google Search](https://ai.google.dev/gemini-api/docs/grounding) for real-time information
+- Ground your queries with built-in [volcengine Search](https://ai.volcengine.dev/vecli-api/docs/grounding) for real-time information
 - Conversation checkpointing to save and resume complex sessions
 - Custom context files (VE.md) to tailor behavior for your projects
 
 ### GitHub Integration
 
-Integrate VeCLI directly into your GitHub workflows with [**VeCLI GitHub Action**](https://github.com/google-github-actions/run-gemini-cli):
+Integrate VeCLI directly into your GitHub workflows with [**VeCLI GitHub Action**](https://github.com/volcengine-github-actions/run-vecli):
 
 - **Pull Request Reviews**: Automated code review with contextual feedback and suggestions
 - **Issue Triage**: Automated labeling and prioritization of GitHub issues based on content analysis
-- **On-demand Assistance**: Mention `@gemini-cli` in issues and pull requests for help with debugging, explanations, or task delegation
+- **On-demand Assistance**: Mention `@vecli` in issues and pull requests for help with debugging, explanations, or task delegation
 - **Custom Workflows**: Build automated, scheduled and on-demand workflows tailored to your team's needs
 
 ## 🔐 Authentication Options
 
 Choose the authentication method that best fits your needs:
 
-### Option 1: OAuth login (Using your Google Account)
+### Option 1: OAuth login (Using your volcengine Account)
 
-**✨ Best for:** Individual developers as well as anyone who has a Ve Code Assist License. (see [quota limits and terms of service](https://cloud.google.com/gemini/docs/quotas) for details)
+**✨ Best for:** Individual developers as well as anyone who has a Ve Code Assist License. (see [quota limits and terms of service](https://cloud.volcengine.com/vecli/docs/quotas) for details)
 
 **Benefits:**
 
 - **Free tier**: 60 requests/min and 1,000 requests/day
-- **Gemini 2.5 Pro** with 1M token context window
-- **No API key management** - just sign in with your Google account
+- **Vecli 2.5 Pro** with 1M token context window
+- **No API key management** - just sign in with your volcengine account
 - **Automatic updates** to latest models
 
 #### Start VeCLI, then choose OAuth and follow the browser authentication flow when prompted
 
 ```bash
-gemini
+vecli
 ```
 
-#### If you are using a paid Code Assist License from your organization, remember to set the Google Cloud Project
+#### If you are using a paid Code Assist License from your organization, remember to set the volcengine Cloud Project
 
 ```bash
-# Set your Google Cloud Project
-export GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_NAME"
-gemini
+# Set your volcengine Cloud Project
+export volcengine__PROJECT="YOUR_PROJECT_NAME"
+vecli
 ```
 
-### Option 2: Gemini API Key
+### Option 2: Vecli API Key
 
 **✨ Best for:** Developers who need specific model control or paid tier access
 
 **Benefits:**
 
-- **Free tier**: 100 requests/day with Gemini 2.5 Pro
-- **Model selection**: Choose specific Gemini models
+- **Free tier**: 100 requests/day with Vecli 2.5 Pro
+- **Model selection**: Choose specific Vecli models
 - **Usage-based billing**: Upgrade for higher limits when needed
 
 ```bash
-# Get your key from https://aistudio.google.com/apikey
-export GEMINI_API_KEY="YOUR_API_KEY"
-gemini
+# Get your key from https://aistudio.volcengine.com/apikey
+export VECLI_API_KEY="YOUR_API_KEY"
+vecli
 ```
 
 ### Option 3: Vertex AI
@@ -155,16 +155,16 @@ gemini
 
 - **Enterprise features**: Advanced security and compliance
 - **Scalable**: Higher rate limits with billing account
-- **Integration**: Works with existing Google Cloud infrastructure
+- **Integration**: Works with existing Volcengine Cloud infrastructure
 
 ```bash
-# Get your key from Google Cloud Console
-export GOOGLE_API_KEY="YOUR_API_KEY"
-export GOOGLE_GENAI_USE_VERTEXAI=true
-gemini
+# Get your key from Volcengine Cloud Console
+export VOLCENGINE_API_KEY="YOUR_API_KEY"
+export VOLCENGINE_GENAI_USE_VERTEXAI=true
+vecli
 ```
 
-For Google Workspace accounts and other authentication methods, see the [authentication guide](./docs/cli/authentication.md).
+For Volcengine Workspace accounts and other authentication methods, see the [authentication guide](./docs/cli/authentication.md).
 
 ## 🚀 Getting Started
 
@@ -173,25 +173,25 @@ For Google Workspace accounts and other authentication methods, see the [authent
 #### Start in current directory
 
 ```bash
-gemini
+vecli
 ```
 
 #### Include multiple directories
 
 ```bash
-gemini --include-directories ../lib,../docs
+vecli --include-directories ../lib,../docs
 ```
 
 #### Use specific model
 
 ```bash
-gemini -m gemini-2.5-flash
+vecli -m vecli-2.5-flash
 ```
 
 #### Non-interactive mode for scripts
 
 ```bash
-gemini -p "Explain the architecture of this codebase"
+vecli -p "Explain the architecture of this codebase"
 ```
 
 ### Quick Examples
@@ -200,16 +200,16 @@ gemini -p "Explain the architecture of this codebase"
 
 ```bash
 cd new-project/
-gemini
+vecli
 > Write me a Discord bot that answers questions using a FAQ.md file I will provide
 ```
 
 #### Analyze existing code
 
 ```bash
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
+git clone https://github.com/volcengine/vecli
+cd vecli
+vecli
 > Give me a summary of all of the changes that went in yesterday
 ```
 
@@ -252,7 +252,7 @@ gemini
 
 - [**Settings Reference**](./docs/cli/configuration.md) - All configuration options
 - [**Theme Customization**](./docs/cli/themes.md) - Visual customization
-- [**.ve Directory**](./docs/gemini-ignore.md) - Project-specific settings
+- [**.ve Directory**](./docs/vecli-ignore.md) - Project-specific settings
 - [**Environment Variables**](./docs/cli/configuration.md#environment-variables)
 
 ### Troubleshooting & Support
@@ -284,14 +284,14 @@ We welcome contributions! VeCLI is fully open source (Apache 2.0), and we encour
 
 See our [Contributing Guide](./CONTRIBUTING.md) for development setup, coding standards, and how to submit pull requests.
 
-Check our [Official Roadmap](https://github.com/orgs/google-gemini/projects/11/) for planned features and priorities.
+Check our [Official Roadmap](https://github.com/orgs/volcengine/projects/11/) for planned features and priorities.
 
 ## 📖 Resources
 
 - **[Official Roadmap](./ROADMAP.md)** - See what's coming next
 - **[NPM Package](https://www.npmjs.com/package/@vecode-cli/vecode-cli)** - Package registry
-- **[GitHub Issues](https://github.com/google-gemini/gemini-cli/issues)** - Report bugs or request features
-- **[Security Advisories](https://github.com/google-gemini/gemini-cli/security/advisories)** - Security updates
+- **[GitHub Issues](https://github.com/volcengine/vecli/issues)** - Report bugs or request features
+- **[Security Advisories](https://github.com/volcengine/vecli/security/advisories)** - Security updates
 
 ### Uninstall
 
@@ -306,5 +306,5 @@ See the [Uninstall Guide](docs/Uninstall.md) for removal instructions.
 ---
 
 <p align="center">
-  Built with ❤️ by Google and the open source community
+  Built with ❤️ by Volcengine and the open source community
 </p>
