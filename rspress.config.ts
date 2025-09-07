@@ -3,96 +3,109 @@ import type { UserConfig } from '@rspress/core';
 
 const config: UserConfig = {
   root: 'docs',
+  lang: 'zh',
   outDir: 'website',
-  title: 'Gemini CLI Documentation',
-  description: 'A comprehensive guide to installing, using, and developing Gemini CLI',
+  title: 'VeCLI',
+  description: 'VeCLI - 火山引擎AI命令行工具文档',
   logo: '/logo.jpeg',
+  logoText: 'VeCLI',
   route: {
     cleanUrls: true,
   },
+  locales: [
+    {
+      lang: 'en',
+      // 导航栏切换语言的标签
+      label: 'English',
+      title: 'VeCLI',
+      description: 'VeCLI - Volcano Engine AI CLI Tool Documentation',
+    },
+    {
+      lang: 'zh',
+      label: '简体中文',
+      title: 'VeCLI',
+      description: 'VeCLI - 火山引擎AI命令行工具文档',
+    },
+  ],
   themeConfig: {
     socialLinks: [
-      {
-        icon: 'github',
-        mode: 'link',
-        content: 'https://github.com/luochunmei/lcmTestPage.github.io',
-      },
+      // {
+      //   icon: 'github',
+      //   mode: 'link',
+      //   content: 'https://github.com/luochunmei/lcmTestPage.github.io',
+      // },
     ],
     nav: [
       {
-        text: 'Guide',
-        link: '/index',
+        text: 'introduction',
+        link: '/introduction',
       },
       {
-        text: 'CLI',
-        link: '/cli/index',
+        text: 'cli',
+        link: '/cli/',
       },
       {
-        text: 'Core',
-        link: '/core/index',
+        text: 'core',
+        link: '/core/',
       },
       {
-        text: 'Tools',
-        link: '/tools/index',
+        text: 'tools',
+        link: '/tools/',
       },
     ],
     sidebar: {
       '/': [
         {
-          text: 'Getting Started',
+          text: '快速开始',
           items: [
             {
-              text: 'Introduction',
-              link: '/index',
+              text: '介绍',
+              link: '/introduction',
             },
             {
-              text: 'Architecture',
-              link: '/architecture',
-            },
-            {
-              text: 'Deployment',
+              text: '部署',
               link: '/deployment',
             },
           ],
         },
         {
-          text: 'CLI Usage',
+          text: 'CLI 使用',
           items: [
             {
-              text: 'CLI Introduction',
+              text: 'CLI 介绍',
               link: '/cli/index',
             },
             {
-              text: 'Commands',
+              text: '命令',
               link: '/cli/commands',
             },
             {
-              text: 'Configuration',
+              text: '配置',
               link: '/cli/configuration',
             },
             {
-              text: 'Authentication',
+              text: '认证',
               link: '/cli/authentication',
             },
             {
-              text: 'Themes',
+              text: '主题',
               link: '/cli/themes',
             },
             {
-              text: 'Tutorials',
+              text: '教程',
               link: '/cli/tutorials',
             },
           ],
         },
         {
-          text: 'Core Details',
+          text: '核心详情',
           items: [
             {
-              text: 'Core Introduction',
+              text: '核心介绍',
               link: '/core/index',
             },
             {
-              text: 'Tools API',
+              text: '工具 API',
               link: '/core/tools-api',
             },
             {
@@ -102,18 +115,18 @@ const config: UserConfig = {
           ],
         },
         {
-          text: 'Tools',
+          text: '工具',
           items: [
             {
-              text: 'Tools Overview',
+              text: '工具概览',
               link: '/tools/index',
             },
             {
-              text: 'File System',
+              text: '文件系统',
               link: '/tools/file-system',
             },
             {
-              text: 'Multi-File',
+              text: '多文件',
               link: '/tools/multi-file',
             },
             {
@@ -121,20 +134,139 @@ const config: UserConfig = {
               link: '/tools/shell',
             },
             {
-              text: 'Web Fetch',
+              text: 'Web 抓取',
               link: '/tools/web-fetch',
             },
             {
-              text: 'Web Search',
-              link: '/tools/web-search',
-            },
-            {
-              text: 'Memory',
+              text: '内存',
               link: '/tools/memory',
             },
             {
-              text: 'MCP Server',
+              text: 'MCP 服务器',
               link: '/tools/mcp-server',
+            },
+          ],
+        },
+        {
+          text: '其他资源',
+          items: [
+            {
+              text: '检查点',
+              link: '/checkpointing',
+            },
+            {
+              text: 'IDE 集成',
+              link: '/ide-integration',
+            },
+            {
+              text: '遥测',
+              link: '/telemetry',
+            },
+            {
+              text: 'NPM',
+              link: '/npm',
+            },
+            {
+              text: '故障排除',
+              link: '/troubleshooting',
+            },
+            {
+              text: '发布',
+              link: '/releases',
+            },
+          ],
+        },
+      ],
+      '/en/': [
+        {
+          text: 'Getting Started',
+          items: [
+            {
+              text: 'Introduction',
+              link: '/en/introduction',
+            },
+            {
+              text: 'Deployment',
+              link: '/en/deployment',
+            },
+          ],
+        },
+        {
+          text: 'CLI Usage',
+          items: [
+            {
+              text: 'CLI Introduction',
+              link: '/en/cli/index',
+            },
+            {
+              text: 'Commands',
+              link: '/en/cli/commands',
+            },
+            {
+              text: 'Configuration',
+              link: '/en/cli/configuration',
+            },
+            {
+              text: 'Authentication',
+              link: '/en/cli/authentication',
+            },
+            {
+              text: 'Themes',
+              link: '/en/cli/themes',
+            },
+            {
+              text: 'Tutorials',
+              link: '/en/cli/tutorials',
+            },
+          ],
+        },
+        {
+          text: 'Core Details',
+          items: [
+            {
+              text: 'Core Introduction',
+              link: '/en/core/index',
+            },
+            {
+              text: 'Tools API',
+              link: '/en/core/tools-api',
+            },
+            {
+              text: 'Memport',
+              link: '/en/core/memport',
+            },
+          ],
+        },
+        {
+          text: 'Tools',
+          items: [
+            {
+              text: 'Tools Overview',
+              link: '/en/tools/index',
+            },
+            {
+              text: 'File System',
+              link: '/en/tools/file-system',
+            },
+            {
+              text: 'Multi-File',
+              link: '/en/tools/multi-file',
+            },
+            {
+              text: 'Shell',
+              link: '/en/tools/shell',
+            },
+            {
+              text: 'Web Fetch',
+              link: '/en/tools/web-fetch',
+            },
+            {
+              text: 'Memory',
+              link: '/en/tools/memory',
+            },
+            {
+              text: 'MCP Server',
+              link: '/en/tools/mcp-server',
             },
           ],
         },
@@ -143,31 +275,27 @@ const config: UserConfig = {
           items: [
             {
               text: 'Checkpointing',
-              link: '/checkpointing',
-            },
-            {
-              text: 'Extension',
-              link: '/extension',
+              link: '/en/checkpointing',
             },
             {
               text: 'IDE Integration',
-              link: '/ide-integration',
+              link: '/en/ide-integration',
             },
             {
               text: 'Telemetry',
-              link: '/telemetry',
+              link: '/en/telemetry',
             },
             {
               text: 'NPM',
-              link: '/npm',
+              link: '/en/npm',
             },
             {
               text: 'Troubleshooting',
-              link: '/troubleshooting',
+              link: '/en/troubleshooting',
             },
             {
               text: 'Releases',
-              link: '/releases',
+              link: '/en/releases',
             },
           ],
         },
