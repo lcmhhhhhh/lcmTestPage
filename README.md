@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/npm/v/@vecode-cli/vecode-cli)](https://www.npmjs.com/package/@vecode-cli/vecode-cli)
 [![License](https://img.shields.io/github/license/volcengine/vecli)](https://github.com/volcengine/vecli/blob/main/LICENSE)
 
-![VeCLI Screenshot](./docs/assets/vecli-screenshot.png)
+![VeCLI Screenshot](./docs/assets/gemini-screenshot.png)
 
 VeCLI is an open-source AI agent that brings the power of Vecli directly into your terminal. It provides lightweight access to Vecli, giving you the most direct path from your prompt to our model.
 
