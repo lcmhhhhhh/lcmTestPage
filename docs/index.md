@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 工具介绍
-      link: index.md
+      link: /cli
 
 features:
   - title: '智能文件操作: 本地环境交互'
