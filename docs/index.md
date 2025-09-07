@@ -7,11 +7,8 @@ hero:
   tagline: 智能开发助手
   actions:
     - theme: brand
-      text: 开始使用
-      link: /introduction/
-    - theme: alt
       text: 工具介绍
-      link: /tools/
+      link: /index.md
 
 features:
   - title: '智能文件操作: 本地环境交互'
