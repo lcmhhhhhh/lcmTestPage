@@ -8,6 +8,9 @@ const config: UserConfig = {
   title: 'Gemini CLI Documentation',
   description: 'A comprehensive guide to installing, using, and developing Gemini CLI',
   logo: '/logo.jpeg',
+  route: {
+    cleanUrls: true,
+  },
   themeConfig: {
     socialLinks: [
       {
