@@ -1,22 +1,22 @@
-# Gemini CLI Observability Guide
+# VeCLI Observability Guide
 
-Telemetry provides data about Gemini CLI's performance, health, and usage. By enabling it, you can monitor operations, debug issues, and optimize tool usage through traces, metrics, and structured logs.
+Telemetry provides data about VeCLI's performance, health, and usage. By enabling it, you can monitor operations, debug issues, and optimize tool usage through traces, metrics, and structured logs.
 
-Gemini CLI's telemetry system is built on the **[OpenTelemetry] (OTEL)** standard, allowing you to send data to any compatible backend.
+VeCLI's telemetry system is built on the **[OpenTelemetry] (OTEL)** standard, allowing you to send data to any compatible backend.
 
 [OpenTelemetry]: https://opentelemetry.io/
 
 ## Enabling telemetry
 
-You can enable telemetry in multiple ways. Configuration is primarily managed via the [`.gemini/settings.json` file](./cli/configuration.md) and environment variables, but CLI flags can override these settings for a specific session.
+You can enable telemetry in multiple ways. Configuration is primarily managed via the [`.ve/settings.json` file](./cli/configuration.md) and environment variables, but CLI flags can override these settings for a specific session.
 
 ### Order of precedence
 
 The following lists the precedence for applying telemetry settings, with items listed higher having greater precedence:
 
-1.  **CLI flags (for `gemini` command):**
+1.  **CLI flags (for `vecli` command):**
     - `--telemetry` / `--no-telemetry`: Overrides `telemetry.enabled`.
-    - `--telemetry-target <local|gcp>`: Overrides `telemetry.target`.
+    - `--telemetry-target <local|ve>`: Overrides `telemetry.target`.
     - `--telemetry-otlp-endpoint <URL>`: Overrides `telemetry.otlpEndpoint`.
     - `--telemetry-log-prompts` / `--no-telemetry-log-prompts`: Overrides `telemetry.logPrompts`.
     - `--telemetry-outfile <path>`: Redirects telemetry output to a file. See [Exporting to a file](#exporting-to-a-file).
@@ -24,9 +24,9 @@ The following lists the precedence for applying telemetry settings, with items l
 1.  **Environment variables:**
     - `OTEL_EXPORTER_OTLP_ENDPOINT`: Overrides `telemetry.otlpEndpoint`.
 
-1.  **Workspace settings file (`.gemini/settings.json`):** Values from the `telemetry` object in this project-specific file.
+1.  **Workspace settings file (`.ve/settings.json`):** Values from the `telemetry` object in this project-specific file.
 
-1.  **User settings file (`~/.gemini/settings.json`):** Values from the `telemetry` object in this global user file.
+1.  **User settings file (`~/.ve/settings.json`):** Values from the `telemetry` object in this global user file.
 
 1.  **Defaults:** applied if not set by any of the above.
     - `telemetry.enabled`: `false`
@@ -34,18 +34,18 @@ The following lists the precedence for applying telemetry settings, with items l
     - `telemetry.otlpEndpoint`: `http://localhost:4317`
     - `telemetry.logPrompts`: `true`
 
-**For the `npm run telemetry -- --target=<gcp|local>` script:**
+**For the `npm run telemetry -- --target=<ve|local>` script:**
 The `--target` argument to this script _only_ overrides the `telemetry.target` for the duration and purpose of that script (i.e., choosing which collector to start). It does not permanently change your `settings.json`. The script will first look at `settings.json` for a `telemetry.target` to use as its default.
 
 ### Example settings
 
-The following code can be added to your workspace (`.gemini/settings.json`) or user (`~/.gemini/settings.json`) settings to enable telemetry and send the output to Google Cloud:
+The following code can be added to your workspace (`.ve/settings.json`) or user (`~/.ve/settings.json`) settings to enable telemetry and send the output to Volcano Engine:
 
 ```json
 {
   "telemetry": {
     "enabled": true,
-    "target": "gcp"
+    "target": "ve"
   },
   "tools": {
     "sandbox": false
@@ -61,12 +61,12 @@ To enable file export, use the `--telemetry-outfile` flag with a path to your de
 
 ```bash
 # Set your desired output file path
-TELEMETRY_FILE=".gemini/telemetry.log"
+TELEMETRY_FILE=".ve/telemetry.log"
 
-# Run Gemini CLI with local telemetry
+# Run VeCLI with local telemetry
 # NOTE: --telemetry-otlp-endpoint="" is required to override the default
 # OTLP exporter and ensure telemetry is written to the local file.
-gemini --telemetry \
+vecli --telemetry \
   --telemetry-target=local \
   --telemetry-otlp-endpoint="" \
   --telemetry-outfile="$TELEMETRY_FILE" \
@@ -88,7 +88,7 @@ Learn more about OTEL exporter standard configuration in [documentation][otel-co
 
 ### Local
 
-Use the `npm run telemetry -- --target=local` command to automate the process of setting up a local telemetry pipeline, including configuring the necessary settings in your `.gemini/settings.json` file. The underlying script installs `otelcol-contrib` (the OpenTelemetry Collector) and `jaeger` (The Jaeger UI for viewing traces). To use it:
+Use the `npm run telemetry -- --target=local` command to automate the process of setting up a local telemetry pipeline, including configuring the necessary settings in your `.ve/settings.json` file. The underlying script installs `otelcol-contrib` (the OpenTelemetry Collector) and `jaeger` (The Jaeger UI for viewing traces). To use it:
 
 1.  **Run the command**:
     Execute the command from the root of the repository:
@@ -100,69 +100,61 @@ Use the `npm run telemetry -- --target=local` command to automate the process of
     The script will:
     - Download Jaeger and OTEL if needed.
     - Start a local Jaeger instance.
-    - Start an OTEL collector configured to receive data from Gemini CLI.
+    - Start an OTEL collector configured to receive data from VeCLI.
     - Automatically enable telemetry in your workspace settings.
     - On exit, disable telemetry.
 
 1.  **View traces**:
-    Open your web browser and navigate to **http://localhost:16686** to access the Jaeger UI. Here you can inspect detailed traces of Gemini CLI operations.
+    Open your web browser and navigate to **http://localhost:16686** to access the Jaeger UI. Here you can inspect detailed traces of VeCLI operations.
 
 1.  **Inspect logs and metrics**:
-    The script redirects the OTEL collector output (which includes logs and metrics) to `~/.gemini/tmp/<projectHash>/otel/collector.log`. The script will provide links to view and a command to tail your telemetry data (traces, metrics, logs) locally.
+    The script redirects the OTEL collector output (which includes logs and metrics) to `~/.ve/tmp/<projectHash>/otel/collector.log`. The script will provide links to view and a command to tail your telemetry data (traces, metrics, logs) locally.
 
 1.  **Stop the services**:
     Press `Ctrl+C` in the terminal where the script is running to stop the OTEL Collector and Jaeger services.
 
-### Google Cloud
+### Volcano Engine
 
-Use the `npm run telemetry -- --target=gcp` command to automate setting up a local OpenTelemetry collector that forwards data to your Google Cloud project, including configuring the necessary settings in your `.gemini/settings.json` file. The underlying script installs `otelcol-contrib`. To use it:
+Use the `npm run telemetry -- --target=volc` command to automate setting up a local OpenTelemetry collector that forwards data to your Volcano Engine project, including configuring the necessary settings in your `.ve/settings.json` file. The underlying script installs `otelcol-contrib`. To use it:
 
-1.  **Prerequisites**:
-    - Have a Google Cloud project ID.
-    - Export the `GOOGLE_CLOUD_PROJECT` environment variable to make it available to the OTEL collector.
-      ```bash
-      export OTLP_GOOGLE_CLOUD_PROJECT="your-project-id"
-      ```
-    - Authenticate with Google Cloud (e.g., run `gcloud auth application-default login` or ensure `GOOGLE_APPLICATION_CREDENTIALS` is set).
-    - Ensure your Google Cloud account/service account has the necessary IAM roles: "Cloud Trace Agent", "Monitoring Metric Writer", and "Logs Writer".
 
 1.  **Run the command**:
     Execute the command from the root of the repository:
 
     ```bash
-    npm run telemetry -- --target=gcp
+    npm run telemetry -- --target=ve
     ```
 
     The script will:
     - Download the `otelcol-contrib` binary if needed.
-    - Start an OTEL collector configured to receive data from Gemini CLI and export it to your specified Google Cloud project.
-    - Automatically enable telemetry and disable sandbox mode in your workspace settings (`.gemini/settings.json`).
-    - Provide direct links to view traces, metrics, and logs in your Google Cloud Console.
+    - Start an OTEL collector configured to receive data from VeCLI and export it to your specified Volcano Engine project.
+    - Automatically enable telemetry and disable sandbox mode in your workspace settings (`.ve/settings.json`).
+    - Provide direct links to view traces, metrics, and logs in your Volcano Engine Console.
     - On exit (Ctrl+C), it will attempt to restore your original telemetry and sandbox settings.
 
-1.  **Run Gemini CLI:**
-    In a separate terminal, run your Gemini CLI commands. This generates telemetry data that the collector captures.
+1.  **Run VeCLI:**
+    In a separate terminal, run your VeCLI commands. This generates telemetry data that the collector captures.
 
-1.  **View telemetry in Google Cloud**:
-    Use the links provided by the script to navigate to the Google Cloud Console and view your traces, metrics, and logs.
+1.  **View telemetry in Volcano Engine**:
+    Use the links provided by the script to navigate to the Volcano Engine Console and view your traces, metrics, and logs.
 
 1.  **Inspect local collector logs**:
-    The script redirects the local OTEL collector output to `~/.gemini/tmp/<projectHash>/otel/collector-gcp.log`. The script provides links to view and command to tail your collector logs locally.
+    The script redirects the local OTEL collector output to `~/.ve/tmp/<projectHash>/otel/collector-ve.log`. The script provides links to view and command to tail your collector logs locally.
 
 1.  **Stop the service**:
     Press `Ctrl+C` in the terminal where the script is running to stop the OTEL Collector.
 
 ## Logs and metric reference
 
-The following section describes the structure of logs and metrics generated for Gemini CLI.
+The following section describes the structure of logs and metrics generated for VeCLI.
 
 - A `sessionId` is included as a common attribute on all logs and metrics.
 
 ### Logs
 
-Logs are timestamped records of specific events. The following events are logged for Gemini CLI:
+Logs are timestamped records of specific events. The following events are logged for VeCLI:
 
-- `gemini_cli.config`: This event occurs once at startup with the CLI's configuration.
+- `vecli.config`: This event occurs once at startup with the CLI's configuration.
   - **Attributes**:
     - `model` (string)
     - `embedding_model` (string)
@@ -177,14 +169,14 @@ Logs are timestamped records of specific events. The following events are logged
     - `debug_mode` (boolean)
     - `mcp_servers` (string)
 
-- `gemini_cli.user_prompt`: This event occurs when a user submits a prompt.
+- `vecli.user_prompt`: This event occurs when a user submits a prompt.
   - **Attributes**:
     - `prompt_length` (int)
     - `prompt_id` (string)
     - `prompt` (string, this attribute is excluded if `log_prompts_enabled` is configured to be `false`)
     - `auth_type` (string)
 
-- `gemini_cli.tool_call`: This event occurs for each function call.
+- `vecli.tool_call`: This event occurs for each function call.
   - **Attributes**:
     - `function_name`
     - `function_args`
@@ -195,7 +187,7 @@ Logs are timestamped records of specific events. The following events are logged
     - `error_type` (if applicable)
     - `metadata` (if applicable, dictionary of string -> any)
 
-- `gemini_cli.file_operation`: This event occurs for each file operation.
+- `vecli.file_operation`: This event occurs for each file operation.
   - **Attributes**:
     - `tool_name` (string)
     - `operation` (string: "create", "read", "update")
@@ -209,12 +201,12 @@ Logs are timestamped records of specific events. The following events are logged
       - `user_added_lines` (int)
       - `user_removed_lines` (int)
 
-- `gemini_cli.api_request`: This event occurs when making a request to Gemini API.
+- `vecli.api_request`: This event occurs when making a request to volcano Engine API.
   - **Attributes**:
     - `model`
     - `request_text` (if applicable)
 
-- `gemini_cli.api_error`: This event occurs if the API request fails.
+- `vecli.api_error`: This event occurs if the API request fails.
   - **Attributes**:
     - `model`
     - `error`
@@ -223,7 +215,7 @@ Logs are timestamped records of specific events. The following events are logged
     - `duration_ms`
     - `auth_type`
 
-- `gemini_cli.api_response`: This event occurs upon receiving a response from Gemini API.
+- `vecli.api_response`: This event occurs upon receiving a response from vecli API.
   - **Attributes**:
     - `model`
     - `status_code`
@@ -237,44 +229,44 @@ Logs are timestamped records of specific events. The following events are logged
     - `response_text` (if applicable)
     - `auth_type`
 
-- `gemini_cli.malformed_json_response`: This event occurs when a `generateJson` response from Gemini API cannot be parsed as a json.
+- `vecli.malformed_json_response`: This event occurs when a `generateJson` response from vecli API cannot be parsed as a json.
   - **Attributes**:
     - `model`
 
-- `gemini_cli.flash_fallback`: This event occurs when Gemini CLI switches to flash as fallback.
+- `vecli.flash_fallback`: This event occurs when VeCLI switches to flash as fallback.
   - **Attributes**:
     - `auth_type`
 
-- `gemini_cli.slash_command`: This event occurs when a user executes a slash command.
+- `vecli.slash_command`: This event occurs when a user executes a slash command.
   - **Attributes**:
     - `command` (string)
     - `subcommand` (string, if applicable)
 
 ### Metrics
 
-Metrics are numerical measurements of behavior over time. The following metrics are collected for Gemini CLI:
+Metrics are numerical measurements of behavior over time. The following metrics are collected for VeCLI:
 
-- `gemini_cli.session.count` (Counter, Int): Incremented once per CLI startup.
+- `vecli.session.count` (Counter, Int): Incremented once per CLI startup.
 
-- `gemini_cli.tool.call.count` (Counter, Int): Counts tool calls.
+- `vecli.tool.call.count` (Counter, Int): Counts tool calls.
   - **Attributes**:
     - `function_name`
     - `success` (boolean)
     - `decision` (string: "accept", "reject", or "modify", if applicable)
     - `tool_type` (string: "mcp", or "native", if applicable)
 
-- `gemini_cli.tool.call.latency` (Histogram, ms): Measures tool call latency.
+- `vecli.tool.call.latency` (Histogram, ms): Measures tool call latency.
   - **Attributes**:
     - `function_name`
     - `decision` (string: "accept", "reject", or "modify", if applicable)
 
-- `gemini_cli.api.request.count` (Counter, Int): Counts all API requests.
+- `vecli.api.request.count` (Counter, Int): Counts all API requests.
   - **Attributes**:
     - `model`
     - `status_code`
     - `error_type` (if applicable)
 
-- `gemini_cli.api.request.latency` (Histogram, ms): Measures API request latency.
+- `vecli.api.request.latency` (Histogram, ms): Measures API request latency.
   - **Attributes**:
     - `model`
 

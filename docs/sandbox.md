@@ -1,13 +1,13 @@
-# Sandboxing in the Gemini CLI
+# Sandboxing in the VeCLI
 
-This document provides a guide to sandboxing in the Gemini CLI, including prerequisites, quickstart, and configuration.
+This document provides a guide to sandboxing in the VeCLI, including prerequisites, quickstart, and configuration.
 
 ## Prerequisites
 
-Before using sandboxing, you need to install and set up the Gemini CLI:
+Before using sandboxing, you need to install and set up the VeCLI:
 
 ```bash
-npm install -g @google/gemini-cli
+npm install -g @vecode-cli/vecode-cli
 ```
 
 To verify the installation
@@ -131,7 +131,7 @@ export SANDBOX_SET_UID_GID=false  # Disable UID/GID mapping
 DEBUG=1 gemini -s -p "debug command"
 ```
 
-**Note:** If you have `DEBUG=true` in a project's `.env` file, it won't affect gemini-cli due to automatic exclusion. Use `.gemini/.env` files for gemini-cli specific debug settings.
+**Note:** If you have `DEBUG=true` in a project's `.env` file, it won't affect gemini-cli due to automatic exclusion. Use `.ve/.env` files for gemini-cli specific debug settings.
 
 ### Inspect sandbox
 

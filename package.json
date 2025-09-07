@@ -1,0 +1,22 @@
+{
+  "name": "lcm-test-page",
+  "version": "1.0.0",
+  "description": "Documentation site powered by rspress",
+  "scripts": {
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "devDependencies": {
+    "@rspress/core": "^1.0.0"
+  },
+  "keywords": [
+    "documentation",
+    "rspress"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "rspress": "^1.45.3"
+  }
+}
