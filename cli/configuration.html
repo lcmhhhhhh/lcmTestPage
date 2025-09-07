@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Rspress v1.45.3">
+    <title data-rh="true">Gemini CLI Configuration - Gemini CLI Documentation</title><meta data-rh="true" name="description" content="A comprehensive guide to installing, using, and developing Gemini CLI"/>
+  <script>{;const saved = localStorage.getItem('rspress-theme-appearance');const preferDark = window.matchMedia('(prefers-color-scheme: dark)').matches;const isDark = !saved || saved === 'auto' ? preferDark : saved === 'dark';document.documentElement.classList.toggle('dark', isDark);document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';}</script><script defer src="/static/js/styles.011f9cc5.js"></script><script defer src="/static/js/lib-react.3e1862fb.js"></script><script defer src="/static/js/lib-router.ab9ee1c0.js"></script><script defer src="/static/js/162.b8dda7eb.js"></script><script defer src="/static/js/index.f54aa8a4.js"></script><link href="/static/css/styles.e45a8283.css" rel="stylesheet"></head>
+
+  <body >
+    <div id="root"><div class="navContainer_d18b1 rspress-nav px-6  sticky_ddfa7"><div class="container_e4235 flex justify-between items-center h-full"><div class="navBarTitle_c5f07"><a href="/index.html" class="link_a7cea flex items-center w-full h-full text-base font-semibold transition-opacity duration-300 hover:opacity-60"><div class="mr-1 min-w-8"><img src="/logo.jpeg" alt="logo" id="logo" class="rspress-logo"/></div></a></div><div class="flex flex-1 justify-end items-center"><div class="rightNav_a2fea"><div class="flex sm:flex-1 items-center sm:pl-4 sm:pr-2"><div class="rspress-nav-search-button navSearchButton_df1fb"><button><svg width="18" height="18" viewBox="0 0 32 32"><path fill="var(--rp-c-gray)" d="m29 27.586-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9"></path></svg><p class="searchWord_af2c1">Search Docs</p><div style="opacity:0"><span></span><span>K</span></div></button></div><div class="mobileNavSearchButton_d85a9"><svg width="24" height="24" viewBox="0 0 32 32"><path fill="var(--rp-c-gray)" d="m29 27.586-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9"></path></svg></div></div><div class="rspress-nav-menu menu h-14"><a href="/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Guide</div></a><a href="/cli/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">CLI</div></a><a href="/core/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Core</div></a><a href="/tools/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Tools</div></a></div><div class="flex-center flex-row"><div class="mx-2"><div class="md:mr-2 rspress-nav-appearance"><div class="p-1 border border-solid border-gray-300 text-gray-400  cursor-pointer rounded-md hover:border-gray-600 hover:text-gray-600 dark:hover:border-gray-200 dark:hover:text-gray-200 transition-all duration-300 w-7 h-7"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="dark:hidden" width="18" height="18" fill="currentColor"><path d="M12 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6m0-10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4M12 4c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1s1 .4 1 1v2c0 .6-.4 1-1 1M12 24c-.6 0-1-.4-1-1v-2c0-.6.4-1 1-1s1 .4 1 1v2c0 .6-.4 1-1 1M5.6 6.6c-.3 0-.5-.1-.7-.3L3.5 4.9c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l1.4 1.4c.4.4.4 1 0 1.4-.1.2-.4.3-.7.3M19.8 20.8c-.3 0-.5-.1-.7-.3l-1.4-1.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l1.4 1.4c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3M3 13H1c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1s-.4 1-1 1M23 13h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1s-.4 1-1 1M4.2 20.8c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.4-1.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-1.4 1.4c-.2.2-.4.3-.7.3M18.4 6.6c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.4-1.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-1.4 1.4c-.2.2-.5.3-.7.3"></path></svg><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="hidden dark:block" width="18" height="18" fill="currentColor"><path d="M12.1 22h-.9c-5.5-.5-9.5-5.4-9-10.9.4-4.8 4.2-8.6 9-9 .4 0 .8.2 1 .5s.2.8-.1 1.1c-2 2.7-1.4 6.4 1.3 8.4 2.1 1.6 5 1.6 7.1 0 .3-.2.7-.3 1.1-.1.3.2.5.6.5 1-.2 2.7-1.5 5.1-3.6 6.8-1.9 1.4-4.1 2.2-6.4 2.2M9.3 4.4c-2.9 1-5 3.6-5.2 6.8-.4 4.4 2.8 8.3 7.2 8.7 2.1.2 4.2-.4 5.8-1.8 1.1-.9 1.9-2.1 2.4-3.4-2.5.9-5.3.5-7.5-1.1-2.8-2.2-3.9-5.9-2.7-9.2"></path></svg></div></div></div><div class="social-links menu-item_e90a6 flex-center relative"><div class="flex-center h-full gap-x-4 transition-colors duration-300 md:mr-2"><a href="https://github.com/luochunmei/lcmTestPage.github.io" target="_blank" rel="noopener noreferrer" class="social-links"><div class="social-links-icon_a4ad0"><div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a></div></div></div></div><div class="mobileNavMenu_e7045"><div class="navScreen_ec30c  rspress-nav-screen" id="navScreen"><div class="container_c935d"><div class="navMenu_b887b"><div class="navMenuItem_e7978 w-full"><a href="/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Guide</div></a></div><div class="navMenuItem_e7978 w-full"><a href="/cli/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">CLI</div></a></div><div class="navMenuItem_e7978 w-full"><a href="/core/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Core</div></a></div><div class="navMenuItem_e7978 w-full"><a href="/tools/index.html" class="link_a7cea "><div class="rspress-nav-menu-item singleItem_c1154  text-sm font-medium mx-1.5 px-3 py-2 flex items-center">Tools</div></a></div></div><div class="flex-center flex-col gap-2"><div class="mt-2 navAppearance_bf893 flex justify-center"></div><div class="social-links menu-item_e90a6 flex-center relative"><div class="flex-center h-full gap-x-4 transition-colors duration-300 md:mr-2"><a href="https://github.com/luochunmei/lcmTestPage.github.io" target="_blank" rel="noopener noreferrer" class="social-links"><div class="social-links-icon_a4ad0"><div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a></div></div></div></div></div><button aria-label="mobile hamburger" class=" rspress-mobile-hamburger navHamburger_ac64c text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor"><circle cx="8" cy="16" r="2" fill="currentColor"></circle><circle cx="16" cy="16" r="2" fill="currentColor"></circle><circle cx="24" cy="16" r="2" fill="currentColor"></circle></svg></button></div></div></div></div><section><div class="docLayout_af141 pt-0"><aside class="sidebar_dd719 rspress-sidebar "><div class="navTitleMask_fb17c"><div class="navBarTitle_c5f07"><a href="/index.html" class="link_a7cea flex items-center w-full h-full text-base font-semibold transition-opacity duration-300 hover:opacity-60"><div class="mr-1 min-w-8"><img src="/logo.jpeg" alt="logo" id="logo" class="rspress-logo"/></div></a></div></div><div class="rspress-scrollbar sidebarContent_da296"><nav class="pb-2"><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Getting Started</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/index.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Introduction</span></div></a></div><div class="rspress-sidebar-item"><a href="/architecture.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Architecture</span></div></a></div><div class="rspress-sidebar-item"><a href="/deployment.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Deployment</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">CLI Usage</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/cli/index.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>CLI Introduction</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/commands.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Commands</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/configuration.html" class="link_a7cea menuLink_bb039"><div class="menuItemActive_de63c mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Configuration</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/authentication.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Authentication</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/themes.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Themes</span></div></a></div><div class="rspress-sidebar-item"><a href="/cli/tutorials.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Tutorials</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Core Details</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/core/index.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Core Introduction</span></div></a></div><div class="rspress-sidebar-item"><a href="/core/tools-api.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Tools API</span></div></a></div><div class="rspress-sidebar-item"><a href="/core/memport.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Memport</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Tools</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/tools/index.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Tools Overview</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/file-system.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>File System</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/multi-file.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Multi-File</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/shell.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Shell</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/web-fetch.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Web Fetch</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/web-search.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Web Search</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/memory.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Memory</span></div></a></div><div class="rspress-sidebar-item"><a href="/tools/mcp-server.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>MCP Server</span></div></a></div></div></div></section><section class="rspress-sidebar-section mt-0.5 block" style="margin-left:0"><div class="rspress-sidebar-collapse flex justify-between items-center menuItem_ac22e" style="border-radius:0 var(--rp-radius) var(--rp-radius) 0;cursor:pointer"><h2 class="py-2 px-3 text-sm font-medium flex" style="font-size:14px;padding-left:24px;font-weight:bold"><span class="flex-center" style="font-size:14px">Additional Resources</span></h2><div class="collapseContainer_d6e4e p-2 rounded-xl"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div class="transition-all duration-300 ease-in-out" style="overflow:hidden"><div class="rspress-sidebar-group transition-opacity duration-500 ease-in-out" style="opacity:1;margin-left:12px"><div class="rspress-sidebar-item"><a href="/checkpointing.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Checkpointing</span></div></a></div><div class="rspress-sidebar-item"><a href="/extension.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Extension</span></div></a></div><div class="rspress-sidebar-item"><a href="/ide-integration.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>IDE Integration</span></div></a></div><div class="rspress-sidebar-item"><a href="/telemetry.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Telemetry</span></div></a></div><div class="rspress-sidebar-item"><a href="/npm.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>NPM</span></div></a></div><div class="rspress-sidebar-item"><a href="/troubleshooting.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Troubleshooting</span></div></a></div><div class="rspress-sidebar-item"><a href="/releases.html" class="link_a7cea menuLink_bb039"><div class="menuItem_ac22e mt-0.5 py-2 px-3 font-medium flex" style="font-size:13px;margin-left:18px;border-radius:0 var(--rp-radius) var(--rp-radius) 0"><span>Releases</span></div></a></div></div></div></section></nav></div></aside><div class="flex-1 relative min-w-0"><div class="rspress-sidebar-menu-container "><div class="rspress-sidebar-menu"><button type="button" class="flex-center mr-auto"><div class="text-md mr-2"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg></div><span class="text-sm">Menu</span></button><button type="button" class="flex-center ml-auto"><span class="text-sm">ON THIS PAGE</span><div class="text-md mr-2" style="transform:rotate(0deg);transition:transform 0.2s ease-out;margin-top:2px"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></button><div class="rspress-local-toc-container "><ul><li><a href="#configuration-layers" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Configuration layers</span></a></li><li><a href="#settings-files" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Settings files</span></a></li><li><a href="#the-gemini-directory-in-your-project" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">The <code>.gemini</code> directory in your project</span></a></li><li><a href="#available-settings-in-settingsjson" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">Available settings in <code>settings.json</code></span></a></li><li><a href="#general" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>general</code></span></a></li><li><a href="#ui" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>ui</code></span></a></li><li><a href="#ide" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>ide</code></span></a></li><li><a href="#privacy" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>privacy</code></span></a></li><li><a href="#model" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>model</code></span></a></li><li><a href="#context" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>context</code></span></a></li><li><a href="#tools" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>tools</code></span></a></li><li><a href="#mcp" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>mcp</code></span></a></li><li><a href="#security" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>security</code></span></a></li><li><a href="#advanced" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>advanced</code></span></a></li><li><a href="#mcpservers" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>mcpServers</code></span></a></li><li><a href="#telemetry" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:24px"><span class="rspress-toc-link-text block"><code>telemetry</code></span></a></li><li><a href="#example-settingsjson" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">Example <code>settings.json</code></span></a></li><li><a href="#shell-history" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Shell History</span></a></li><li><a href="#environment-variables--env-files" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Environment Variables &amp; <code>.env</code> Files</span></a></li><li><a href="#command-line-arguments" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Command-Line Arguments</span></a></li><li><a href="#context-files-hierarchical-instructional-context" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Context Files (Hierarchical Instructional Context)</span></a></li><li><a href="#example-context-file-content-eg-geminimd" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:12px"><span class="rspress-toc-link-text block">Example Context File Content (e.g., <code>GEMINI.md</code>)</span></a></li><li><a href="#sandboxing" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Sandboxing</span></a></li><li><a href="#usage-statistics" class="link_a7cea rspress-toc-link sm:text-normal text-sm" style="margin-left:0"><span class="rspress-toc-link-text block">Usage Statistics</span></a></li></ul></div></div></div><div class="content_ff766 rspress-doc-container flex"><div class="flex-1 overflow-x-auto"><div class="rspress-doc"><!--$--><h1 id="gemini-cli-configuration" class="rspress-doc-title text-3xl mb-10 leading-10 tracking-tight title_fb7eb">Gemini CLI Configuration<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#gemini-cli-configuration">#</a></h1>
+<p class="my-4 leading-7"><strong class="font-semibold">Note on New Configuration Format</strong></p>
+<p class="my-4 leading-7">The format of the <code>settings.json</code> file has been updated to a new, more organized structure.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">The new format will be supported in the stable release starting <strong class="font-semibold">[09/10/25]</strong>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Automatic migration from the old format to the new format will begin on <strong class="font-semibold">[09/17/25]</strong>.</li>
+</ul>
+<p class="my-4 leading-7">For details on the previous format, please see the <a href="/cli/configuration-v1.html" class="link_a7cea  link_a9ef4 inline-link_f855c">v1 Configuration documentation</a>.</p>
+<p class="my-4 leading-7">Gemini CLI offers several ways to configure its behavior, including environment variables, command-line arguments, and settings files. This document outlines the different configuration methods and available settings.</p>
+<h2 id="configuration-layers" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Configuration layers<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#configuration-layers">#</a></h2>
+<p class="my-4 leading-7">Configuration is applied in the following order of precedence (lower numbers are overridden by higher numbers):</p>
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default values:</strong> Hardcoded defaults within the application.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">System defaults file:</strong> System-wide default settings that can be overridden by other settings files.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">User settings file:</strong> Global settings for the current user.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Project settings file:</strong> Project-specific settings.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">System settings file:</strong> System-wide settings that override all other settings files.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Environment variables:</strong> System-wide or session-specific variables, potentially loaded from <code>.env</code> files.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Command-line arguments:</strong> Values passed when launching the CLI.</li>
+</ol>
+<h2 id="settings-files" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Settings files<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#settings-files">#</a></h2>
+<p class="my-4 leading-7">Gemini CLI uses JSON settings files for persistent configuration. There are four locations for these files:</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">System defaults file:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Location:</strong> <code>/etc/gemini-cli/system-defaults.json</code> (Linux), <code>C:\ProgramData\gemini-cli\system-defaults.json</code> (Windows) or <code>/Library/Application Support/GeminiCli/system-defaults.json</code> (macOS). The path can be overridden using the <code>GEMINI_CLI_SYSTEM_DEFAULTS_PATH</code> environment variable.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Scope:</strong> Provides a base layer of system-wide default settings. These settings have the lowest precedence and are intended to be overridden by user, project, or system override settings.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">User settings file:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Location:</strong> <code>~/.gemini/settings.json</code> (where <code>~</code> is your home directory).</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Scope:</strong> Applies to all Gemini CLI sessions for the current user. User settings override system defaults.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Project settings file:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Location:</strong> <code>.gemini/settings.json</code> within your project&#x27;s root directory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Scope:</strong> Applies only when running Gemini CLI from that specific project. Project settings override user settings and system defaults.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">System settings file:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Location:</strong> <code>/etc/gemini-cli/settings.json</code> (Linux), <code>C:\ProgramData\gemini-cli\settings.json</code> (Windows) or <code>/Library/Application Support/GeminiCli/settings.json</code> (macOS). The path can be overridden using the <code>GEMINI_CLI_SYSTEM_SETTINGS_PATH</code> environment variable.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Scope:</strong> Applies to all Gemini CLI sessions on the system, for all users. System settings act as overrides, taking precedence over all other settings files. May be useful for system administrators at enterprises to have controls over users&#x27; Gemini CLI setups.</li>
+</ul>
+</li>
+</ul>
+<p class="my-4 leading-7"><strong class="font-semibold">Note on environment variables in settings:</strong> String values within your <code>settings.json</code> files can reference environment variables using either <code>$VAR_NAME</code> or <code>${VAR_NAME}</code> syntax. These variables will be automatically resolved when the settings are loaded. For example, if you have an environment variable <code>MY_API_TOKEN</code>, you could use it in <code>settings.json</code> like this: <code>&quot;apiKey&quot;: &quot;$MY_API_TOKEN&quot;</code>.</p>
+<blockquote class="border-l-2 border-solid border-divider pl-4 my-6 transition-colors duration-500 blockquote_f1063">
+<p class="my-4 leading-7"><strong class="font-semibold">Note for Enterprise Users:</strong> For guidance on deploying and managing Gemini CLI in a corporate environment, please see the <a href="/cli/enterprise.html" class="link_a7cea  link_a9ef4 inline-link_f855c">Enterprise Configuration</a> documentation.</p>
+</blockquote>
+<h3 id="the-gemini-directory-in-your-project" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">The <code>.gemini</code> directory in your project<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#the-gemini-directory-in-your-project">#</a></h3>
+<p class="my-4 leading-7">In addition to a project settings file, a project&#x27;s <code>.gemini</code> directory can contain other project-specific files related to Gemini CLI&#x27;s operation, such as:</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><a href="#sandboxing" class="link_a7cea  link_a9ef4 inline-link_f855c">Custom sandbox profiles</a> (e.g., <code>.gemini/sandbox-macos-custom.sb</code>, <code>.gemini/sandbox.Dockerfile</code>).</li>
+</ul>
+<h3 id="available-settings-in-settingsjson" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">Available settings in <code>settings.json</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#available-settings-in-settingsjson">#</a></h3>
+<p class="my-4 leading-7">Settings are organized into categories. All settings should be placed within their corresponding top-level category object in your <code>settings.json</code> file.</p>
+<h4 id="general" class="mt-8 leading-6 text-lg title_fb7eb"><code>general</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#general">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>general.preferredEditor</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The preferred editor to open files in.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>general.vimMode</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Enable Vim keybindings.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>general.disableAutoUpdate</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Disable automatic updates.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>general.disableUpdateNag</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Disable update notification prompts.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>general.checkpointing.enabled</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Enable session checkpointing for recovery.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="ui" class="mt-8 leading-6 text-lg title_fb7eb"><code>ui</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#ui">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.theme</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The color theme for the UI. See <a href="/cli/themes.html" class="link_a7cea  link_a9ef4 inline-link_f855c">Themes</a> for available options.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.customThemes</code></strong> (object):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Custom theme definitions.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>{}</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.hideWindowTitle</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Hide the window title bar.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.hideTips</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Hide helpful tips in the UI.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.hideBanner</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Hide the application banner.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.hideFooter</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Hide the footer from the UI.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.showMemoryUsage</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Display memory usage information in the UI.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.showLineNumbers</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Show line numbers in the chat.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.showCitations</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Show citations for generated text in the chat.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ui.accessibility.disableLoadingPhrases</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Disable loading phrases for accessibility.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="ide" class="mt-8 leading-6 text-lg title_fb7eb"><code>ide</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#ide">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ide.enabled</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Enable IDE integration mode.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>ide.hasSeenNudge</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Whether the user has seen the IDE integration nudge.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="privacy" class="mt-8 leading-6 text-lg title_fb7eb"><code>privacy</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#privacy">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>privacy.usageStatisticsEnabled</code></strong> (boolean):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Enable collection of usage statistics.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>true</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="model" class="mt-8 leading-6 text-lg title_fb7eb"><code>model</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#model">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>model.name</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The Gemini model to use for conversations.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>model.maxSessionTurns</code></strong> (number):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Maximum number of user/model/tool turns to keep in a session. -1 means unlimited.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>-1</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>model.summarizeToolOutput</code></strong> (object):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Enables or disables the summarization of tool output. You can specify the token budget for the summarization using the <code>tokenBudget</code> setting. Note: Currently only the <code>run_shell_command</code> tool is supported. For example <code>{&quot;run_shell_command&quot;: {&quot;tokenBudget&quot;: 2000}}</code></li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>model.chatCompression.contextPercentageThreshold</code></strong> (number):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Sets the threshold for chat history compression as a percentage of the model&#x27;s total token limit. This is a value between 0 and 1 that applies to both automatic compression and the manual <code>/compress</code> command. For example, a value of <code>0.6</code> will trigger compression when the chat history exceeds 60% of the token limit.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>0.7</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>model.skipNextSpeakerCheck</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Skip the next speaker check.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="context" class="mt-8 leading-6 text-lg title_fb7eb"><code>context</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#context">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.fileName</code></strong> (string or array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The name of the context file(s).</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.importFormat</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The format to use when importing memory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.discoveryMaxDirs</code></strong> (number):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Maximum number of directories to search for memory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>200</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.includeDirectories</code></strong> (array):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Additional directories to include in the workspace context. Missing directories will be skipped with a warning.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>[]</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.loadFromIncludeDirectories</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Controls the behavior of the <code>/memory refresh</code> command. If set to <code>true</code>, <code>GEMINI.md</code> files should be loaded from all directories that are added. If set to <code>false</code>, <code>GEMINI.md</code> should only be loaded from the current directory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.fileFiltering.respectGitIgnore</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Respect .gitignore files when searching.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>true</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.fileFiltering.respectGeminiIgnore</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Respect .geminiignore files when searching.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>true</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>context.fileFiltering.enableRecursiveFileSearch</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Whether to enable searching recursively for filenames under the current tree when completing <code>@</code> prefixes in the prompt.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>true</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="tools" class="mt-8 leading-6 text-lg title_fb7eb"><code>tools</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#tools">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.sandbox</code></strong> (boolean or string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Sandbox execution environment (can be a boolean or a path string).</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.usePty</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Use node-pty for shell command execution. Fallback to child_process still applies.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.core</code></strong> (array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> This can be used to restrict the set of built-in tools <a href="/cli/enterprise.html#restricting-tool-access" class="link_a7cea  link_a9ef4 inline-link_f855c">with an allowlist</a>. See <a href="/core/tools-api.html#built-in-tools" class="link_a7cea  link_a9ef4 inline-link_f855c">Built-in Tools</a> for a list of core tools. The match semantics are the same as <code>tools.allowed</code>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.exclude</code></strong> (array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Tool names to exclude from discovery.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.allowed</code></strong> (array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> A list of tool names that will bypass the confirmation dialog. This is useful for tools that you trust and use frequently. For example, <code>[&quot;run_shell_command(git)&quot;, &quot;run_shell_command(npm test)&quot;]</code> will skip the confirmation dialog to run any <code>git</code> and <code>npm test</code> commands. See <a href="/tools/shell.html#command-restrictions" class="link_a7cea  link_a9ef4 inline-link_f855c">Shell Tool command restrictions</a> for details on prefix matching, command chaining, etc.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.discoveryCommand</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Command to run for tool discovery.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>tools.callCommand</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Defines a custom shell command for calling a specific tool that was discovered using <code>tools.discoveryCommand</code>. The shell command must meet the following criteria:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">It must take function <code>name</code> (exactly as in <a href="https://ai.google.dev/gemini-api/docs/function-calling#function-declarations" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c">function declaration</a>) as first command line argument.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">It must read function arguments as JSON on <code>stdin</code>, analogous to <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#functioncall" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c"><code>functionCall.args</code></a>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">It must return function output as JSON on <code>stdout</code>, analogous to <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#functionresponse" target="_blank" rel="noopener noreferrer" class="link_a7cea  link_a9ef4 inline-link_f855c"><code>functionResponse.response.content</code></a>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="mcp" class="mt-8 leading-6 text-lg title_fb7eb"><code>mcp</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#mcp">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>mcp.serverCommand</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Command to start an MCP server.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>mcp.allowed</code></strong> (array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> An allowlist of MCP servers to allow.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>mcp.excluded</code></strong> (array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> A denylist of MCP servers to exclude.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="security" class="mt-8 leading-6 text-lg title_fb7eb"><code>security</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#security">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>security.folderTrust.enabled</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Setting to track whether Folder trust is enabled.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>security.auth.selectedType</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The currently selected authentication type.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>security.auth.enforcedType</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The required auth type (useful for enterprises).</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>security.auth.useExternal</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Whether to use an external authentication flow.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="advanced" class="mt-8 leading-6 text-lg title_fb7eb"><code>advanced</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#advanced">#</a></h4>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>advanced.autoConfigureMemory</code></strong> (boolean):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Automatically configure Node.js memory limits.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>false</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>advanced.dnsResolutionOrder</code></strong> (string):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The DNS resolution order.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>advanced.excludedEnvVars</code></strong> (array of strings):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Environment variables to exclude from project context.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>[&quot;DEBUG&quot;,&quot;DEBUG_MODE&quot;]</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">
+<p class="my-4 leading-7"><strong class="font-semibold"><code>advanced.bugCommand</code></strong> (object):</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> Configuration for the bug report command.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Default:</strong> <code>undefined</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="mcpservers" class="mt-8 leading-6 text-lg title_fb7eb"><code>mcpServers</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#mcpservers">#</a></h4>
+<p class="my-4 leading-7">Configures connections to one or more Model-Context Protocol (MCP) servers for discovering and using custom tools. Gemini CLI attempts to connect to each configured MCP server to discover available tools. If multiple MCP servers expose a tool with the same name, the tool names will be prefixed with the server alias you defined in the configuration (e.g., <code>serverAlias__actualToolName</code>) to avoid conflicts. Note that the system might strip certain schema properties from MCP tool definitions for compatibility. At least one of <code>command</code>, <code>url</code>, or <code>httpUrl</code> must be provided. If multiple are specified, the order of precedence is <code>httpUrl</code>, then <code>url</code>, then <code>command</code>.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>mcpServers.&lt;SERVER_NAME&gt;</code></strong> (object): The server parameters for the named server.<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>command</code> (string, optional): The command to execute to start the MCP server via standard I/O.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>args</code> (array of strings, optional): Arguments to pass to the command.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>env</code> (object, optional): Environment variables to set for the server process.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>cwd</code> (string, optional): The working directory in which to start the server.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>url</code> (string, optional): The URL of an MCP server that uses Server-Sent Events (SSE) for communication.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>httpUrl</code> (string, optional): The URL of an MCP server that uses streamable HTTP for communication.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>headers</code> (object, optional): A map of HTTP headers to send with requests to <code>url</code> or <code>httpUrl</code>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>timeout</code> (number, optional): Timeout in milliseconds for requests to this MCP server.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>trust</code> (boolean, optional): Trust this server and bypass all tool call confirmations.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>description</code> (string, optional): A brief description of the server, which may be used for display purposes.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>includeTools</code> (array of strings, optional): List of tool names to include from this MCP server. When specified, only the tools listed here will be available from this server (allowlist behavior). If not specified, all tools from the server are enabled by default.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>excludeTools</code> (array of strings, optional): List of tool names to exclude from this MCP server. Tools listed here will not be available to the model, even if they are exposed by the server. <strong class="font-semibold">Note:</strong> <code>excludeTools</code> takes precedence over <code>includeTools</code> - if a tool is in both lists, it will be excluded.</li>
+</ul>
+</li>
+</ul>
+<h4 id="telemetry" class="mt-8 leading-6 text-lg title_fb7eb"><code>telemetry</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#telemetry">#</a></h4>
+<p class="my-4 leading-7">Configures logging and metrics collection for Gemini CLI. For more information, see <a href="/telemetry.html" class="link_a7cea  link_a9ef4 inline-link_f855c">Telemetry</a>.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Properties:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>enabled</code></strong> (boolean): Whether or not telemetry is enabled.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>target</code></strong> (string): The destination for collected telemetry. Supported values are <code>local</code> and <code>gcp</code>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>otlpEndpoint</code></strong> (string): The endpoint for the OTLP Exporter.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>otlpProtocol</code></strong> (string): The protocol for the OTLP Exporter (<code>grpc</code> or <code>http</code>).</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>logPrompts</code></strong> (boolean): Whether or not to include the content of user prompts in the logs.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>outfile</code></strong> (string): The file to write telemetry to when <code>target</code> is <code>local</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-settingsjson" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">Example <code>settings.json</code><a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#example-settingsjson">#</a></h3>
+<p class="my-4 leading-7">Here is an example of a <code>settings.json</code> file with the nested structure, new as of v0.3.0:</p>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;general&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;vimMode&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;preferredEditor&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;code&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;ui&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;theme&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;GitHub&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;hideBanner&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;hideTips&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;tools&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;sandbox&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;docker&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;discoveryCommand&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;bin/get_tools&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;callCommand&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;bin/call_tool&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;exclude&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;write_file&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;mcpServers&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;mainServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;bin/mcp_server.py&quot;</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;anotherServer&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;node&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;args&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;mcp_server.js&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;--verbose&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;telemetry&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;enabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;target&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;local&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;otlpEndpoint&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;http://localhost:4317&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;logPrompts&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;privacy&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;usageStatisticsEnabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;model&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;name&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;gemini-1.5-pro-latest&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;maxSessionTurns&quot;</span><span class="token operator">:</span><span> </span><span class="token number">10</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;summarizeToolOutput&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;run_shell_command&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>        </span><span class="token" style="color:var(--code-token-parameter)">&quot;tokenBudget&quot;</span><span class="token operator">:</span><span> </span><span class="token number">100</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;context&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;fileName&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;CONTEXT.md&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;GEMINI.md&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;includeDirectories&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;path/to/dir1&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;~/path/to/dir2&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;../path/to/dir3&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;loadFromIncludeDirectories&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">true</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;fileFiltering&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>      </span><span class="token" style="color:var(--code-token-parameter)">&quot;respectGitIgnore&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;advanced&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;excludedEnvVars&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">[</span><span class="token" style="color:var(--code-token-string)">&quot;DEBUG&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;DEBUG_MODE&quot;</span><span class="token" style="color:var(--code-token-punctuation)">,</span><span> </span><span class="token" style="color:var(--code-token-string)">&quot;NODE_ENV&quot;</span><span class="token" style="color:var(--code-token-punctuation)">]</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<h2 id="shell-history" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Shell History<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#shell-history">#</a></h2>
+<p class="my-4 leading-7">The CLI keeps a history of shell commands you run. To avoid conflicts between different projects, this history is stored in a project-specific directory within your user&#x27;s home folder.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Location:</strong> <code>~/.gemini/tmp/&lt;project_hash&gt;/shell_history</code>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>&lt;project_hash&gt;</code> is a unique identifier generated from your project&#x27;s root path.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">The history is stored in a file named <code>shell_history</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="environment-variables--env-files" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Environment Variables &amp; <code>.env</code> Files<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#environment-variables--env-files">#</a></h2>
+<p class="my-4 leading-7">Environment variables are a common way to configure applications, especially for sensitive information like API keys or for settings that might change between environments. For authentication setup, see the <a href="/cli/authentication.html" class="link_a7cea  link_a9ef4 inline-link_f855c">Authentication documentation</a> which covers all available authentication methods.</p>
+<p class="my-4 leading-7">The CLI automatically loads environment variables from an <code>.env</code> file. The loading order is:</p>
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>.env</code> file in the current working directory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">If not found, it searches upwards in parent directories until it finds an <code>.env</code> file or reaches the project root (identified by a <code>.git</code> folder) or the home directory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">If still not found, it looks for <code>~/.env</code> (in the user&#x27;s home directory).</li>
+</ol>
+<p class="my-4 leading-7"><strong class="font-semibold">Environment Variable Exclusion:</strong> Some environment variables (like <code>DEBUG</code> and <code>DEBUG_MODE</code>) are automatically excluded from being loaded from project <code>.env</code> files to prevent interference with gemini-cli behavior. Variables from <code>.gemini/.env</code> files are never excluded. You can customize this behavior using the <code>advanced.excludedEnvVars</code> setting in your <code>settings.json</code> file.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GEMINI_API_KEY</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Your API key for the Gemini API.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">One of several available <a href="/cli/authentication.html" class="link_a7cea  link_a9ef4 inline-link_f855c">authentication methods</a>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Set this in your shell profile (e.g., <code>~/.bashrc</code>, <code>~/.zshrc</code>) or an <code>.env</code> file.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GEMINI_MODEL</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Specifies the default Gemini model to use.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Overrides the hardcoded default</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>export GEMINI_MODEL=&quot;gemini-2.5-flash&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_API_KEY</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Your Google Cloud API key.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Required for using Vertex AI in express mode.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Ensure you have the necessary permissions.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>export GOOGLE_API_KEY=&quot;YOUR_GOOGLE_API_KEY&quot;</code>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_CLOUD_PROJECT</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Your Google Cloud Project ID.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Required for using Code Assist or Vertex AI.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">If using Vertex AI, ensure you have the necessary permissions in this project.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Cloud Shell Note:</strong> When running in a Cloud Shell environment, this variable defaults to a special project allocated for Cloud Shell users. If you have <code>GOOGLE_CLOUD_PROJECT</code> set in your global environment in Cloud Shell, it will be overridden by this default. To use a different project in Cloud Shell, you must define <code>GOOGLE_CLOUD_PROJECT</code> in a <code>.env</code> file.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>export GOOGLE_CLOUD_PROJECT=&quot;YOUR_PROJECT_ID&quot;</code>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_APPLICATION_CREDENTIALS</code></strong> (string):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Description:</strong> The path to your Google Application Credentials JSON file.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Example:</strong> <code>export GOOGLE_APPLICATION_CREDENTIALS=&quot;/path/to/your/credentials.json&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>OTLP_GOOGLE_CLOUD_PROJECT</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Your Google Cloud Project ID for Telemetry in Google Cloud</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>export OTLP_GOOGLE_CLOUD_PROJECT=&quot;YOUR_PROJECT_ID&quot;</code>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GOOGLE_CLOUD_LOCATION</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Your Google Cloud Project Location (e.g., us-central1).</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Required for using Vertex AI in non express mode.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>export GOOGLE_CLOUD_LOCATION=&quot;YOUR_PROJECT_LOCATION&quot;</code>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>GEMINI_SANDBOX</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Alternative to the <code>sandbox</code> setting in <code>settings.json</code>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Accepts <code>true</code>, <code>false</code>, <code>docker</code>, <code>podman</code>, or a custom command string.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>SEATBELT_PROFILE</code></strong> (macOS specific):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Switches the Seatbelt (<code>sandbox-exec</code>) profile on macOS.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>permissive-open</code>: (Default) Restricts writes to the project folder (and a few other folders, see <code>packages/cli/src/utils/sandbox-macos-permissive-open.sb</code>) but allows other operations.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>strict</code>: Uses a strict profile that declines operations by default.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>&lt;profile_name&gt;</code>: Uses a custom profile. To define a custom profile, create a file named <code>sandbox-macos-&lt;profile_name&gt;.sb</code> in your project&#x27;s <code>.gemini/</code> directory (e.g., <code>my-project/.gemini/sandbox-macos-custom.sb</code>).</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>DEBUG</code> or <code>DEBUG_MODE</code></strong> (often used by underlying libraries or the CLI itself):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Set to <code>true</code> or <code>1</code> to enable verbose debug logging, which can be helpful for troubleshooting.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Note:</strong> These variables are automatically excluded from project <code>.env</code> files by default to prevent interference with gemini-cli behavior. Use <code>.gemini/.env</code> files if you need to set these for gemini-cli specifically.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>NO_COLOR</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Set to any value to disable all color output in the CLI.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>CLI_TITLE</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Set to a string to customize the title of the CLI.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>CODE_ASSIST_ENDPOINT</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Specifies the endpoint for the code assist server.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">This is useful for development and testing.</li>
+</ul>
+</li>
+</ul>
+<h2 id="command-line-arguments" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Command-Line Arguments<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#command-line-arguments">#</a></h2>
+<p class="my-4 leading-7">Arguments passed directly when running the CLI can override other configurations for that specific session.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--model &lt;model_name&gt;</code></strong> (<strong class="font-semibold"><code>-m &lt;model_name&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Specifies the Gemini model to use for this session.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>npm start -- --model gemini-1.5-pro-latest</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--prompt &lt;your_prompt&gt;</code></strong> (<strong class="font-semibold"><code>-p &lt;your_prompt&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Used to pass a prompt directly to the command. This invokes Gemini CLI in a non-interactive mode.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--prompt-interactive &lt;your_prompt&gt;</code></strong> (<strong class="font-semibold"><code>-i &lt;your_prompt&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Starts an interactive session with the provided prompt as the initial input.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">The prompt is processed within the interactive session, not before it.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Cannot be used when piping input from stdin.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>gemini -i &quot;explain this code&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--sandbox</code></strong> (<strong class="font-semibold"><code>-s</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables sandbox mode for this session.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--sandbox-image</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Sets the sandbox image URI.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--debug</code></strong> (<strong class="font-semibold"><code>-d</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables debug mode for this session, providing more verbose output.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--all-files</code></strong> (<strong class="font-semibold"><code>-a</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">If set, recursively includes all files within the current directory as context for the prompt.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--help</code></strong> (or <strong class="font-semibold"><code>-h</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Displays help information about command-line arguments.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--show-memory-usage</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Displays the current memory usage.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--yolo</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables YOLO mode, which automatically approves all tool calls.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--approval-mode &lt;mode&gt;</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Sets the approval mode for tool calls. Available modes:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><code>default</code>: Prompt for approval on each tool call (default behavior)</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>auto_edit</code>: Automatically approve edit tools (replace, write_file) while prompting for others</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><code>yolo</code>: Automatically approve all tool calls (equivalent to <code>--yolo</code>)</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Cannot be used together with <code>--yolo</code>. Use <code>--approval-mode=yolo</code> instead of <code>--yolo</code> for the new unified approach.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>gemini --approval-mode auto_edit</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--allowed-tools &lt;tool1,tool2,...&gt;</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">A comma-separated list of tool names that will bypass the confirmation dialog.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>gemini --allowed-tools &quot;ShellTool(git status)&quot;</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables <a href="/telemetry.html" class="link_a7cea  link_a9ef4 inline-link_f855c">telemetry</a>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-target</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Sets the telemetry target. See <a href="/telemetry.html" class="link_a7cea  link_a9ef4 inline-link_f855c">telemetry</a> for more information.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-otlp-endpoint</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Sets the OTLP endpoint for telemetry. See <a href="/telemetry.html" class="link_a7cea  link_a9ef4 inline-link_f855c">telemetry</a> for more information.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-otlp-protocol</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Sets the OTLP protocol for telemetry (<code>grpc</code> or <code>http</code>). Defaults to <code>grpc</code>. See <a href="/telemetry.html" class="link_a7cea  link_a9ef4 inline-link_f855c">telemetry</a> for more information.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--telemetry-log-prompts</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables logging of prompts for telemetry. See <a href="/telemetry.html" class="link_a7cea  link_a9ef4 inline-link_f855c">telemetry</a> for more information.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--checkpointing</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables <a href="/checkpointing.html" class="link_a7cea  link_a9ef4 inline-link_f855c">checkpointing</a>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--extensions &lt;extension_name ...&gt;</code></strong> (<strong class="font-semibold"><code>-e &lt;extension_name ...&gt;</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Specifies a list of extensions to use for the session. If not provided, all available extensions are used.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Use the special term <code>gemini -e none</code> to disable all extensions.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>gemini -e my-extension -e my-other-extension</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--list-extensions</code></strong> (<strong class="font-semibold"><code>-l</code></strong>):<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Lists all available extensions and exits.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--proxy</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Sets the proxy for the CLI.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>--proxy http://localhost:7890</code>.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--include-directories &lt;dir1,dir2,...&gt;</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Includes additional directories in the workspace for multi-directory support.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Can be specified multiple times or as comma-separated values.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">5 directories can be added at maximum.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Example: <code>--include-directories /path/to/project1,/path/to/project2</code> or <code>--include-directories /path/to/project1 --include-directories /path/to/project2</code></li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--screen-reader</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Enables screen reader mode, which adjusts the TUI for better compatibility with screen readers.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold"><code>--version</code></strong>:<!-- -->
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Displays the version of the CLI.</li>
+</ul>
+</li>
+</ul>
+<h2 id="context-files-hierarchical-instructional-context" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Context Files (Hierarchical Instructional Context)<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#context-files-hierarchical-instructional-context">#</a></h2>
+<p class="my-4 leading-7">While not strictly configuration for the CLI&#x27;s <em>behavior</em>, context files (defaulting to <code>GEMINI.md</code> but configurable via the <code>context.fileName</code> setting) are crucial for configuring the <em>instructional context</em> (also referred to as &quot;memory&quot;) provided to the Gemini model. This powerful feature allows you to give project-specific instructions, coding style guides, or any relevant background information to the AI, making its responses more tailored and accurate to your needs. The CLI includes UI elements, such as an indicator in the footer showing the number of loaded context files, to keep you informed about the active context.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Purpose:</strong> These Markdown files contain instructions, guidelines, or context that you want the Gemini model to be aware of during your interactions. The system is designed to manage this instructional context hierarchically.</li>
+</ul>
+<h3 id="example-context-file-content-eg-geminimd" class="mt-10 mb-2 leading-7 text-xl title_fb7eb">Example Context File Content (e.g., <code>GEMINI.md</code>)<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#example-context-file-content-eg-geminimd">#</a></h3>
+<p class="my-4 leading-7">Here&#x27;s a conceptual example of what a context file at the root of a TypeScript project might contain:</p>
+<div class="language-markdown"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-markdown" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">#</span><span class="token" style="color:#EBCB8B;font-weight:bold"> Project: My Awesome TypeScript Library</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> General Instructions:</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> When generating new TypeScript code, please follow the existing coding style.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Ensure all new functions and classes have JSDoc comments.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Prefer functional programming paradigms where appropriate.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> All code should be compatible with TypeScript 5.0 and Node.js 20+.
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> Coding Style:</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Use 2 spaces for indentation.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Interface names should be prefixed with </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`I`</span><span> (e.g., </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`IUserService`</span><span>).
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Private class members should be prefixed with an underscore (</span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`_`</span><span>).
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Always use strict equality (</span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`===`</span><span> and </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`!==`</span><span>).
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> Specific Component: `src/api/client.ts`</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> This file handles all outbound API requests.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> When adding new API call functions, ensure they include robust error handling and logging.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Use the existing </span><span class="token code-snippet code" style="color:var(--code-token-keyword)">`fetchWithRetry`</span><span> utility for all GET requests.
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation);font-weight:bold">##</span><span class="token" style="color:#EBCB8B;font-weight:bold"> Regarding Dependencies:</span><span>
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> Avoid introducing new external dependencies unless absolutely necessary.
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token list" style="color:var(--code-token-punctuation)">-</span><span> If a new dependency is required, please state the reason.</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<p class="my-4 leading-7">This example demonstrates how you can provide general project context, specific coding conventions, and even notes about particular files or components. The more relevant and precise your context files are, the better the AI can assist you. Project-specific context files are highly encouraged to establish conventions and context.</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Hierarchical Loading and Precedence:</strong> The CLI implements a sophisticated hierarchical memory system by loading context files (e.g., <code>GEMINI.md</code>) from several locations. Content from files lower in this list (more specific) typically overrides or supplements content from files higher up (more general). The exact concatenation order and final context can be inspected using the <code>/memory show</code> command. The typical loading order is:<!-- -->
+<ol class="list-decimal pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Global Context File:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Location: <code>~/.gemini/&lt;configured-context-filename&gt;</code> (e.g., <code>~/.gemini/GEMINI.md</code> in your user home directory).</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Scope: Provides default instructions for all your projects.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Project Root &amp; Ancestors Context Files:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Location: The CLI searches for the configured context file in the current working directory and then in each parent directory up to either the project root (identified by a <code>.git</code> folder) or your home directory.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Scope: Provides context relevant to the entire project or a significant portion of it.</li>
+</ul>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Sub-directory Context Files (Contextual/Local):</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Location: The CLI also scans for the configured context file in subdirectories <em>below</em> the current working directory (respecting common ignore patterns like <code>node_modules</code>, <code>.git</code>, etc.). The breadth of this search is limited to 200 directories by default, but can be configured with the <code>context.discoveryMaxDirs</code> setting in your <code>settings.json</code> file.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Scope: Allows for highly specific instructions relevant to a particular component, module, or subsection of your project.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Concatenation &amp; UI Indication:</strong> The contents of all found context files are concatenated (with separators indicating their origin and path) and provided as part of the system prompt to the Gemini model. The CLI footer displays the count of loaded context files, giving you a quick visual cue about the active instructional context.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Importing Content:</strong> You can modularize your context files by importing other Markdown files using the <code>@path/to/file.md</code> syntax. For more details, see the <a href="/core/memport.html" class="link_a7cea  link_a9ef4 inline-link_f855c">Memory Import Processor documentation</a>.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Commands for Memory Management:</strong>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Use <code>/memory refresh</code> to force a re-scan and reload of all context files from all configured locations. This updates the AI&#x27;s instructional context.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Use <code>/memory show</code> to display the combined instructional context currently loaded, allowing you to verify the hierarchy and content being used by the AI.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">See the <a href="/cli/commands.html#memory" class="link_a7cea  link_a9ef4 inline-link_f855c">Commands documentation</a> for full details on the <code>/memory</code> command and its sub-commands (<code>show</code> and <code>refresh</code>).</li>
+</ul>
+</li>
+</ul>
+<p class="my-4 leading-7">By understanding and utilizing these configuration layers and the hierarchical nature of context files, you can effectively manage the AI&#x27;s memory and tailor the Gemini CLI&#x27;s responses to your specific needs and projects.</p>
+<h2 id="sandboxing" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Sandboxing<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#sandboxing">#</a></h2>
+<p class="my-4 leading-7">The Gemini CLI can execute potentially unsafe operations (like shell commands and file modifications) within a sandboxed environment to protect your system.</p>
+<p class="my-4 leading-7">Sandboxing is disabled by default, but you can enable it in a few ways:</p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2">Using <code>--sandbox</code> or <code>-s</code> flag.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Setting <code>GEMINI_SANDBOX</code> environment variable.</li>
+<li class="[&amp;:not(:first-child)]:mt-2">Sandbox is enabled when using <code>--yolo</code> or <code>--approval-mode=yolo</code> by default.</li>
+</ul>
+<p class="my-4 leading-7">By default, it uses a pre-built <code>gemini-cli-sandbox</code> Docker image.</p>
+<p class="my-4 leading-7">For project-specific sandboxing needs, you can create a custom Dockerfile at <code>.gemini/sandbox.Dockerfile</code> in your project&#x27;s root directory. This Dockerfile can be based on the base sandbox image:</p>
+<div class="language-dockerfile"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-dockerfile" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span>FROM gemini-cli-sandbox
+</span></span><span style="display:block;padding:0 1.25rem">
+</span><span style="display:block;padding:0 1.25rem"># Add your custom dependencies or configurations here
+</span><span style="display:block;padding:0 1.25rem"># For example:
+</span><span style="display:block;padding:0 1.25rem"># RUN apt-get update &amp;&amp; apt-get install -y some-package
+</span><span style="display:block;padding:0 1.25rem"># COPY ./my-config /app/my-config</span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<p class="my-4 leading-7">When <code>.gemini/sandbox.Dockerfile</code> exists, you can use <code>BUILD_SANDBOX</code> environment variable when running Gemini CLI to automatically build the custom sandbox image:</p>
+<div class="language-bash"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-bash" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token assign-left" style="color:var(--code-token-variable)">BUILD_SANDBOX</span><span class="token operator">=</span><span class="token number">1</span><span> gemini -s</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div>
+<h2 id="usage-statistics" class="mt-12 mb-6 pt-8 text-2xl tracking-tight border-t-[1px] border-divider-light title_fb7eb">Usage Statistics<a class="link_a7cea header-anchor link_a9ef4 inline-link_f855c" aria-hidden="true" href="#usage-statistics">#</a></h2>
+<p class="my-4 leading-7">To help us improve the Gemini CLI, we collect anonymized usage statistics. This data helps us understand how the CLI is used, identify common issues, and prioritize new features.</p>
+<p class="my-4 leading-7"><strong class="font-semibold">What we collect:</strong></p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Tool Calls:</strong> We log the names of the tools that are called, whether they succeed or fail, and how long they take to execute. We do not collect the arguments passed to the tools or any data returned by them.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">API Requests:</strong> We log the Gemini model used for each request, the duration of the request, and whether it was successful. We do not collect the content of the prompts or responses.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Session Information:</strong> We collect information about the configuration of the CLI, such as the enabled tools and the approval mode.</li>
+</ul>
+<p class="my-4 leading-7"><strong class="font-semibold">What we DON&#x27;T collect:</strong></p>
+<ul class="list-disc pl-5 my-4 leading-7">
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Personally Identifiable Information (PII):</strong> We do not collect any personal information, such as your name, email address, or API keys.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">Prompt and Response Content:</strong> We do not log the content of your prompts or the responses from the Gemini model.</li>
+<li class="[&amp;:not(:first-child)]:mt-2"><strong class="font-semibold">File Content:</strong> We do not log the content of any files that are read or written by the CLI.</li>
+</ul>
+<p class="my-4 leading-7"><strong class="font-semibold">How to opt out:</strong></p>
+<p class="my-4 leading-7">You can opt out of usage statistics collection at any time by setting the <code>usageStatisticsEnabled</code> property to <code>false</code> under the <code>privacy</code> category in your <code>settings.json</code> file:</p>
+<div class="language-json"><div class="rspress-code-content rspress-scrollbar"><div><pre class="code" style="background-color:inherit"><code class="language-json" style="white-space:pre"><span style="display:block;padding:0 1.25rem"><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-parameter)">&quot;privacy&quot;</span><span class="token operator">:</span><span> </span><span class="token" style="color:var(--code-token-punctuation)">{</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>    </span><span class="token" style="color:var(--code-token-parameter)">&quot;usageStatisticsEnabled&quot;</span><span class="token operator">:</span><span> </span><span class="token boolean">false</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span>  </span><span class="token" style="color:var(--code-token-punctuation)">}</span><span>
+</span></span><span style="display:block;padding:0 1.25rem"><span></span><span class="token" style="color:var(--code-token-punctuation)">}</span></span></code></pre></div><div class="code-button-group_fb445"><button title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrapped_fb89b"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="icon-wrap_ccd3d"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="code-copy-button_c5089" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 30 30" class="icon-copy_ef942"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"></path></svg><svg width="32" height="32" viewBox="0 0 30 30" class="icon-success_d5ec0"><path fill="#49cd37" d="m13 24-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9z"></path></svg></button></div></div></div><!--/$--></div><div class="rspress-doc-footer"><footer class="mt-8"><div class="xs:flex pb-5 px-2 justify-end items-center"></div><div class="flex flex-col"></div><div class="flex flex-col sm:flex-row sm:justify-around gap-4 pt-6"><div class="prev_c92d1 flex flex-col"><a href="/cli/commands.html" class="link_a7cea pager-link_e0d2d"><span class="desc_dcc01">Previous Page</span><span class="title_a3acb">Commands</span></a></div><div class="next_c11be flex flex-col"><a href="/cli/authentication.html" class="link_a7cea pager-link_e0d2d next_ad355"><span class="desc_dcc01">Next Page</span><span class="title_a3acb">Authentication</span></a></div></div></footer></div></div><div class="aside-container_bc5fa"><div class="flex flex-col"><div id="aside-container" class="relative text-sm font-medium"><div class="leading-7 block text-sm font-semibold pl-3">ON THIS PAGE</div><nav class="mt-1"><ul class="relative"><li><a href="#configuration-layers" title="Configuration layers" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Configuration layers</span></a></li><li><a href="#settings-files" title="Settings files" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Settings files</span></a></li><li><a href="#the-gemini-directory-in-your-project" title="The .gemini directory in your project" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">The <code>.gemini</code> directory in your project</span></a></li><li><a href="#available-settings-in-settingsjson" title="Available settings in settings.json" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">Available settings in <code>settings.json</code></span></a></li><li><a href="#general" title="general" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>general</code></span></a></li><li><a href="#ui" title="ui" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>ui</code></span></a></li><li><a href="#ide" title="ide" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>ide</code></span></a></li><li><a href="#privacy" title="privacy" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>privacy</code></span></a></li><li><a href="#model" title="model" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>model</code></span></a></li><li><a href="#context" title="context" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>context</code></span></a></li><li><a href="#tools" title="tools" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>tools</code></span></a></li><li><a href="#mcp" title="mcp" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>mcp</code></span></a></li><li><a href="#security" title="security" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>security</code></span></a></li><li><a href="#advanced" title="advanced" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>advanced</code></span></a></li><li><a href="#mcpservers" title="mcpServers" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>mcpServers</code></span></a></li><li><a href="#telemetry" title="telemetry" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:24px;font-weight:semibold"><span class="aside-link-text block"><code>telemetry</code></span></a></li><li><a href="#example-settingsjson" title="Example settings.json" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">Example <code>settings.json</code></span></a></li><li><a href="#shell-history" title="Shell History" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Shell History</span></a></li><li><a href="#environment-variables--env-files" title="Environment Variables &amp; .env Files" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Environment Variables &amp; <code>.env</code> Files</span></a></li><li><a href="#command-line-arguments" title="Command-Line Arguments" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Command-Line Arguments</span></a></li><li><a href="#context-files-hierarchical-instructional-context" title="Context Files (Hierarchical Instructional Context)" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Context Files (Hierarchical Instructional Context)</span></a></li><li><a href="#example-context-file-content-eg-geminimd" title="Example Context File Content (e.g., GEMINI.md)" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:12px;font-weight:semibold"><span class="aside-link-text block">Example Context File Content (e.g., <code>GEMINI.md</code>)</span></a></li><li><a href="#sandboxing" title="Sandboxing" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Sandboxing</span></a></li><li><a href="#usage-statistics" title="Usage Statistics" class="aside-link transition-all duration-300 hover:text-text-1 text-text-2 block" style="margin-left:0;font-weight:semibold"><span class="aside-link-text block">Usage Statistics</span></a></li></ul></nav></div></div></div></div></div></div></section></div>
+    <div id="search-container"></div>
+  </body>
+</html>
