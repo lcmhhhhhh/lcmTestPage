@@ -169,10 +169,6 @@ const config: UserConfig = {
               link: '/ide-integration',
             },
             {
-              text: '遥测',
-              link: '/telemetry',
-            },
-            {
               text: 'NPM',
               link: '/npm',
             },
@@ -300,10 +296,6 @@ const config: UserConfig = {
             {
               text: 'IDE Integration',
               link: '/en/ide-integration',
-            },
-            {
-              text: 'Telemetry',
-              link: '/en/telemetry',
             },
             {
               text: 'NPM',

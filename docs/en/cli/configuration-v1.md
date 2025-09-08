@@ -4,9 +4,6 @@
 
 This document describes the legacy v1 format for the `settings.json` file. This format is now deprecated.
 
-- The new format will be supported in the stable release starting **[09/10/25]**.
-- Automatic migration from the old format to the new format will begin on **[09/17/25]**.
-
 For details on the new, recommended format, please see the [current Configuration documentation](./configuration.md).
 
 VeCLI offers several ways to configure its behavior, including environment variables, command-line arguments, and settings files. This document outlines the different configuration methods and available settings.

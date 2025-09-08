@@ -33,25 +33,7 @@ This is the recommended way for end-users to install VeCLI. It involves download
 
 ---
 
-### 2. Running in a sandbox (Docker/Podman)
-
-For security and isolation, VeCLI can be run inside a container. This is the default way that the CLI executes tools that might have side effects.
-
-- **Directly from the Registry:**
-  You can run the published sandbox image directly. This is useful for environments where you only have Docker and want to run the CLI.
-  ```bash
-  # Run the published sandbox image
-  docker run --rm -it us-docker.pkg.dev/vecli-code-dev/vecli/sandbox:0.1.1
-  ```
-- **Using the `--sandbox` flag:**
-  If you have VeCLI installed locally (using the standard installation described above), you can instruct it to run inside the sandbox container.
-  ```bash
-  vecli --sandbox -y -p "your prompt here"
-  ```
-
----
-
-### 3. Running from source (Recommended for VeCLI contributors)
+### 2. Running from source (Recommended for VeCLI contributors)
 
 Contributors to the project will want to run the CLI directly from the source code.
 
@@ -74,7 +56,7 @@ Contributors to the project will want to run the CLI directly from the source co
 
 ---
 
-### 4. Running the latest VeCLI commit from GitHub
+### 3. Running the latest VeCLI commit from GitHub
 
 You can run the most recently committed version of VeCLI directly from the GitHub repository. This is useful for testing features still in development.
 

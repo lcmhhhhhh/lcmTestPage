@@ -11,7 +11,6 @@ VeCLI brings the capabilities of Volcano Engine models to your terminal in an in
 This documentation is organized into the following sections:
 
 - **[Execution and Deployment](./deployment.md):** Information for running VeCLI.
-- **[Architecture Overview](./architecture.md):** Understand the high-level design of VeCLI, including its components and how they interact.
 - **CLI Usage:** Documentation for `packages/cli`.
   - **[CLI Introduction](./cli/index.md):** Overview of the command-line interface.
   - **[Commands](./cli/commands.md):** Description of available CLI commands.
@@ -19,7 +18,6 @@ This documentation is organized into the following sections:
   - **[Checkpointing](./checkpointing.md):** Documentation for the checkpointing feature.
   - **[Extensions](./extension.md):** How to extend the CLI with new functionality.
   - **[IDE Integration](./ide-integration.md):** Connect the CLI to your editor.
-  - **[Telemetry](./telemetry.md):** Overview of telemetry in the CLI.
 - **Core Details:** Documentation for `packages/core`.
   - **[Core Introduction](./core/index.md):** Overview of the core component.
   - **[Tools API](./core/tools-api.md):** Information on how the core manages and exposes tools.

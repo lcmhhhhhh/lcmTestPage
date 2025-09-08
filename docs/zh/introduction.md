@@ -11,7 +11,6 @@ VeCLI 将火山引擎模型的功能带到您的终端，提供一个交互式�
 本文档组织如下：
 
 - **[执行与部署](./deployment.md):** 运行 VeCLI 的信息。
-- **[架构概述](./architecture.md):** 了解 VeCLI 的高层设计，包括其组件及交互方式。
 - **CLI 使用:** `packages/cli` 的文档。
   - **[CLI 介绍](./cli/index.md):** 命令行界面的概述。
   - **[命令](./cli/commands.md):** 可用 CLI 命令的描述。
@@ -19,7 +18,6 @@ VeCLI 将火山引擎模型的功能带到您的终端，提供一个交互式�
   - **[检查点](./checkpointing.md):** 检查点功能的文档。
   - **[扩展](./extension.md):** 如何使用新功能扩展 CLI。
   - **[IDE 集成](./ide-integration.md):** 将 CLI 连接到您的编辑器。
-  - **[遥测](./telemetry.md):** CLI 中遥测功能的概述。
 - **核心详情:** `packages/core` 的文档。
   - **[核心介绍](./core/index.md):** 核心组件的概述。
   - **[工具 API](./core/tools-api.md):** 有关核心如何管理和暴露工具的信息。

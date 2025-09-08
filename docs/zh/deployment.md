@@ -33,25 +33,7 @@
 
 ---
 
-### 2. 在沙盒中运行（Docker/Podman）
-
-为了安全和隔离，VeCLI 可以在容器内运行。这是 CLI 执行可能有副作用的工具的默认方式。
-
-- **直接从注册表运行：**
-  您可以直接运行已发布的沙盒镜像。这对于只有 Docker 并且想要运行 CLI 的环境很有用。
-  ```bash
-  # 运行已发布的沙盒镜像
-  docker run --rm -it us-docker.pkg.dev/vecli-code-dev/vecli/sandbox:0.1.1
-  ```
-- **使用 `--sandbox` 标志：**
-  如果您在本地安装了 VeCLI（使用上述标准安装），您可以指示它在沙盒容器内运行。
-  ```bash
-  vecli --sandbox -y -p "your prompt here"
-  ```
-
----
-
-### 3. 从源代码运行（推荐给 VeCLI 贡献者）
+### 2. 从源代码运行（推荐给 VeCLI 贡献者）
 
 项目的贡献者将希望直接从源代码运行 CLI。
 
@@ -74,7 +56,7 @@
 
 ---
 
-### 4. 从 GitHub 运行最新的 VeCLI 提交
+### 3. 从 GitHub 运行最新的 VeCLI 提交
 
 您可以直接从 GitHub 存储库运行最近提交的 VeCLI 版本。这对于测试仍在开发中的功能很有用。
 
@@ -104,9 +86,7 @@ VeCLI 项目是一个 monorepo，将两个核心包发布到 NPM 注册表：
 
 - **GitHub `npx` 执行：** 当直接从 GitHub 运行最新版本的 VeCLI 时，`package.json` 中的 `prepare` 脚本会触发不同的流程。该脚本使用 `esbuild` 将整个应用程序及其依赖项捆绑到一个单一的、自包含的 JavaScript 文件中。此捆绑包在用户的机器上即时创建，不会签入存储库。
 
-**Docker 沙盒镜像**
 
-基于 Docker 的执行方法由 `vecli-sandbox` 容器镜像支持。此镜像发布到容器注册表，包含预安装的全局 VeCLI 版本。
 
 ## 发布流程
 

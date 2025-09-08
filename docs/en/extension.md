@@ -47,33 +47,33 @@ Extensions can provide [custom commands](./cli/commands.md#custom-commands) by p
 
 ### Example
 
-An extension named `gcp` with the following structure:
+An extension named `example-extension` with the following structure:
 
 ```
-.vecli/extensions/gcp/
+.vecli/extensions/example-extension/
 ├── vecli-extension.json
 └── commands/
     ├── deploy.toml
-    └── gcs/
+    └── vecli/
         └── sync.toml
 ```
 
 Would provide these commands:
 
-- `/deploy` - Shows as `[gcp] Custom command from deploy.toml` in help
-- `/gcs:sync` - Shows as `[gcp] Custom command from sync.toml` in help
+- `/deploy` - Shows as `[example-extension] Custom command from deploy.toml` in help
+- `/vecli:sync` - Shows as `[example-extension] Custom command from sync.toml` in help
 
 ### Conflict Resolution
 
 Extension commands have the lowest precedence. When a conflict occurs with user or project commands:
 
 1. **No conflict**: Extension command uses its natural name (e.g., `/deploy`)
-2. **With conflict**: Extension command is renamed with the extension prefix (e.g., `/gcp.deploy`)
+2. **With conflict**: Extension command is renamed with the extension prefix (e.g., `/example-extension.deploy`)
 
-For example, if both a user and the `gcp` extension define a `deploy` command:
+For example, if both a user and the `example-extension` extension define a `deploy` command:
 
 - `/deploy` - Executes the user's deploy command
-- `/gcp.deploy` - Executes the extension's deploy command (marked with `[gcp]` tag)
+- `/example-extension.deploy` - Executes the extension's deploy command (marked with `[example-extension]` tag)
 
 # Variables
 
