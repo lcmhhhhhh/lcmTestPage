@@ -27,7 +27,7 @@ VeCLI 将火山引擎模型的功能带到您的终端，提供一个交互式�
   - **[多文件读取工具](./tools/multi-file.md):** `read_many_files` 工具的文档。
   - **[Shell 工具](./tools/shell.md):** `run_shell_command` 工具的文档。
   - **[网络获取工具](./tools/web-fetch.md):** `web_fetch` 工具的文档。
-  - **[内存工具](./tools/memory.md):** `save_memory` 工具的文档。
+  - **[记忆工具](./tools/memory.md):** `save_memory` 工具的文档。
 - **[贡献与开发指南](../CONTRIBUTING.md):** 面向贡献者和开发者的资讯，包括设置、构建、测试和编码规范。
 - **[NPM](./npm.md):** 有关项目包结构的详细信息。
 - **[故障排除指南](./troubleshooting.md):** 解决常见问题和 FAQ。

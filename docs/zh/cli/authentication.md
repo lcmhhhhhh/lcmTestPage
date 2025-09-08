@@ -17,30 +17,17 @@ VeCLI 需要您使用 Volcengine 的 AI 服务进行身份验证。在首次启�
 
     **方式一：环境变量配置**
     ```bash
-    export VOLC_ACCESS_KEY="your_access_key_here"
-    export VOLC_SECRET_KEY="your_secret_key_here"
+    export VOLCENGINE_ACCESS_KEY="your_access_key_here"
+    export VOLCENGINE_SECRET_KEY="your_secret_key_here"
   
     ```
 
     **方式二：配置文件**
-    在用户主目录下创建配置文件 `~/.vecli/config.json`：
-    ```json
-    {
-      "auth": {
-        "type": "volcengine",
-        "access_key": "your_access_key_here",
-        "secret_key": "your_secret_key_here",
-        "region": "cn-beijing"
-      }
-    }
+    在用户主目录下创建配置文件 `~/.ve/.env`：
     ```
-
-    **方式三：命令行参数**
-    ```bash
-    vecli --auth-type volcengine \
-          --access-key your_access_key_here \
-          --secret-key your_secret_key_here \
-          --region cn-beijing
+    "VOLCENGINE_ACCESS_KEY": "your ak",
+    "VOLCENGINE_SECRET_KEY": "your sk",
+    "OPENAI_API_KEY": "your api key"
     ```
 
     **验证配置：**
@@ -54,17 +41,17 @@ VeCLI 需要您使用 Volcengine 的 AI 服务进行身份验证。在首次启�
 
 2.  **<a id="vecli-api-key"></a>火山引擎 API 密钥：**
     - 从 火山引擎 获取您的 API 密钥：[https://www.volcengine.com/](https://www.volcengine.com/)
-    - 设置 `VECLI_API_KEY` 环境变量。在以下方法中，将 `YOUR_VECLI_API_KEY` 替换为您从 火山引擎方舟平台 获得的 API 密钥：
+    - 设置 `OPENAI_API_KEY` 环境变量。在以下方法中，将 `OPENAI_API_KEY` 替换为您从 火山引擎方舟平台 获得的 API 密钥：
       - 您可以使用以下命令在当前 shell 会话中临时设置环境变量：
         ```bash
-        export VECLI_API_KEY="YOUR_VECLI_API_KEY"
+        export OPENAI_API_KEY="your_model_api_key_here"
         ```
       - 对于重复使用，您可以将环境变量添加到您的 [.env 文件](#persisting-environment-variables-with-env-files) 中。
 
       - 或者，您可以从 shell 的配置文件（如 `~/.bashrc`、`~/.zshrc` 或 `~/.profile`）中导出 API 密钥。例如，以下命令将环境变量添加到 `~/.bashrc` 文件中：
 
         ```bash
-        echo 'export VECLI_API_KEY="YOUR_VE_API_KEY"' >> ~/.bashrc
+        echo 'export OPENAI_API_KEY="your_model_api_key_here"' >> ~/.bashrc
         source ~/.bashrc
         ```
 

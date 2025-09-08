@@ -1,4 +1,4 @@
-# 内存工具 (`save_memory`)
+# 记忆工具 (`save_memory`)
 
 本文档描述了 VeCLI 的 `save_memory` 工具。
 
@@ -41,4 +41,4 @@ save_memory(fact="The project I'm currently working on is called 'vecli'.")
 ## 重要提示
 
 - **一般用法:** 此工具应用于简洁、重要的事实。它不适用于存储大量数据或对话历史。
-- **内存文件:** 内存文件是一个纯文本 Markdown 文件，因此您可以根据需要手动查看和编辑它。
+- **记忆文件:** 记忆文件是一个纯文本 Markdown 文件，因此您可以根据需要手动查看和编辑它。

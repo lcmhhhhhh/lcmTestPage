@@ -134,11 +134,11 @@ const config: UserConfig = {
               link: '/tools/shell',
             },
             {
-              text: 'Web 抓取',
+              text: 'Web fetch',
               link: '/tools/web-fetch',
             },
             {
-              text: '内存',
+              text: '记忆',
               link: '/tools/memory',
             },
             {

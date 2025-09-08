@@ -17,8 +17,8 @@ The VeCLI requires you to authenticate with Volcengine's AI services. On initial
 
     **Method 1: Environment Variable Configuration**
     ```bash
-    export VOLC_ACCESS_KEY="your_access_key_here"
-    export VOLC_SECRET_KEY="your_secret_key_here"
+    export VOLCENGINE_ACCESS_KEY="your_access_key_here"
+    export VOLCENGINE_SECRET_KEY="your_secret_key_here"
     ```
 
     **Method 2: Configuration File**
@@ -53,17 +53,17 @@ The VeCLI requires you to authenticate with Volcengine's AI services. On initial
 
 2.  **<a id="volcengine-api-key"></a>Login with Volcengine API key:**
     - Obtain your API key from Volcengine: [https://www.volcengine.com/](https://www.volcengine.com/)
-    - Set the `VECLI_API_KEY` environment variable. In the following methods, replace `YOUR_VECLI_API_KEY` with the API key you obtained from Volcengine Ark Platform:
+    - Set the `OPENAI_API_KEY` environment variable. In the following methods, replace `OPENAI_API_KEY` with the API key you obtained from Volcengine Ark Platform:
       - You can temporarily set the environment variable in your current shell session using the following command:
         ```bash
-        export VECLI_API_KEY="YOUR_VECLI_API_KEY"
+        export OPENAI_API_KEY="your_model_api_key_here"
         ```
       - For repeated use, you can add the environment variable to your [.env file](#persisting-environment-variables-with-env-files).
 
       - Alternatively you can export the API key from your shell's configuration file (like `~/.bashrc`, `~/.zshrc`, or `~/.profile`). For example, the following command adds the environment variable to a `~/.bashrc` file:
 
         ```bash
-        echo 'export VECLI_API_KEY="YOUR_VE_API_KEY"' >> ~/.bashrc
+        echo 'export OPENAI_API_KEY="your_model_api_key_here"' >> ~/.bashrc
         source ~/.bashrc
         ```
 

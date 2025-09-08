@@ -45,8 +45,8 @@ VeCLI 核心 (`packages/core`) 具有一个强大的系统，用于定义、注�
 - **网络工具:**
   - `WebFetchTool` (`web-fetch.ts`): 从 URL 获取内容。
   - `WebSearchTool` (`web-search.ts`): 执行网络搜索。
-- **内存工具:**
-  - `MemoryTool` (`memoryTool.ts`): 与 AI 的内存交互。
+- **记忆工具:**
+  - `MemoryTool` (`memoryTool.ts`): 与 AI 的记忆交互。
 
 这些工具都扩展了 `BaseTool` 并实现了其特定功能所需的方法。
 

@@ -47,7 +47,7 @@ VeCLI 的内置工具可以大致分为以下几类：
 - **[网络获取工具](./web-fetch.md) (`web_fetch`)：** 用于从 URL 检索内容。
 - **[网络搜索工具](./web-search.md) (`web_search`)：** 用于搜索网络。
 - **[多文件读取工具](./multi-file.md) (`read_many_files`)：** 一种专门用于从多个文件或目录读取内容的工具，通常由 `@` 命令使用。
-- **[内存工具](./memory.md) (`save_memory`)：** 用于跨会话保存和回忆信息。
+- **[记忆工具](./memory.md) (`save_memory`)：** 用于跨会话保存和回忆信息。
 
 此外，这些工具还结合了：
 
