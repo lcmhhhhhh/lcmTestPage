@@ -151,7 +151,7 @@ const config: UserConfig = {
           text: '最佳实践',
           items: [
             {
-              text: '12306订票工具通过火山引擎vefaas部署',
+              text: '云上部署12306 MCP工具',
               link: '/examples/vecli-12306',
             },
         
@@ -284,7 +284,7 @@ const config: UserConfig = {
           text: 'Best practise',
           items: [
             {
-              text: '12306订票工具通过火山引擎vefaas部署',
+              text: 'Deploy 12306 ticket tool on Volc Engine Vefaas',
               link: 'en/examples/vecli-12306',
             },
         
