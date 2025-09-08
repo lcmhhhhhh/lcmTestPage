@@ -15,7 +15,7 @@
 - **全局安装：**
 
   ```bash
-  npm install -g @vecli/vecli
+  npm i @volc-iaas-test01/vecli@latest -g
   ```
 
   然后，从任何地方运行 CLI：
@@ -28,7 +28,7 @@
 
   ```bash
   # 从 NPM 执行最新版本，无需全局安装
-  npx @vecli/vecli
+  npx @volc-iaas-test01/vecli@latest
   ```
 
 ---
@@ -55,15 +55,6 @@
   ```
 
 ---
-
-### 3. 从 GitHub 运行最新的 VeCLI 提交
-
-您可以直接从 GitHub 存储库运行最近提交的 VeCLI 版本。这对于测试仍在开发中的功能很有用。
-
-```bash
-# 直接从 GitHub 上的 main 分支执行 CLI
-npx https://github.com/volcengine/vecli
-```
 
 ## 部署架构
 

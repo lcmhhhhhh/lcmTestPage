@@ -15,7 +15,7 @@ This is the recommended way for end-users to install VeCLI. It involves download
 - **Global install:**
 
   ```bash
-  npm install -g @vecli/vecli
+  npm i @volc-iaas-test01/vecli@latest -g
   ```
 
   Then, run the CLI from anywhere:
@@ -28,7 +28,7 @@ This is the recommended way for end-users to install VeCLI. It involves download
 
   ```bash
   # Execute the latest version from NPM without a global install
-  npx @vecli/vecli
+  npx @volc-iaas-test01/vecli@latest
   ```
 
 ---
@@ -55,15 +55,6 @@ Contributors to the project will want to run the CLI directly from the source co
   ```
 
 ---
-
-### 3. Running the latest VeCLI commit from GitHub
-
-You can run the most recently committed version of VeCLI directly from the GitHub repository. This is useful for testing features still in development.
-
-```bash
-# Execute the CLI directly from the main branch on GitHub
-npx https://github.com/volcengine/vecli
-```
 
 ## Deployment architecture
 
