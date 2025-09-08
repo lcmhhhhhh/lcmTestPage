@@ -178,26 +178,46 @@ The theme file must be a valid JSON file that follows the same structure as a cu
 
 ## Light Themes
 
+### ANSI
+
+![img](/theme-ansi.png)
+
+### Atom OneDark
+
+![img](/theme-atom-one.png)
+
+### Ayu
+
+![img](/theme-ayu.png)
+
+### Default
+
+![img](/theme-default.png)
+
+### Dracula
+
+![img](/theme-dracula.png)
+
+### GitHub
+
+![img](/theme-github.png)
+
+## 浅色主题
+
 ### ANSI Light
 
-<img src="../assets/theme-ansi-light.png" alt="ANSI Light theme" width="600">
+![img](/theme-ansi-light.png)
 
 ### Ayu Light
 
-<img src="../assets/theme-ayu-light.png" alt="Ayu Light theme" width="600">
+![img](/theme-ayu-light.png)
 
 ### Default Light
 
-<img src="../assets/theme-default-light.png" alt="Default Light theme" width="600">
+![img](/theme-default-light.png)
 
 ### GitHub Light
-
-<img src="../assets/theme-github-light.png" alt="GitHub Light theme" width="600">
-
-### Volcengine Code
-
-<img src="../assets/theme-volcengine-light.png" alt="Volcengine Code theme" width="600">
+![img](/theme-github-light.png)
 
 ### Xcode
-
-<img src="../assets/theme-xcode-light.png" alt="Xcode Light theme" width="600">
+![img](/theme-xcode-light.png)

@@ -86,9 +86,6 @@ There are two distinct build processes used, depending on the distribution chann
 
 - **GitHub `npx` execution:** When running the latest version of VeCLI directly from GitHub, a different process is triggered by the `prepare` script in `package.json`. This script uses `esbuild` to bundle the entire application and its dependencies into a single, self-contained JavaScript file. This bundle is created on-the-fly on the user's machine and is not checked into the repository.
 
-**Docker sandbox image**
-
-The Docker-based execution method is supported by the `vecli-sandbox` container image. This image is published to a container registry and contains a pre-installed, global version of VeCLI.
 
 ## Release process
 

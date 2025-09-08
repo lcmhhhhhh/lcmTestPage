@@ -154,50 +154,44 @@ VeCLI 允许您通过在 `settings.json` 文件中指定来自定义自己的颜
 
 ### ANSI
 
-<img src="../assets/theme-ansi.png" alt="ANSI 主题" width="600" />
+![img](/theme-ansi.png)
 
 ### Atom OneDark
 
-<img src="../assets/theme-atom-one.png" alt="Atom One 主题" width="600">
+![img](/theme-atom-one.png)
 
 ### Ayu
 
-<img src="../assets/theme-ayu.png" alt="Ayu 主题" width="600">
+![img](/theme-ayu.png)
 
 ### Default
 
-<img src="../assets/theme-default.png" alt="默认主题" width="600">
+![img](/theme-default.png)
 
 ### Dracula
 
-<img src="../assets/theme-dracula.png" alt="Dracula 主题" width="600">
+![img](/theme-dracula.png)
 
 ### GitHub
 
-<img src="../assets/theme-github.png" alt="GitHub 主题" width="600">
+![img](/theme-github.png)
 
 ## 浅色主题
 
 ### ANSI Light
 
-<img src="../assets/theme-ansi-light.png" alt="ANSI 浅色主题" width="600">
+![img](/theme-ansi-light.png)
 
 ### Ayu Light
 
-<img src="../assets/theme-ayu-light.png" alt="Ayu 浅色主题" width="600">
+![img](/theme-ayu-light.png)
 
 ### Default Light
 
-<img src="../assets/theme-default-light.png" alt="默认浅色主题" width="600">
+![img](/theme-default-light.png)
 
 ### GitHub Light
-
-<img src="../assets/theme-github-light.png" alt="GitHub 浅色主题" width="600">
-
-### Volcengine Code
-
-<img src="../assets/theme-volcengine-light.png" alt="Volcengine Code 主题" width="600">
+![img](/theme-github-light.png)
 
 ### Xcode
-
-<img src="../assets/theme-xcode-light.png" alt="Xcode 浅色主题" width="600">
+![img](/theme-xcode-light.png)

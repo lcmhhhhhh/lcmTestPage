@@ -2,7 +2,7 @@
 
 VeCLI 需要您使用 Volcengine 的 AI 服务进行身份验证。在首次启动时，您需要配置以下**一种**身份验证方法：
 
-1.  **使用火山引擎 AK/SK 登录：**
+**使用火山引擎 AK/SK 登录：**
     - 使用此选项通过火山引擎的 Access Key (AK) 和 Secret Key (SK) 进行身份认证。
     - 这种认证方式适用于服务器环境或自动化脚本中使用 VeCLI 的场景。
     - 认证信息将被安全缓存在本地，后续使用时无需重复配置。
@@ -38,23 +38,5 @@ VeCLI 需要您使用 Volcengine 的 AI 服务进行身份验证。在首次启�
     # 测试连接
     vecli test-connection
     ```
-
-2.  **<a id="vecli-api-key"></a>火山引擎 API 密钥：**
-    - 从 火山引擎 获取您的 API 密钥：[https://www.volcengine.com/](https://www.volcengine.com/)
-    - 设置 `OPENAI_API_KEY` 环境变量。在以下方法中，将 `OPENAI_API_KEY` 替换为您从 火山引擎方舟平台 获得的 API 密钥：
-      - 您可以使用以下命令在当前 shell 会话中临时设置环境变量：
-        ```bash
-        export OPENAI_API_KEY="your_model_api_key_here"
-        ```
-      - 对于重复使用，您可以将环境变量添加到您的 [.env 文件](#persisting-environment-variables-with-env-files) 中。
-
-      - 或者，您可以从 shell 的配置文件（如 `~/.bashrc`、`~/.zshrc` 或 `~/.profile`）中导出 API 密钥。例如，以下命令将环境变量添加到 `~/.bashrc` 文件中：
-
-        ```bash
-        echo 'export OPENAI_API_KEY="your_model_api_key_here"' >> ~/.bashrc
-        source ~/.bashrc
-        ```
-
-        :warning: 请注意，当您在 shell 配置文件中导出 API 密钥时，从该 shell 执行的任何其他进程都可以读取它。
 
 
