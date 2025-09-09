@@ -152,7 +152,7 @@ const config: UserConfig = {
           items: [
             {
               text: 'vecli 12306 mcp faas 部署实践',
-              link: '/examples/vecli-12306-2',
+              link: '/examples/vecli-12306',
             },
         
           ],
