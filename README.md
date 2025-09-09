@@ -1,7 +1,5 @@
 # VeCLI
 
-![VeCLI Screenshot](./docs/assets/gemini-screenshot.png)
-
 VeCLI is an open-source AI agent that brings the power of Vecli directly into your terminal. It provides lightweight access to Vecli, giving you the most direct path from your prompt to our model.
 
 ## 🚀 Why VeCLI?
