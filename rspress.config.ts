@@ -151,8 +151,8 @@ const config: UserConfig = {
           text: '最佳实践',
           items: [
             {
-              text: '云上部署12306 MCP工具',
-              link: '/examples/vecli-12306',
+              text: 'vecli 12306 mcp faas 部署实践',
+              link: '/examples/vecli-12306-2',
             },
         
           ],
