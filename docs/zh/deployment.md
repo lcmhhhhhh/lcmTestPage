@@ -15,7 +15,7 @@
 - **全局安装：**
 
   ```bash
-  npm i @volc-iaas-test01/vecli@latest -g
+  npm install -g @volcengine/vecli@latest
   ```
 
   然后，从任何地方运行 CLI：
@@ -28,7 +28,7 @@
 
   ```bash
   # 从 NPM 执行最新版本，无需全局安装
-  npx @volc-iaas-test01/vecli@latest
+  npx @volcengine/vecli@latest
   ```
 
 ---

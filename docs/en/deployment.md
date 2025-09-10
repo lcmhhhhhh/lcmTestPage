@@ -15,7 +15,7 @@ This is the recommended way for end-users to install VeCLI. It involves download
 - **Global install:**
 
   ```bash
-  npm i @volc-iaas-test01/vecli@latest -g
+  npm install -g @volcengine/vecli@latest
   ```
 
   Then, run the CLI from anywhere:
@@ -28,7 +28,7 @@ This is the recommended way for end-users to install VeCLI. It involves download
 
   ```bash
   # Execute the latest version from NPM without a global install
-  npx @volc-iaas-test01/vecli@latest
+  npx @volcengine/vecli@latest
   ```
 
 ---
